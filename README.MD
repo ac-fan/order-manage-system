@@ -3,6 +3,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/ac-fan/order-manger-system?color=ffd700&style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/ac-fan/order-manger-system?color=60c5ba&style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/ac-fan/order-manger-system?color=1E90FF&style=for-the-badge)
+![Github Codelines](https://img.shields.io/tokei/lines/github/ac-fan/order-manger-system?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/ac-fan/order-manger-system?style=for-the-badge)
 ---
 ## 主要功能
