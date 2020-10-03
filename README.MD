@@ -40,8 +40,13 @@
 │  │  │  └─ util                            // 工具类
 ├─ test                                 // 测试代码目录
 ├─ web                               // tomcat前端文件目录
-│  └─ WEB-INF
-│    └─ page                            // jsp页面目录 
+│  ├─ WEB-INF                           // 页面相关配置文件
+│  ├─ static                            // 页面所需静态资源 
+│  │  ├─ css                                // 页面所需 css
+│  │  ├─ js                                 // 页面所需 js 
+│  │  ├─ imgs                               // 页面所需图片 
+│  │  └─ ***                                // 页面所需*** 
+│  └─ jsp                               // jsp页面目录                            
 ├─ README.md                         // README
 └─ LICENSE                           // 项目所使用的软件许可证
 ```
