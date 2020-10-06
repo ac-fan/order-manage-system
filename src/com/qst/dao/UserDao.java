@@ -9,9 +9,7 @@ package com.qst.dao;
  */
 
 
-public class UserDao {
+public interface UserDao {
 
-    public void selectUserById() {
-        //TODO
-    }
+    public void selectUserById();
 }
