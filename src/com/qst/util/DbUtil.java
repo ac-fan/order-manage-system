@@ -97,16 +97,12 @@ public class DbUtil {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count > 0;
     }
 
     //释放资源
     public static Boolean releaseResource() {
-        Boolean flag = true;
+        boolean flag = true;
         if (rs != null) {
             try {
                 rs.close();
