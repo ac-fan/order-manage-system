@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <!-- Servlet 部分 -->
     <servlet>
         <servlet-name>testServlet</servlet-name>
         <servlet-class>com.qst.servlet.testServlet</servlet-class>
@@ -11,4 +12,15 @@
         <servlet-name>testServlet</servlet-name>
         <url-pattern>/test</url-pattern>
     </servlet-mapping>
+
+    <!-- 过滤器部分 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.qst.filter.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!---->
 </web-app>
