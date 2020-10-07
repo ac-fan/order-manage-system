@@ -1,7 +1,8 @@
 package com.qst.servlet.user;
 
 import com.alibaba.fastjson.JSONArray;
-import com.mysql.jdbc.StringUtils;
+
+import com.mysql.cj.util.StringUtils;
 import com.qst.pojo.User;
 import com.qst.service.user.UserService;
 import com.qst.service.user.UserServiceImpl;
