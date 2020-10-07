@@ -1,6 +1,6 @@
 function page_nav(frm,num){
-	frm.pageIndex.value = num
-    frm.submit();
+		frm.pageIndex.value = num;
+		frm.submit();
 }
 
 function jump_to(frm,num){

@@ -17,26 +17,8 @@ function priceReg (value){
 	}
 	return value;
 }
-//ajax请求供应商下拉列表
-/*$(function () {
-    $.ajax({
-        type:"post",
-        url:path+"/provider/getProList.do",
-        dataType:"JSON",
-        success:function (data) {
-            if(data != null){
-                $("#providerId").html("");
-                var options = "<option value='0'>--请选择--</option>"
-                for (var i = 0;i < data.length;i++){
-                	options += "<option value='"+data[i].id+"'>"+data[i].proName+"</option>"
-                }
-                $("#providerId").html(options);
-            }
-        },error:function (data) {
-			alert("系统异常！")
-        }
-    })
-})*/
+
+
 $(function(){
 	billCode = $("#billCode");
 	productName = $("#productName");
@@ -53,7 +35,28 @@ $(function(){
 	productCount.next().html("*");
 	totalPrice.next().html("*");
 	providerId.next().html("*");
-
+	
+	$.ajax({
+		type:"GET",//请求类型
+		url:path+"/jsp/bill.do",//请求的url
+		data:{method:"getproviderlist"},//请求参数
+		dataType:"json",//ajax接口（请求url）返回的数据类型
+		success:function(data){//data：返回数据（json对象）
+			if(data != null){
+				$("select").html("");//通过标签选择器，得到select标签，适用于页面里只有一个select
+				var options = "<option value=\"0\">请选择</option>";
+				for(var i = 0; i < data.length; i++){
+					//alert(data[i].id);
+					//alert(data[i].proName);
+					options += "<option value=\""+data[i].id+"\">"+data[i].proName+"</option>";
+				}
+				$("select").html(options);
+			}
+		},
+		error:function(data){//当访问时候，404，500 等非200的错误状态码
+			validateTip(providerId.next(),{"color":"red"},imgNo+" 获取供应商列表error",false);
+		}
+	});
 	/*
 	 * 验证
 	 * 失焦\获焦
@@ -118,26 +121,23 @@ $(function(){
 	}).on("blur",function(){
 		this.value = priceReg(this.value);
 	});
-
-	$(function () {
-        addBtn.bind("click",function(){
-            if(billCode.attr("validateStatus") != "true") {
-                billCode.blur();
-            }else if(productName.attr("validateStatus") != "true"){
-                productName.blur();
-            }else if(productUnit.attr("validateStatus") != "true"){
-                productUnit.blur();
-            }else if(providerId.attr("validateStatus") != "true"){
-                providerId.blur();
-            }else{
-                if(confirm("是否确认提交数据")){
-                    $("#billFrom").submit();
-                }
-            }
-            return false;
-        });
-    })
-
+	
+	addBtn.on("click",function(){
+		if(billCode.attr("validateStatus") != "true"){
+			billCode.blur();
+		}else if(productName.attr("validateStatus") != "true"){
+			productName.blur();
+		}else if(productUnit.attr("validateStatus") != "true"){
+			productUnit.blur();
+		}else if(providerId.attr("validateStatus") != "true"){
+			providerId.blur();
+		}else{
+			if(confirm("是否确认提交数据")){
+				$("#billForm").submit();
+			}
+		}
+	});
+	
 	backBtn.on("click",function(){
 		if(referer != undefined 
 			&& null != referer 
@@ -146,7 +146,7 @@ $(function(){
 			&& referer.length > 4){
 		 window.location.href = referer;
 		}else{
-			history.go(-1);
+			history.back(-1);
 		}
 	});
 });

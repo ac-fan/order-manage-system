@@ -1,7 +1,7 @@
-package com.fan.dao.user;
+package com.qst.dao.user;
 
-import com.fan.dao.BaseDao;
-import com.fan.pojo.User;
+import com.qst.dao.BaseDao;
+import com.qst.pojo.User;
 
 
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 
 public class UserDaoImpl implements UserDao{
-    public User getLoginUser(Connection connection, String userCode) throws SQLException {
+    public User getLoginUser(Connection connection, String userCode,String userPassword) throws SQLException {
 
         PreparedStatement pstm=null;
         ResultSet rs=null;
@@ -39,9 +39,27 @@ public class UserDaoImpl implements UserDao{
                     user.setModifyDate(rs.getTimestamp("modifyDate"));
                 }
                 BaseDao.closeResource(null,pstm,rs);
-            }
+                if (user != null && !user.getUserPassword().equals(userPassword))
+                    user = null;
+        }
 
             return user;
 
     }
+
+
+    public int updatePwd(Connection connection, int id, String password) throws SQLException {
+        PreparedStatement pstm = null;
+        int execute = 0;
+        if (connection!=null){
+            String sql = "update smbms_user set userPassword = ? where id = ?";
+            Object params[] = {password,id};
+            execute = BaseDao.execute(connection, sql, params, pstm);
+            BaseDao.closeResource(null,pstm,null);
+        }
+
+        return execute;
+    }
+
+
 }

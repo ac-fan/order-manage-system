@@ -1,4 +1,4 @@
-package com.fan.dao;
+package com.qst.dao;
 
 import java.io.IOException;
 import java.sql.*;

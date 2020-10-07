@@ -1,4 +1,4 @@
-package com.fan.filter;
+package com.qst.filter;
 
 import javax.servlet.*;
 import java.io.IOException;

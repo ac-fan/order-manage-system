@@ -170,9 +170,6 @@ li{
 /*右边*/
 .right{
     width: 85%;
-    position: absolute;
-    top: 90px;
-    left: 180px;
 }
 /*右边所在位置栏*/
 .location{
@@ -225,7 +222,7 @@ li{
     background-color: #5d8410;
 }
 .search a{
-    width: 70px;
+    width: 80px;
     padding-left:40px;
     float: right;
     margin: 10px 60px;

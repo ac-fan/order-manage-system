@@ -1,27 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="common/head.jsp"%>
-<%
-	if (session.getAttribute("providerList")==null){
-		response.sendRedirect("/smbms/provider/management.do");
-	}
-%>
+<%@include file="/jsp/common/head.jsp"%>
+
 <div class="right">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
             <span>供应商管理页面</span>
         </div>
         <div class="search">
-        	<form method="get" action="${pageContext.request.contextPath }/provider/management.do">
-				<input type="hidden" name="pageIndex" value="1"/>
+        	<form method="get" action="${pageContext.request.contextPath }/jsp/provider.do">
+				<input name="method" value="query" type="hidden">
 				<span>供应商编码：</span>
-				<input name="queryProCode" type="text" value="${proCode}">
+				<input name="queryProCode" type="text" value="${queryProCode }">
 				
 				<span>供应商名称：</span>
-				<input name="queryProName" type="text" value="${proName}">
-
+				<input name="queryProName" type="text" value="${queryProName }">
+				
 				<input value="查 询" type="submit" id="searchbutton">
-				<a href="${pageContext.request.contextPath}/provider/provideradd.do">添加供应商</a>
+				<a href="${pageContext.request.contextPath }/jsp/provideradd.jsp">添加供应商</a>
 			</form>
         </div>
         <!--供应商操作表格-->
@@ -35,7 +31,7 @@
                 <th width="10%">创建时间</th>
                 <th width="30%">操作</th>
             </tr>
-            <c:forEach var="provider" items="${providerList}" varStatus="status">
+            <c:forEach var="provider" items="${providerList }" varStatus="status">
 				<tr>
 					<td>
 					<span>${provider.proCode }</span>
@@ -54,7 +50,7 @@
 					</td>
 					<td>
 					<span>
-					<c:out value="${provider.creationDate}"></c:out>
+					<fmt:formatDate value="${provider.creationDate}" pattern="yyyy-MM-dd"/>
 					</span>
 					</td>
 					<td>
@@ -65,12 +61,7 @@
 				</tr>
 			</c:forEach>
         </table>
-		<input type="hidden" id="totalPageCount" value="${pageBean.totalPage}"/>
-		<c:import url="rollpage.jsp">
-			<c:param name="totalCount" value="${pageBean.totalRecord}"/>
-			<c:param name="currentPageNo" value="${pageBean.pageNum}"/>
-			<c:param name="totalPageCount" value="${pageBean.totalPage}"/>
-		</c:import>
+
     </div>
 </section>
 
@@ -86,11 +77,6 @@
        </div>
    </div>
 </div>
-<%
-	session.removeAttribute("providerList");
-	session.removeAttribute("pageBean");
-	session.removeAttribute("proName");
-	session.removeAttribute("proCode");
-%>
-<%@include file="common/foot.jsp" %>
+
+<%@include file="/jsp/common/foot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/providerlist.js"></script>

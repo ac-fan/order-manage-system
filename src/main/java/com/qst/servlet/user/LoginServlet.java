@@ -1,9 +1,9 @@
-package com.fan.servlet.user;
+package com.qst.servlet.user;
 
-import com.fan.pojo.User;
-import com.fan.service.user.UserService;
-import com.fan.service.user.UserServiceImpl;
-import com.fan.util.Constants;
+import com.qst.pojo.User;
+import com.qst.service.user.UserService;
+import com.qst.service.user.UserServiceImpl;
+import com.qst.util.Constants;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

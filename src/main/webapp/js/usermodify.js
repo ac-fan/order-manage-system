@@ -20,21 +20,24 @@ $(function(){
 	
 	
 	$.ajax({
-		type:"GET",
-		url:path+"/role/getAjaxRoleList.do",
-		dataType:"json",
-		success:function(data){
-			//data：返回数据（json字符串）
+		type:"GET",//请求类型
+		url:path+"/jsp/user.do",//请求的url
+		data:{method:"getrolelist"},//请求参数
+		dataType:"json",//ajax接口（请求url）返回的数据类型
+		success:function(data){//data：返回数据（json对象）
 			if(data != null){
 				var rid = $("#rid").val();
 				userRole.html("");
 				var options = "<option value=\"0\">请选择</option>";
 				for(var i = 0; i < data.length; i++){
+					//alert(data[i].id);
+					//alert(data[i].roleName);
 					if(rid != null && rid != undefined && data[i].id == rid ){
 						options += "<option selected=\"selected\" value=\""+data[i].id+"\" >"+data[i].roleName+"</option>";
 					}else{
 						options += "<option value=\""+data[i].id+"\" >"+data[i].roleName+"</option>";
 					}
+					
 				}
 				userRole.html(options);
 			}
@@ -54,6 +57,7 @@ $(function(){
 		}else{
 			validateTip(userName.next(),{"color":"red"},imgNo+" 用户名输入的不符合规范，请重新输入",false);
 		}
+		
 	});
 	
 	birthday.on("focus",function(){
@@ -69,7 +73,7 @@ $(function(){
 	phone.on("focus",function(){
 		validateTip(phone.next(),{"color":"#666666"},"* 请输入手机号",false);
 	}).on("blur",function(){
-		var patrn=/^(1[0-9][0-9]|15[0-9]|18[0-9])\d{8}$/;
+		var patrn=/^(13[0-9]|15[0-9]|18[0-9])\d{8}$/;
 		if(phone.val().match(patrn)){
 			validateTip(phone.next(),{"color":"green"},imgYes,true);
 		}else{
@@ -101,10 +105,10 @@ $(function(){
 				$("#userForm").submit();
 			}
 		}
-		return false;
 	});
 	
 	backBtn.on("click",function(){
+		//alert("modify: "+referer);
 		if(referer != undefined 
 			&& null != referer 
 			&& "" != referer

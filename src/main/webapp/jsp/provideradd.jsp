@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp"%>
 
 <div class="right">
         <div class="location">
@@ -8,7 +8,8 @@
             <span>供应商管理页面 >> 供应商添加页面</span>
         </div>
         <div class="providerAdd">
-           <form id="providerForm" name="providerForm" method="post" action="${pageContext.request.contextPath }/provider/add.do">
+           <form id="providerForm" name="providerForm" method="post" action="${pageContext.request.contextPath }/jsp/provider.do">
+			<input type="hidden" name="method" value="add">
                 <!--div的class 为error是验证错误，ok是验证成功-->
                 <div class="">
                     <label for="proCode">供应商编码：</label>
@@ -52,5 +53,5 @@
      </div>
 </div>
 </section>
-<%@include file="common/foot.jsp" %>
+<%@include file="/jsp/common/foot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/provideradd.js"></script>

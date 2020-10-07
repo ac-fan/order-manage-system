@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp"%>
 
   <div class="right">
       <div class="location">
@@ -8,9 +8,8 @@
           <span>供应商管理页面 >> 供应商修改页</span>
       </div>
       <div class="providerAdd">
-          <form id="providerForm" name="providerForm" method="post" action="${pageContext.request.contextPath }/provider/sava.do">
+          <form id="providerForm" name="providerForm" method="post" action="${pageContext.request.contextPath }/jsp/provider.do">
               <!--div的class 为error是验证错误，ok是验证成功-->
-              <input type="hidden" name="id" value="${provider.id}">
               <div class="">
                   <label for="proCode">供应商编码：</label>
                   <input type="text" name="proCode" id="proCode" value="${provider.proCode }" readonly="readonly"> 
@@ -48,12 +47,12 @@
                   <input type="text" name="proDesc" id="proDesc" value="${provider.proDesc }"> 
               </div>
               <div class="providerAddBtn">
-                  <input type="submit" name="save" id="save" value="保存">
+                  <input type="button" name="save" id="save" value="保存">
 				  <input type="button" id="back" name="back" value="返回" >
               </div>
           </form>
       </div>
   </div>
 </section>
-<%@include file="common/foot.jsp" %>
+<%@include file="/jsp/common/foot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/providermodify.js"></script>

@@ -46,12 +46,12 @@ $(function(){
 	$(".viewProvider").on("click",function(){
 		//将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
 		var obj = $(this);
-		window.location.href=path+"/provider/view.do?proid="+ obj.attr("proid");
+		window.location.href=path+"/jsp/provider.do?method=view&proid="+ obj.attr("proid");
 	});
 	
 	$(".modifyProvider").on("click",function(){
 		var obj = $(this);
-		window.location.href=path+"/provider/modify.do?proid="+ obj.attr("proid");
+		window.location.href=path+"/jsp/provider.do?method=modify&proid="+ obj.attr("proid");
 	});
 
 	$('#no').click(function () {
@@ -62,30 +62,30 @@ $(function(){
 		deleteProvider(providerObj);
 	});
 
-	/*$(".deleteProvider").on("click",function(){
+	$(".deleteProvider").on("click",function(){
 		providerObj = $(this);
 		changeDLGContent("你确定要删除供应商【"+providerObj.attr("proname")+"】吗？");
 		openYesOrNoDLG();
-	});*/
+	});
 	
-	$(".deleteProvider").on("click",function(){
+/*	$(".deleteProvider").on("click",function(){
 		var obj = $(this);
 		if(confirm("你确定要删除供应商【"+obj.attr("proname")+"】吗？")){
 			$.ajax({
 				type:"GET",
-				url:path+"/provider/del.do",
-				data:{proid:obj.attr("proid")},
+				url:path+"/jsp/provider.do",
+				data:{method:"delprovider",proid:obj.attr("proid")},
 				dataType:"json",
 				success:function(data){
-					if(data == true){//删除成功：移除删除行
+					if(data.delResult == "true"){//删除成功：移除删除行
 						alert("删除成功");
 						obj.parents("tr").remove();
-					}else if(data == false){//删除失败
+					}else if(data.delResult == "false"){//删除失败
 						alert("对不起，删除供应商【"+obj.attr("proname")+"】失败");
-					}else if(data == "notexist"){
+					}else if(data.delResult == "notexist"){
 						alert("对不起，供应商【"+obj.attr("proname")+"】不存在");
 					}else{
-						alert("对不起，该供应商【"+obj.attr("proname")+"】下有【"+data+"】条订单，不能删除");
+						alert("对不起，该供应商【"+obj.attr("proname")+"】下有【"+data.delResult+"】条订单，不能删除");
 					}
 				},
 				error:function(data){
@@ -93,5 +93,5 @@ $(function(){
 				}
 			});
 		}
-	});
+	});*/
 });

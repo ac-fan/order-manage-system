@@ -1,37 +1,28 @@
 var billObj;
-$(function () {
-    $.ajax({
-        type:"post",
-        url:path+"/provider/getProList.do",
-        dataType:"JSON",
-        success:function (data) {
-            if(data != null){
-                var proId = $("#proId").val()
-                $("#provider").html("");
-                var options = "<option value='0'>--请选择--</option>"
-                for (var i = 0;i < data.length;i++){
-                    if(proId != null && proId != undefined && data[i].id == proId){
-                        options += "<option selected=\"selected\" value='"+data[i].id+"'>"+data[i].proName+"</option>"
-                    }else{
-                        options += "<option value='"+data[i].id+"'>"+data[i].proName+"</option>"
-                    }
-                }
-                $("#provider").html(options);
-            }
-        }
-    })
-})
 
 //订单管理页面上点击删除按钮弹出删除框(billlist.jsp)
 function deleteBill(obj){
-    $.ajax({
-        type:"POST",
-        url:path+"/bill/del.do",
-        data:{id:$(obj).attr("billid")},
-        success:function () {
-            location.reload();
-        }
-    });
+	$.ajax({
+		type:"GET",
+		url:path+"/jsp/bill.do",
+		data:{method:"delbill",billid:obj.attr("billid")},
+		dataType:"json",
+		success:function(data){
+			if(data.delResult == "true"){//删除成功：移除删除行
+				cancleBtn();
+				obj.parents("tr").remove();
+			}else if(data.delResult == "false"){//删除失败
+				//alert("对不起，删除订单【"+obj.attr("billcc")+"】失败");
+				changeDLGContent("对不起，删除订单【"+obj.attr("billcc")+"】失败");
+			}else if(data.delResult == "notexist"){
+				//alert("对不起，订单【"+obj.attr("billcc")+"】不存在");
+				changeDLGContent("对不起，订单【"+obj.attr("billcc")+"】不存在");
+			}
+		},
+		error:function(data){
+			alert("对不起，删除失败");
+		}
+	});
 }
 
 function openYesOrNoDLG(){
@@ -52,12 +43,12 @@ $(function(){
 	$(".viewBill").on("click",function(){
 		//将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
 		var obj = $(this);
-		window.location.href=path+"/bill/view.do?billid="+ obj.attr("billid");
+		window.location.href=path+"/jsp/bill.do?method=view&billid="+ obj.attr("billid");
 	});
 	
 	$(".modifyBill").on("click",function(){
 		var obj = $(this);
-		window.location.href=path+"/bill/modify.do?billid="+ obj.attr("billid");
+		window.location.href=path+"/jsp/bill.do?method=modify&billid="+ obj.attr("billid");
 	});
 	$('#no').click(function () {
 		cancleBtn();
@@ -68,9 +59,33 @@ $(function(){
 	});
 
 	$(".deleteBill").on("click",function(){
-		billObj = $(this)
-        if(confirm('您确定删除订单【'+billObj.attr("billcc")+'】吗？')){
-            deleteBill(billObj);
-        }
+		billObj = $(this);
+		changeDLGContent("你确定要删除订单【"+billObj.attr("billcc")+"】吗？");
+		openYesOrNoDLG();
 	});
+	
+	/*$(".deleteBill").on("click",function(){
+		var obj = $(this);
+		if(confirm("你确定要删除订单【"+obj.attr("billcc")+"】吗？")){
+			$.ajax({
+				type:"GET",
+				url:path+"/bill.do",
+				data:{method:"delbill",billid:obj.attr("billid")},
+				dataType:"json",
+				success:function(data){
+					if(data.delResult == "true"){//删除成功：移除删除行
+						alert("删除成功");
+						obj.parents("tr").remove();
+					}else if(data.delResult == "false"){//删除失败
+						alert("对不起，删除订单【"+obj.attr("billcc")+"】失败");
+					}else if(data.delResult == "notexist"){
+						alert("对不起，订单【"+obj.attr("billcc")+"】不存在");
+					}
+				},
+				error:function(data){
+					alert("对不起，删除失败");
+				}
+			});
+		}
+	});*/
 });

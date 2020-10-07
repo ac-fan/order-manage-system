@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp"%>
 <div class="right">
      <div class="location">
          <strong>你现在所在的位置是:</strong>
@@ -12,7 +12,7 @@
          <p><strong>商品单位：</strong><span>${bill.productUnit }</span></p>
          <p><strong>商品数量：</strong><span>${bill.productCount }</span></p>
          <p><strong>总金额：</strong><span>${bill.totalPrice }</span></p>
-         <p><strong>供应商：</strong><span>${bill.provider.proName }</span></p>
+         <p><strong>供应商：</strong><span>${bill.providerName }</span></p>
          <p><strong>是否付款：</strong>
          	<span>
          		<c:if test="${bill.isPayment == 1}">未付款</c:if>
@@ -25,5 +25,5 @@
      </div>
  </div>
 </section>
-<%@include file="common/foot.jsp" %>
+<%@include file="/jsp/common/foot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/billview.js"></script>

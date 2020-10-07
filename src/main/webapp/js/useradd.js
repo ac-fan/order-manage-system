@@ -27,29 +27,52 @@ $(function(){
 	phone.next().html("*");
 	birthday.next().html("*");
 	userRole.next().html("*");
-
+	
+	$.ajax({
+		type:"GET",//请求类型
+		url:path+"/jsp/user.do",//请求的url
+		data:{method:"getrolelist"},//请求参数
+		dataType:"json",//ajax接口（请求url）返回的数据类型
+		success:function(data){//data：返回数据（json对象）
+			if(data != null){
+				userRole.html("");
+				var options = "<option value=\"0\">请选择</option>";
+				for(var i = 0; i < data.length; i++){
+					//alert(data[i].id);
+					//alert(data[i].roleName);
+					options += "<option value=\""+data[i].id+"\">"+data[i].roleName+"</option>";
+				}
+				userRole.html(options);
+			}
+		},
+		error:function(data){//当访问时候，404，500 等非200的错误状态码
+			validateTip(userRole.next(),{"color":"red"},imgNo+" 获取用户角色列表error",false);
+		}
+	});
+	
+	
+	
+	/*
+	 * 验证
+	 * 失焦\获焦
+	 * jquery的方法传递
+	 */
 	userCode.bind("blur",function(){
 		//ajax后台验证--userCode是否已存在
+		//user.do?method=ucexist&userCode=**
 		$.ajax({
 			type:"GET",//请求类型
-			data:{userCode:userCode.val()},
-			url:path+"/user/findByUserCode.do/",//请求的url
-			dataType:"JSON",
-			success:function(data){
-				//data：返回数据（json对象）
-                if(data.result == "error"){
-                    //账号为空，错误提示
-                    validateTip(userCode.next(),{"color":"red"},imgNo+ " 请输入用户账号！",false);
-                } else if(data.result == "exist"){
-					//账号已存在，错误提示
-					validateTip(userCode.next(),{"color":"red"},imgNo+ " 该用户账号已存在！",false);
-				}else{
-					//账号可用，正确提示
-					validateTip(userCode.next(),{"color":"green"},imgYes+"该账号可以使用！",true);
+			url:path+"/jsp/user.do",//请求的url
+			data:{method:"ucexist",userCode:userCode.val()},//请求参数
+			dataType:"json",//ajax接口（请求url）返回的数据类型
+			success:function(data){//data：返回数据（json对象）
+				if(data.userCode == "exist"){//账号已存在，错误提示
+					validateTip(userCode.next(),{"color":"red"},imgNo+ " 该用户账号已存在",false);
+				}else{//账号可用，正确提示
+					validateTip(userCode.next(),{"color":"green"},imgYes+" 该账号可以使用",true);
 				}
 			},
-			error:function(data){
-				//当访问时候，404，500 等非200的错误状态码
+			error:function(data){//当访问时候，404，500 等非200的错误状态码
 				validateTip(userCode.next(),{"color":"red"},imgNo+" 您访问的页面不存在",false);
 			}
 		});
@@ -108,7 +131,7 @@ $(function(){
 	phone.bind("focus",function(){
 		validateTip(phone.next(),{"color":"#666666"},"* 请输入手机号",false);
 	}).bind("blur",function(){
-		var patrn=/^(1[0-9][0-9]|15[0-9]|18[0-9])\d{8}$/;
+		var patrn=/^(13[0-9]|15[0-9]|18[0-9])\d{8}$/;
 		if(phone.val().match(patrn)){
 			validateTip(phone.next(),{"color":"green"},imgYes,true);
 		}else{
@@ -149,6 +172,14 @@ $(function(){
 	});
 	
 	backBtn.on("click",function(){
-        history.back(-1);
+		if(referer != undefined 
+			&& null != referer 
+			&& "" != referer
+			&& "null" != referer
+			&& referer.length > 4){
+		 window.location.href = referer;
+		}else{
+			history.back(-1);
+		}
 	});
 });

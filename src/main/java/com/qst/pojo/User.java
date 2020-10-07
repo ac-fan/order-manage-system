@@ -1,4 +1,4 @@
-package com.fan.pojo;
+package com.qst.pojo;
 
 import java.util.Date;
 public class User {

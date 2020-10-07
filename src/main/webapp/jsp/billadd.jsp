@@ -1,18 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="common/head.jsp"%>
-<%
-    if(session.getAttribute("providerList")==null){
-        response.sendRedirect("/smbms/provider/getProviderNameAll.do");
-    }
-%>
+<%@include file="/jsp/common/head.jsp"%>
+
 <div class="right">
      <div class="location">
          <strong>你现在所在的位置是:</strong>
          <span>订单管理页面 >> 订单添加页面</span>
      </div>
      <div class="providerAdd">
-         <form  id="billFrom" method="post" action="${pageContext.request.contextPath }/bill/add.do">
+         <form id="billForm" name="billForm" method="post" action="${pageContext.request.contextPath }/jsp/bill.do">
              <!--div的class 为error是验证错误，ok是验证成功-->
              <input type="hidden" name="method" value="add">
              <div class="">
@@ -44,12 +40,6 @@
              <div>
                  <label >供应商：</label>
                  <select name="providerId" id="providerId">
-                     <c:if test="${providerList != null }">
-                         <option value="0">--请选择--</option>
-                         <c:forEach var="provider" items="${providerList}">
-                             <option value="${provider.id}">${provider.proName}</option>
-                         </c:forEach>
-                     </c:if>
 		         </select>
 				 <font color="red"></font>
              </div>
@@ -59,16 +49,12 @@
 				 <input type="radio" name="isPayment" value="2" >已付款
              </div>
              <div class="providerAddBtn">
-                  <input type="submit" name="add" id="add" value="保存">
+                  <input type="button" name="add" id="add" value="保存">
 				  <input type="button" id="back" name="back" value="返回" >
              </div>
          </form>
      </div>
  </div>
 </section>
-<%
-    session.removeAttribute("providerList");
-%>
-<%@include file="common/foot.jsp" %>
+<%@include file="/jsp/common/foot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/billadd.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/BillAdds.js"></script>

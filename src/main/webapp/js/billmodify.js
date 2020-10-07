@@ -9,7 +9,7 @@ var backBtn = null;
 
 function priceReg (value){
 	value = value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符
-	value = value.replace(/^\./g,"");  //验证第一个字符是数字而不是.
+		value = value.replace(/^\./g,"");  //验证第一个字符是数字而不是.
     value = value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的.
     value = value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");//去掉特殊符号￥
 	if(value.indexOf(".")>0){
@@ -39,7 +39,8 @@ $(function(){
 	
 	$.ajax({
 		type:"GET",//请求类型
-		url:path+"/provider/getProList.do/",//请求的url
+		url:path+"/jsp/bill.do",//请求的url
+		data:{method:"getproviderlist"},//请求参数
 		dataType:"json",//ajax接口（请求url）返回的数据类型
 		success:function(data){//data：返回数据（json对象）
 			if(data != null){
