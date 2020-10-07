@@ -1,5 +1,6 @@
 package com.qst.dao.impl;
 
+import com.mysql.cj.util.StringUtils;
 import com.qst.dao.OrderDao;
 import com.qst.entity.Order;
 import com.qst.util.DbUtil;
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -151,9 +153,60 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    /**
+     * @Author sve1r
+     * @description 根据对应的条件查询相应的订单
+     * @date 2020/10/7
+     * @param [order]
+     * @return java.util.List<com.qst.entity.Order>
+     **/
     public List<Order> getOrderList(Order order) {
+        List<Order> orderList = new ArrayList<>();
+        ResultSet rs = null;
+        Connection connection = DbUtil.getConnection();
 
-        return null;
+        if (connection != null) {
+            StringBuffer sql = new StringBuffer();
+            sql.append("select o.*,p.pName as providerName from smbms_order o, smbmb_provider p where o.providerId = p.id");
+            List<Object> list = new ArrayList<>();
+            if (!StringUtils.isNullOrEmpty(order.getProductName())) {
+                sql.append(" and productName like ?");
+                list.add("%" + order.getProductName() + "%");
+            }
+            if (order.getProviderId() > 0) {
+                sql.append(" and providerId = ?");
+                list.add("%" + order.getProviderId() + "%");
+            }
+            if (order.getIsPayment() > 0) {
+                sql.append(" and isPayment = ?");
+                list.add("%" + order.getIsPayment() + "%");
+            }
+            DbUtil.setParameters(list);
+            System.out.println("sql ------> " + sql.toString());
+
+            rs = DbUtil.executeQuery();
+            try {
+                while (rs.next()) {
+                    Order qOrder = new Order();
+                    qOrder.setId(rs.getInt("id"));
+                    qOrder.setBillCode(rs.getString("orderCode"));
+                    qOrder.setProductName(rs.getString("productName"));
+                    qOrder.setProductDesc(rs.getString("productDesc"));
+                    qOrder.setProductUnit(rs.getString("productUnit"));
+                    qOrder.setProductCount(rs.getBigDecimal("productCount"));
+                    qOrder.setTotalPrice(rs.getBigDecimal("totalPrice"));
+                    qOrder.setIsPayment(rs.getInt("isPayment"));
+                    qOrder.setProviderId(rs.getInt("providerId"));
+                    qOrder.setProviderName(rs.getString("providerName"));
+                    qOrder.setModifyBy(rs.getInt("modifyBy"));
+                    qOrder.setModifyDate(rs.getTimestamp("modifyDate"));
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            DbUtil.releaseResource();
+        }
+        return orderList;
     }
 
     @Override
