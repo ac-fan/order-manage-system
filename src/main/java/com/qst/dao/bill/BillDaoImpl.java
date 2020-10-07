@@ -23,7 +23,6 @@ import java.util.List;
 public class BillDaoImpl implements BillDao {
     @Override
     public int add(Connection connection, Bill bill) {
-
         PreparedStatement pstm = null;
         int flag = 0;
         if (null != connection) {
@@ -37,8 +36,9 @@ public class BillDaoImpl implements BillDao {
                 flag = BaseDao.execute(connection, pstm, sql, params);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            } finally {
+                BaseDao.closeResource(null, pstm, null);
             }
-            BaseDao.closeResource(null, pstm, null);
             System.out.println("dao--------flag " + flag);
         }
         return flag;
@@ -87,15 +87,15 @@ public class BillDaoImpl implements BillDao {
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            } finally {
+                BaseDao.closeResource(null, pstm, rs);
             }
-            BaseDao.closeResource(null, pstm, rs);
         }
         return billList;
     }
 
     @Override
     public int deleteBillById(Connection connection, String delId) {
-
         PreparedStatement pstm = null;
         int flag = 0;
         if (null != connection) {
@@ -105,15 +105,15 @@ public class BillDaoImpl implements BillDao {
                 flag = BaseDao.execute(connection, pstm, sql, params);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            } finally {
+                BaseDao.closeResource(null, pstm, null);
             }
-            BaseDao.closeResource(null, pstm, null);
         }
         return flag;
     }
 
     @Override
     public Bill getBillById(Connection connection, String id) {
-
         Bill bill = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -140,16 +140,16 @@ public class BillDaoImpl implements BillDao {
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            } finally {
+                BaseDao.closeResource(null, pstm, rs);
             }
 
-            BaseDao.closeResource(null, pstm, rs);
         }
         return bill;
     }
 
     @Override
     public int modify(Connection connection, Bill bill) {
-
         int flag = 0;
         PreparedStatement pstm = null;
         if (null != connection) {
@@ -163,15 +163,15 @@ public class BillDaoImpl implements BillDao {
                 flag = BaseDao.execute(connection, pstm, sql, params);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            } finally {
+                BaseDao.closeResource(null, pstm, null);
             }
-            BaseDao.closeResource(null, pstm, null);
         }
         return flag;
     }
 
     @Override
     public int getBillCountByProviderId(Connection connection, String providerId) {
-
         int count = 0;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -186,11 +186,10 @@ public class BillDaoImpl implements BillDao {
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            } finally {
+                BaseDao.closeResource(null, pstm, rs);
             }
-
-            BaseDao.closeResource(null, pstm, rs);
         }
-
         return count;
     }
 }
