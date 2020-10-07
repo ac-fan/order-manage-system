@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 
 public class UserDaoImpl implements UserDao{
+    //登陆
     public User getLoginUser(Connection connection, String userCode,String userPassword) throws SQLException {
 
         PreparedStatement pstm=null;
@@ -48,18 +49,27 @@ public class UserDaoImpl implements UserDao{
     }
 
 
+    //修改密码
     public int updatePwd(Connection connection, int id, String password) throws SQLException {
         PreparedStatement pstm = null;
         int execute = 0;
         if (connection!=null){
             String sql = "update smbms_user set userPassword = ? where id = ?";
             Object params[] = {password,id};
-            execute = BaseDao.execute(connection, sql, params, pstm);
+            execute = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null,pstm,null);
         }
 
         return execute;
     }
 
+    //根据用户名或者角色查询用户总数
+//    public int getUserCount(Connection connection, String username, int userRole) throws SQLException {
+//
+//
+//        PreparedStatement pstm = null;
+//        ResultSet rs = null;
+//        int count = 0;
+//    }
 
 }
