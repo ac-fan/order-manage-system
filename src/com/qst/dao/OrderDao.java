@@ -16,20 +16,20 @@ import java.util.List;
 public interface OrderDao {
 
     //添加订单
-    int add();
+    boolean add(Order order);
 
     //通过 id 修改订单
-    int modify();
+    boolean modify(String orderId, Order order);
 
     //通过 id 删除订单
-    int deleteByOrderById();
+    boolean deleteOrderById(String orderId);
 
     //通过 id 查询订单
-    int selectOrderById();
+    Order selectOrderById(String orderId);
 
     //通过筛选条件查询订单
-    List<Order> getOrderList();
+    List<Order> getOrderList(Order order);
 
     //通过供应商 id 查询订单数量
-    int getOrderCountByProviderId();
+    int getOrderCountByProviderId(String providerId);
 }

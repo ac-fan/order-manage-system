@@ -9,22 +9,27 @@ import java.util.Properties;
  * Class DbUtil
  *
  * @author sve1r
- * @description
+ * @description 数据库公共操作类
  * @date 2020/10/6
  */
 
 
 public class DbUtil {
-    private static final String driver;
-    private static final String url;
-    private static final String username;
-    private static final String password;
+    private static String driver;
+    private static String url;
+    private static String username;
+    private static String password;
     private static Connection connection = null;
     private static PreparedStatement pstmt = null;
     private static ResultSet rs = null;
 
     //静态块加载资源
     static {
+        init();
+    }
+
+    //类加载时初始化
+    private static void init() {
         Properties properties = new Properties();
         //通过类加载器读取对应的资源
         InputStream is = DbUtil.class.getClassLoader().getResourceAsStream("static/db.properties");
@@ -53,16 +58,16 @@ public class DbUtil {
     }
 
     //创建语句
-    public static void initPreparedStatement(String sql) {
+    public static PreparedStatement initPreparedStatement(String sql) {
         if (connection == null || sql.isEmpty()) {
-            return;
+            return null;
         }
         try {
             pstmt = connection.prepareStatement(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+        return pstmt;
     }
 
     //设置语句变量
@@ -79,8 +84,8 @@ public class DbUtil {
         }
     }
 
-    //执行语句
-    public ResultSet executeQuery() {
+    //执行查询语句
+    public static ResultSet executeQuery() {
         try {
             rs = pstmt.executeQuery();
         } catch (SQLException throwables) {
@@ -89,19 +94,24 @@ public class DbUtil {
         return rs;
     }
 
+    //获得查询结果集合
+    public static ResultSet getResultSet() {
+        return rs;
+    }
+
     //执行更新语句
-    public Boolean executeUpdate() {
+    public static Boolean executeUpdate() {
         int count = 0;
         try {
             count = pstmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return count > 0;
+        return (count > 0);
     }
 
     //释放资源
-    public static Boolean releaseResource() {
+    public static void releaseResource() {
         boolean flag = true;
         if (rs != null) {
             try {
@@ -133,6 +143,5 @@ public class DbUtil {
                 flag = false;
             }
         }
-        return flag;
     }
 }

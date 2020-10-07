@@ -11,5 +11,5 @@ package com.qst.dao;
 
 public interface UserDao {
 
-    public void selectUserById();
+    void selectUserById();
 }
