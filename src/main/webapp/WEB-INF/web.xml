@@ -6,7 +6,7 @@
          version="3.0"
          metadata-complete="true">
 
-    <!--servlet-->
+    <!-- 登录 Servlet -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.qst.servlet.user.LoginServlet</servlet-class>
@@ -15,6 +15,7 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login.do</url-pattern>
     </servlet-mapping>
+    <!-- 退出系统 Servlet -->
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.qst.servlet.user.LogoutServlet</servlet-class>
@@ -23,7 +24,7 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/jsp/logout.do</url-pattern>
     </servlet-mapping>
-
+    <!-- 修改密码 Servlet -->
     <servlet>
         <servlet-name>updatePwd</servlet-name>
         <servlet-class>com.qst.servlet.user.UserServlet</servlet-class>
@@ -31,6 +32,15 @@
     <servlet-mapping>
         <servlet-name>updatePwd</servlet-name>
         <url-pattern>/jsp/user.do</url-pattern>
+    </servlet-mapping>
+    <!-- 订单 Servlet -->
+    <servlet>
+        <servlet-name>BillServlet</servlet-name>
+        <servlet-class>com.qst.servlet.bill.BillServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BillServlet</servlet-name>
+        <url-pattern>/jsp/bill.do</url-pattern>
     </servlet-mapping>
 
     <!--中文编码过滤器-->
