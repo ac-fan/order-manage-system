@@ -76,7 +76,6 @@ public class BaseDao {
         return updateRows;
     }
 
-
     //释放资源
     public static boolean closeResource(Connection connection,PreparedStatement preparedStatement,ResultSet resultSet){
         boolean flag = true;

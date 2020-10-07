@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
         userDao=new UserDaoImpl();
     }
 
+    @Override
     public User login(String userCode, String password) {
         Connection connection=null;
         User user=null;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
     public boolean updatePwd(int id, String pwd) {
         Connection connection = null;
         boolean flag = false;

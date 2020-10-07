@@ -10,17 +10,17 @@ import java.io.IOException;
 
 
 public class LogoutServlet extends HttpServlet {
-        @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            //移除用户的Constants.USER_SESSION
-            req.getSession().removeAttribute(Constants.USER_SESSION);
-            resp.sendRedirect("/login.jsp");//返回登录页面
-        }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //移除用户的Constants.USER_SESSION
+        req.getSession().removeAttribute(Constants.USER_SESSION);
+        resp.sendRedirect("/login.jsp");//返回登录页面
+    }
 
-        @Override
-        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            doGet(req, resp);
-        }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
 }
 
 
