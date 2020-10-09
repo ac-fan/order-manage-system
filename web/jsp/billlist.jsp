@@ -74,11 +74,13 @@
                 </td>
                 <td>
                     <span><a class="viewBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img
-                            src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
+                            src="${pageContext.request.contextPath }/static/images/read.png" alt="查看"
+                            title="查看"/></a></span>
                     <span><a class="modifyBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img
-                            src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
+                            src="${pageContext.request.contextPath }/static/images/xiugai.png" alt="修改" title="修改"/></a></span>
                     <span><a class="deleteBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img
-                            src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
+                            src="${pageContext.request.contextPath }/static/images/schu.png" alt="删除"
+                            title="删除"/></a></span>
                 </td>
             </tr>
         </c:forEach>
