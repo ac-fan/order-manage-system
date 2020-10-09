@@ -1,17 +1,15 @@
-package dao.user;
+package com.qst.dao.user;
+
+import com.mysql.cj.util.StringUtils;
+import com.qst.dao.BaseDao;
+import com.qst.pojo.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-//import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.util.StringUtils;
-
-import dao.BaseDao;
-//import pojo.Role;
-import pojo.User;
 
 public class UserDaoImpl implements UserDao {
 
@@ -36,6 +34,7 @@ public class UserDaoImpl implements UserDao {
 
     //�־ò�ֻ����ѯ���ݿ������
     //�õ�Ҫ��¼���û�
+    @Override
     public User getLoginUser(Connection connection, String userCode) throws Exception {
         //׼����������
         PreparedStatement pstm = null;

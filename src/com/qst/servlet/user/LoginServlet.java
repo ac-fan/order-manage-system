@@ -1,16 +1,15 @@
-package servlet.user;
+package com.qst.servlet.user;
 
-import java.io.IOException;
+import com.qst.pojo.User;
+import com.qst.service.user.UserService;
+import com.qst.service.user.UserServiceImpl;
+import com.qst.util.Constants;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import pojo.User;
-import util.Constants;
-import service.user.UserService;
-import service.user.UserServiceImpl;
+import java.io.IOException;
 
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {

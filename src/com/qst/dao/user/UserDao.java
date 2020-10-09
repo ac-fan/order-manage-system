@@ -1,11 +1,10 @@
-package dao.user;
+package com.qst.dao.user;
+
+import com.qst.pojo.User;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
-//import pojo.Role;
-import pojo.User;
 
 public interface UserDao {
 

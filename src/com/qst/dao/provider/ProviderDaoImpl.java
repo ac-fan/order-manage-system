@@ -1,4 +1,8 @@
-package dao.provider;
+package com.qst.dao.provider;
+
+import com.mysql.cj.util.StringUtils;
+import com.qst.dao.BaseDao;
+import com.qst.pojo.Provider;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,11 +10,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.util.StringUtils;
-
-import dao.BaseDao;
-import pojo.Provider;
-//import pojo.User;
 
 public class ProviderDaoImpl implements ProviderDao {
 

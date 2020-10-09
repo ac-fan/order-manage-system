@@ -1,9 +1,10 @@
-package dao.provider;
+package com.qst.dao.provider;
+
+import com.qst.pojo.Provider;
 
 import java.sql.Connection;
 import java.util.List;
 
-import pojo.Provider;
 
 public interface ProviderDao {
 

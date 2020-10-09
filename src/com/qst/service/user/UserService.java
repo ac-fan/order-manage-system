@@ -1,10 +1,10 @@
-package service.user;
-//import java.sql.Connection;
+package com.qst.service.user;
+
+import com.qst.pojo.User;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import pojo.User;
 
 public interface UserService {
 

@@ -1,4 +1,4 @@
-package util;
+package com.qst.util;
 
 import java.math.BigDecimal;
 

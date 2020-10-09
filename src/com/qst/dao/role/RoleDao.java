@@ -1,9 +1,10 @@
-package dao.role;
+package com.qst.dao.role;
+
+import com.qst.pojo.Role;
 
 import java.sql.Connection;
 import java.util.List;
 
-import pojo.Role;
 
 public interface RoleDao {
 

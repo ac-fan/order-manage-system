@@ -1,12 +1,13 @@
-package service.role;
+package com.qst.service.role;
+
+import com.qst.dao.BaseDao;
+import com.qst.dao.role.RoleDao;
+import com.qst.dao.role.RoleDaoImpl;
+import com.qst.pojo.Role;
 
 import java.sql.Connection;
 import java.util.List;
 
-import dao.BaseDao;
-import dao.role.RoleDao;
-import dao.role.RoleDaoImpl;
-import pojo.Role;
 
 public class RoleServiceImpl implements RoleService {
 

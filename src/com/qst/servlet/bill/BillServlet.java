@@ -1,5 +1,20 @@
-package servlet.bill;
+package com.qst.servlet.bill;
 
+import com.alibaba.fastjson.JSONArray;
+import com.mysql.cj.util.StringUtils;
+import com.qst.pojo.Bill;
+import com.qst.pojo.Provider;
+import com.qst.pojo.User;
+import com.qst.service.bill.BillService;
+import com.qst.service.bill.BillServiceImpl;
+import com.qst.service.provider.ProviderService;
+import com.qst.service.provider.ProviderServiceImpl;
+import com.qst.util.Constants;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -8,29 +23,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSONArray;
-import com.mysql.cj.util.StringUtils;
-
-import pojo.Bill;
-import pojo.Provider;
-import pojo.User;
-import service.bill.BillService;
-import service.bill.BillServiceImpl;
-import service.provider.ProviderService;
-import service.provider.ProviderServiceImpl;
-import util.Constants;
-
 @SuppressWarnings("serial")
 public class BillServlet extends HttpServlet {
 
 	/**
 	 * Destruction of the servlet. <br>
 	 */
+	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -46,6 +45,7 @@ public class BillServlet extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException      if an error occurred
 	 */
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -62,6 +62,7 @@ public class BillServlet extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException      if an error occurred
 	 */
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -259,6 +260,7 @@ public class BillServlet extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
+	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

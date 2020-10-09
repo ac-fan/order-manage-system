@@ -1,17 +1,14 @@
-package service.user;
+package com.qst.service.user;
+
+import com.qst.dao.BaseDao;
+import com.qst.dao.user.UserDao;
+import com.qst.dao.user.UserDaoImpl;
+import com.qst.pojo.User;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-//import org.junit.Test;
-
-//import org.junit.Test;
-
-import dao.BaseDao;
-import dao.user.UserDao;
-import dao.user.UserDaoImpl;
-import pojo.User;
 
 public class UserServiceImpl implements UserService {
     //ҵ��㶼�����dao��.��������Ҫ����Dao�㣨�ص㣩
@@ -58,6 +55,7 @@ public class UserServiceImpl implements UserService {
         return flag;
     }
 
+    @Override
     public User login(String userCode, String userPassword) {
         // TODO Auto-generated method stub
         Connection connection = null;
@@ -75,8 +73,9 @@ public class UserServiceImpl implements UserService {
 
         // ƥ������
         if (null != user) {
-            if (!user.getUserPassword().equals(userPassword))
+            if (!user.getUserPassword().equals(userPassword)) {
                 user = null;
+            }
         }
 
         return user;
@@ -127,8 +126,9 @@ public class UserServiceImpl implements UserService {
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if (userDao.deleteUserById(connection, delId) > 0)
+            if (userDao.deleteUserById(connection, delId) > 0) {
                 flag = true;
+            }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -163,8 +163,9 @@ public class UserServiceImpl implements UserService {
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if (userDao.modify(connection, user) > 0)
+            if (userDao.modify(connection, user) > 0) {
                 flag = true;
+            }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -174,6 +175,7 @@ public class UserServiceImpl implements UserService {
         return flag;
     }
 
+    @Override
     public boolean updatePwd(int id, String password) throws SQLException, Exception {
         // TODO �Զ����ɵķ������
         Connection connection = null;

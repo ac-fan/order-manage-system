@@ -1,9 +1,10 @@
 package com.qst.dao.bill;
 
+import com.qst.pojo.Bill;
+
 import java.sql.Connection;
 import java.util.List;
 
-import pojo.Bill;
 
 public interface BillDao {
 	/**

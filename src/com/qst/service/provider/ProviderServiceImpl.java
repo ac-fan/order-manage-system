@@ -1,16 +1,16 @@
-package service.provider;
+package com.qst.service.provider;
+
+import com.qst.dao.BaseDao;
+import com.qst.dao.bill.BillDao;
+import com.qst.dao.bill.BillDaoImpl;
+import com.qst.dao.provider.ProviderDao;
+import com.qst.dao.provider.ProviderDaoImpl;
+import com.qst.pojo.Provider;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import dao.BaseDao;
-import dao.bill.BillDao;
-import dao.bill.BillDaoImpl;
-import dao.provider.ProviderDao;
-import dao.provider.ProviderDaoImpl;
-import pojo.Provider;
-//import pojo.User;
 
 public class ProviderServiceImpl implements ProviderService {
 
@@ -22,6 +22,7 @@ public class ProviderServiceImpl implements ProviderService {
         billDao = new BillDaoImpl();
     }
 
+    @Override
     public boolean add(Provider provider) {
         // TODO Auto-generated method stub
         boolean flag = false;
@@ -29,8 +30,9 @@ public class ProviderServiceImpl implements ProviderService {
         try {
             connection = BaseDao.getConnection();
             connection.setAutoCommit(false);//开启JDBC事务管理
-            if (providerDao.add(connection, provider) > 0)
+            if (providerDao.add(connection, provider) > 0) {
                 flag = true;
+            }
             connection.commit();
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -127,14 +129,16 @@ public class ProviderServiceImpl implements ProviderService {
         return provider;
     }
 
+    @Override
     public boolean modify(Provider provider) {
         // TODO Auto-generated method stub
         Connection connection = null;
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if (providerDao.modify(connection, provider) > 0)
+            if (providerDao.modify(connection, provider) > 0) {
                 flag = true;
+            }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

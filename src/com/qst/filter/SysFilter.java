@@ -1,4 +1,4 @@
-package filter;
+package com.qst.filter;
 
 import java.io.IOException;
 
@@ -10,10 +10,12 @@ import pojo.User;
 import util.Constants;
 
 public class SysFilter implements Filter {
+    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
         // TODO 自动生成的方法存根
@@ -33,6 +35,7 @@ public class SysFilter implements Filter {
         }
     }
 
+    @Override
     public void destroy() {
         // TODO 自动生成的方法存根
 

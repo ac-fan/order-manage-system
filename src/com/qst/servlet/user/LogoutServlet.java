@@ -1,15 +1,14 @@
-package servlet.user;
+package com.qst.servlet.user;
 
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import com.qst.util.Constants;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-import util.Constants;
 
 @SuppressWarnings("unused")
 public class LogoutServlet extends HttpServlet {

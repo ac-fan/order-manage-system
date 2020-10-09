@@ -1,8 +1,22 @@
-package servlet.user;
+package com.qst.servlet.user;
 
+import com.alibaba.fastjson.JSONArray;
+import com.mysql.cj.util.StringUtils;
+import com.qst.pojo.Role;
+import com.qst.pojo.User;
+import com.qst.service.role.RoleService;
+import com.qst.service.role.RoleServiceImpl;
+import com.qst.service.user.UserService;
+import com.qst.service.user.UserServiceImpl;
+import com.qst.util.Constants;
+import com.qst.util.PageSupport;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-//import java.io.Writer;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,24 +25,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSONArray;
-import com.mysql.cj.util.StringUtils;
-import pojo.Role;
-
-//import com.mysql.cj.util.StringUtils;
-
-import pojo.User;
-import service.role.RoleService;
-import service.role.RoleServiceImpl;
-import service.user.UserService;
-import service.user.UserServiceImpl;
-import util.Constants;
-import util.PageSupport;
 
 @SuppressWarnings("serial")
 public class UserServlet extends HttpServlet {

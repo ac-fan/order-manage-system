@@ -1,11 +1,10 @@
-package service.role;
+package com.qst.service.role;
+
+import com.qst.pojo.Role;
 
 import java.util.List;
 
-import pojo.Role;
-
 public interface RoleService {
     //角色列表查询
-    public List<Role> getRoleList();
-
+    List<Role> getRoleList();
 }

@@ -1,4 +1,7 @@
-package dao.role;
+package com.qst.dao.role;
+
+import com.qst.dao.BaseDao;
+import com.qst.pojo.Role;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +9,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.BaseDao;
-import pojo.Role;
 
 public class RoleDaoImpl implements RoleDao {
 

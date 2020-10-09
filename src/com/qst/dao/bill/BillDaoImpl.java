@@ -1,16 +1,15 @@
 package com.qst.dao.bill;
 
+import com.mysql.cj.util.StringUtils;
+import com.qst.dao.BaseDao;
+import com.qst.pojo.Bill;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.util.StringUtils;
-
-import dao.BaseDao;
-import pojo.Bill;
-//import pojo.Provider;
 
 public class BillDaoImpl implements BillDao {
 

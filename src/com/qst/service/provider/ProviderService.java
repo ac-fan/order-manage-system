@@ -1,50 +1,20 @@
-package service.provider;
+package com.qst.service.provider;
+
+import com.qst.pojo.Provider;
 
 import java.util.List;
 
-import pojo.Provider;
-
 public interface ProviderService {
-    /**
-     * 增加供应商
-     *
-     * @param provider
-     * @return
-     */
-    public boolean add(Provider provider);
+
+    boolean add(Provider provider);
+
+    List<Provider> getProviderList(String proName, String proCode);
+
+    int deleteProviderById(String delId);
+
+    Provider getProviderById(String id);
 
 
-    /**
-     * 通过供应商名称、编码获取供应商列表-模糊查询-providerList
-     *
-     * @param proName
-     * @return
-     */
-    public List<Provider> getProviderList(String proName, String proCode);
-
-    /**
-     * 通过proId删除Provider
-     *
-     * @param delId
-     * @return
-     */
-    public int deleteProviderById(String delId);
-
-
-    /**
-     * 通过proId获取Provider
-     *
-     * @param id
-     * @return
-     */
-    public Provider getProviderById(String id);
-
-    /**
-     * 修改用户信息
-     *
-     * @param user
-     * @return
-     */
-    public boolean modify(Provider provider);
+    boolean modify(Provider provider);
 
 }

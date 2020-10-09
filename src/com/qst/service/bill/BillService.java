@@ -1,8 +1,9 @@
-package service.bill;
+package com.qst.service.bill;
+
+import com.qst.pojo.Bill;
 
 import java.util.List;
 
-import pojo.Bill;
 
 public interface BillService {
     /**

@@ -1,14 +1,14 @@
-package service.bill;
+package com.qst.service.bill;
+
+import com.qst.dao.BaseDao;
+import com.qst.dao.bill.BillDao;
+import com.qst.dao.bill.BillDaoImpl;
+import com.qst.pojo.Bill;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import dao.BaseDao;
-import dao.bill.BillDao;
-import dao.bill.BillDaoImpl;
-import pojo.Bill;
-//import pojo.Provider;
 
 public class BillServiceImpl implements BillService {
 
@@ -18,6 +18,7 @@ public class BillServiceImpl implements BillService {
         billDao = new BillDaoImpl();
     }
 
+    @Override
     public boolean add(Bill bill) {
         // TODO Auto-generated method stub
         boolean flag = false;
@@ -25,8 +26,9 @@ public class BillServiceImpl implements BillService {
         try {
             connection = BaseDao.getConnection();
             connection.setAutoCommit(false);//开启JDBC事务管理
-            if (billDao.add(connection, bill) > 0)
+            if (billDao.add(connection, bill) > 0) {
                 flag = true;
+            }
             connection.commit();
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -45,6 +47,7 @@ public class BillServiceImpl implements BillService {
         return flag;
     }
 
+    @Override
     public List<Bill> getBillList(Bill bill) {
         // TODO Auto-generated method stub
         Connection connection = null;
@@ -72,8 +75,9 @@ public class BillServiceImpl implements BillService {
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if (billDao.deleteBillById(connection, delId) > 0)
+            if (billDao.deleteBillById(connection, delId) > 0) {
                 flag = true;
+            }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -101,6 +105,7 @@ public class BillServiceImpl implements BillService {
         return bill;
     }
 
+    @Override
     public boolean modify(Bill bill) {
         // TODO Auto-generated method stub
         Connection connection = null;
