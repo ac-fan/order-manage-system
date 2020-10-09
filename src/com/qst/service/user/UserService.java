@@ -2,36 +2,34 @@ package com.qst.service.user;
 
 import com.qst.pojo.User;
 
-import java.sql.SQLException;
 import java.util.List;
-
 
 public interface UserService {
 
-    //�����û���Ϣ
+    //增加用户信息
     boolean add(User user);
 
-    //�û���¼
+    //用户登录
     User login(String userCode, String password);
 
-    //����������ѯ�û��б�
+    //根据条件查询用户列表
     List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize);
 
-    //��ѯ��¼��
+    //查询记录数
     int getUserCount(String username, int userRole);
 
-    //����userCode��ѯ��User
+    //根据userCode查询出User
     User selectUserCodeExist(String userCode);
 
-    //����IDɾ��user
+    //根据ID删除user
     boolean deleteUserById(Integer delId);
 
-    //����ID����user
+    //根据ID查找user
     User getUserById(String id);
 
-    //�޸��û���Ϣ
+    //修改用户信息
     boolean modify(User user);
 
-    //�����û�ID�޸�����
+    //根据用户ID修改密码
     boolean updatePwd(int id, String password) throws Exception;
 }

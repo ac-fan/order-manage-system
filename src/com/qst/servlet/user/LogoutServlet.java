@@ -22,15 +22,18 @@ public class LogoutServlet extends HttpServlet {
         super();
     }
 
+    @Override
     public void destroy() {
         super.destroy();
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("已退出，请重新登陆");
@@ -39,6 +42,7 @@ public class LogoutServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/login.jsp");//返回登录页面
     }
 
+    @Override
     public void init() throws ServletException {
 
     }

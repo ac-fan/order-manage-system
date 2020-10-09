@@ -10,10 +10,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UserDaoImpl implements UserDao {
 
-    //�����û���Ϣ
+    //增加用户信息
     @Override
     public int add(Connection connection, User user) throws Exception {
         // TODO Auto-generated method stub
@@ -32,15 +31,15 @@ public class UserDaoImpl implements UserDao {
         return updateRows;
     }
 
-    //�־ò�ֻ����ѯ���ݿ������
-    //�õ�Ҫ��¼���û�
+    //持久层只做查询数据库的内容
+    //得到要登录的用户
     @Override
     public User getLoginUser(Connection connection, String userCode) throws Exception {
-        //׼����������
+        //准备三个对象
         PreparedStatement pstm = null;
         ResultSet rs = null;
         User user = null;
-        //�ж��Ƿ����ӳɹ�
+        //判断是否连接成功
         if (null != connection) {
             String sql = "select * from smbms_user where userCode=?";
             Object[] params = {userCode};
@@ -66,18 +65,18 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
-    //ͨ��������ѯ-userList
+    //通过条件查询-userList
     @Override
     public List<User> getUserList(Connection connection, String userName, int userRole, int currentPageNo, int pageSize)
             throws Exception {
         // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<User> userList = new ArrayList<>();
+        List<User> userList = new ArrayList<User>();
         if (connection != null) {
             StringBuffer sql = new StringBuffer();
             sql.append("select u.*,r.roleName as userRoleName from smbms_user u,smbms_role r where u.userRole = r.id");
-            List<Object> list = new ArrayList<>();
+            List<Object> list = new ArrayList<Object>();
             if (!StringUtils.isNullOrEmpty(userName)) {
                 sql.append(" and u.userName like ?");
                 list.add("%" + userName + "%");
@@ -86,8 +85,8 @@ public class UserDaoImpl implements UserDao {
                 sql.append(" and u.userRole = ?");
                 list.add(userRole);
             }
-            //�����ݿ��У���ҳ��ʾ limit startIndex��pageSize������
-            //��ǰҳ  (��ǰҳ-1)*ҳ���С
+            //在数据库中，分页显示 limit startIndex，pageSize；总数
+            //当前页  (当前页-1)*页面大小
             //0,5	1,0	 01234
             //5,5	5,0	 56789
             //10,5	10,0 10~
@@ -117,7 +116,7 @@ public class UserDaoImpl implements UserDao {
         return userList;
     }
 
-    //ͨ��userIdɾ��user
+    //通过userId删除user
     @Override
     public int deleteUserById(Connection connection, Integer delId) throws Exception {
         // TODO Auto-generated method stub
@@ -132,7 +131,7 @@ public class UserDaoImpl implements UserDao {
         return flag;
     }
 
-    //ͨ��userId��ȡuser
+    //通过userId获取user
     @Override
     public User getUserById(Connection connection, String id) throws Exception {
         // TODO Auto-generated method stub
@@ -165,7 +164,7 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
-    //�޸��û���Ϣ
+    //修改用户信息
     @Override
     public int modify(Connection connection, User user) throws Exception {
         // TODO Auto-generated method stub
@@ -183,7 +182,7 @@ public class UserDaoImpl implements UserDao {
         return flag;
     }
 
-    //�����û������߽�ɫ��ѯ�û�����(��������SQL)
+    //根据用户名或者角色查询用户总数(最难理解的SQL)
     @Override
     public int getUserCount(Connection connection, String userName, int userRole) throws Exception {
         // TODO Auto-generated method stub
@@ -194,7 +193,7 @@ public class UserDaoImpl implements UserDao {
         if (connection != null) {
             StringBuffer sql = new StringBuffer();
             sql.append("select count(1) as count from smbms_user u,smbms_role r where u.userRole = r.id");
-            List<Object> list = new ArrayList<>();//������ǵĲ���
+            List<Object> list = new ArrayList<Object>();//存放我们的参数
 
             if (!StringUtils.isNullOrEmpty(userName)) {
                 sql.append(" and u.userName like ?");
@@ -206,15 +205,15 @@ public class UserDaoImpl implements UserDao {
                 list.add(userRole);
             }
 
-            //��ô��List ת������
+            //怎么把List 转成数组
             Object[] params = list.toArray();
-            //��������������
+            //输出最后的完整语句
             System.out.println("UserDaoImpl->getUserCount:" + sql.toString());
 
             rs = BaseDao.execute(connection, pstm, rs, sql.toString(), params);
 
             if (rs.next()) {
-                count = rs.getInt("count");//�ӽ�����л�ȡ��������
+                count = rs.getInt("count");//从结果集中获取最终数量
 
             }
             BaseDao.closeResource(null, pstm, rs);
@@ -223,10 +222,10 @@ public class UserDaoImpl implements UserDao {
         return count;
     }
 
-    //�޸ĵ�ǰ�û�����
-    @Override//�޸ĵ�ǰ����
+    //修改当前用户密码
+    @Override//修改当前密码
     public int updatePwd(Connection connection, int id, String password) throws Exception {
-        // TODO �Զ����ɵķ������
+        // TODO 自动生成的方法存根
         PreparedStatement pstm = null;
         int execute = 0;
         if (connection != null) {

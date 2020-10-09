@@ -1,5 +1,6 @@
 package com.qst.service.user;
 
+
 import com.qst.dao.BaseDao;
 import com.qst.dao.user.UserDao;
 import com.qst.dao.user.UserDaoImpl;
@@ -9,12 +10,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-
 public class UserServiceImpl implements UserService {
-    //ҵ��㶼�����dao��.��������Ҫ����Dao�㣨�ص㣩
-    //ֻ�����Ӧҵ��
+    //业务层都会调用dao层.所以我们要引入Dao层（重点）
+    //只处理对应业务
 
-    private final UserDao userDao;
+    private UserDao userDao;
 
     public UserServiceImpl() {
         userDao = new UserDaoImpl();
@@ -22,13 +22,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean add(User user) {
-        // TODO Auto-generated method stub
-
         boolean flag = false;
         Connection connection = null;
         try {
             connection = BaseDao.getConnection();
-            connection.setAutoCommit(false);//����JDBC�������
+            connection.setAutoCommit(false);//开启JDBC事务管理
             int updateRows = userDao.add(connection, user);
             connection.commit();
             if (updateRows > 0) {
@@ -39,17 +37,16 @@ public class UserServiceImpl implements UserService {
             }
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             try {
                 System.out.println("rollback==================");
+                assert connection != null;
                 connection.rollback();
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         } finally {
-            //��service�����connection���ӵĹر�
+            //在service层进行connection连接的关闭
             BaseDao.closeResource(connection, null, null);
         }
         return flag;
@@ -57,21 +54,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String userCode, String userPassword) {
-        // TODO Auto-generated method stub
         Connection connection = null;
-        //ͨ��ҵ�����ö�Ӧ�ľ������ݿ����
+        //通过业务层调用对应的具体数据库操作
         User user = null;
         try {
             connection = BaseDao.getConnection();
             user = userDao.getLoginUser(connection, userCode);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
         }
 
-        // ƥ������
+        // 匹配密码
         if (null != user) {
             if (!user.getUserPassword().equals(userPassword)) {
                 user = null;
@@ -177,17 +172,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updatePwd(int id, String password) throws Exception {
-        // TODO �Զ����ɵķ������
+        // TODO 自动生成的方法存根
         Connection connection = null;
         boolean flag = false;
-        //�޸�����
+        //修改密码
         try {
             connection = BaseDao.getConnection();
             if (userDao.updatePwd(connection, id, password) > 0) {
                 flag = true;
             }
         } catch (SQLException e) {
-            // TODO �Զ����ɵ� catch ��
+            // TODO 自动生成的 catch 块
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
@@ -198,7 +193,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    //��ѯ��¼��
+    //查询记录数
     @Override
     public int getUserCount(String queryUserName, int queryUserRole) {
         // TODO Auto-generated method stub
@@ -218,14 +213,14 @@ public class UserServiceImpl implements UserService {
         //System.out.println("count"+count);
         return count;
     }
-	
+
 	/*@Test
 	public void test() {
 		UserServiceImpl userService = new UserServiceImpl();
 		int userCount = userService.getUserCount(null,3);
 		System.out.println(userCount);
 	}
-	
+
 	*/
 
 

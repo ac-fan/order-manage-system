@@ -10,15 +10,14 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Class BaseDao
+ * 操作数据库的基类--静态类
  *
- * @author sve1r
- * @description 公共 Dao
- * @date 2020/10/6
+ * @author Administrator
  */
 public class BaseDao {
 
     static {
+        //静态代码块,在类加载的时候执行
         init();
     }
 
@@ -27,9 +26,10 @@ public class BaseDao {
     private static String user;
     private static String password;
 
+    //初始化连接参数,从配置文件里获得
     public static void init() {
         Properties properties = new Properties();
-        String configFile = "/WEB-INF/db.properties";
+        String configFile = "db.properties";
         InputStream is = BaseDao.class.getClassLoader().getResourceAsStream(configFile);
         try {
             properties.load(is);
@@ -54,16 +54,18 @@ public class BaseDao {
         return connection;
     }
 
+    //static
     public static ResultSet execute(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet, String sql, Object[] params) throws Exception {
-        //Ԥ�����sql����Ҫ���Σ�ֱ��ִ�м���
+        //预编译的sql不需要传参，直接执行即可
         preparedStatement = connection.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
             preparedStatement.setObject(i + 1, params[i]);
         }
-        resultSet = preparedStatement.executeQuery();//�����sql
+        resultSet = preparedStatement.executeQuery();//新添加sql
         return resultSet;
     }
 
+    //static
     public static int execute(Connection connection, PreparedStatement preparedStatement, String sql, Object[] params) throws Exception {
         int updateRows = 0;
         preparedStatement = connection.prepareStatement(sql);
@@ -79,9 +81,9 @@ public class BaseDao {
         if (resultSet != null) {
             try {
                 resultSet.close();
-                resultSet = null;//GC����
+                resultSet = null;//GC回收
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
                 flag = false;
             }
@@ -89,9 +91,9 @@ public class BaseDao {
         if (preparedStatement != null) {
             try {
                 preparedStatement.close();
-                preparedStatement = null;//GC����
+                preparedStatement = null;//GC回收
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
                 flag = false;
             }
@@ -99,14 +101,12 @@ public class BaseDao {
         if (connection != null) {
             try {
                 connection.close();
-                connection = null;//GC����
+                connection = null;//GC回收
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
                 flag = false;
             }
         }
-
         return flag;
     }
 }
