@@ -42,6 +42,16 @@
         <servlet-name>BillServlet</servlet-name>
         <url-pattern>/jsp/bill.do</url-pattern>
     </servlet-mapping>
+    <!--供应商servlet-->
+    <servlet>
+        <servlet-name>ProviderServlet</servlet-name>
+        <servlet-class>com.qst.servlet.provider.ProviderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ProviderServlet</servlet-name>
+        <url-pattern>/jsp/provider.do</url-pattern>
+    </servlet-mapping>
 
     <!--中文编码过滤器-->
     <filter>

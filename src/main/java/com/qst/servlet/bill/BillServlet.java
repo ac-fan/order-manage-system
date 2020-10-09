@@ -1,13 +1,16 @@
+
 package com.qst.servlet.bill;
 
 import com.alibaba.fastjson.JSONArray;
-import com.mysql.cj.util.StringUtils;
 import com.qst.pojo.Bill;
 import com.qst.pojo.Provider;
 import com.qst.pojo.User;
 import com.qst.service.bill.BillService;
 import com.qst.service.bill.BillServiceImpl;
+import com.qst.service.provider.ProviderService;
+import com.qst.service.provider.ProviderServiceImpl;
 import com.qst.util.Constants;
+import com.mysql.cj.util.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,15 +25,27 @@ import java.util.HashMap;
 import java.util.List;
 
 public class BillServlet extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*String totalPrice = request.getParameter("totalPrice");
-		//23.234   45
-		BigDecimal totalPriceBigDecimal =
-				//设置规则，小数点保留两位，多出部分，ROUND_DOWN 舍弃
-				//ROUND_HALF_UP 四舍五入(5入) ROUND_UP 进位
-				//ROUND_HALF_DOWN 四舍五入（5不入）
-				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
+
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        doPost(request, response);
+    }
+
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+
+        String totalPrice = request.getParameter("totalPrice");
+        //23.234   45
+        BigDecimal totalPriceBigDecimal =
+                //设置规则，小数点保留两位，多出部分，ROUND_DOWN 舍弃
+                //ROUND_HALF_UP 四舍五入(5入) ROUND_UP 进位
+                //ROUND_HALF_DOWN 四舍五入（5不入）
+                new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_DOWN);
+
 
         String method = request.getParameter("method");
         if (method != null && method.equals("query")) {
@@ -43,26 +58,26 @@ public class BillServlet extends HttpServlet {
             this.getBillById(request, response, "billmodify.jsp");
         } else if (method != null && method.equals("modifysave")) {
             this.modify(request, response);
+
         } else if (method != null && method.equals("delbill")) {
             this.delBill(request, response);
         } else if (method != null && method.equals("getproviderlist")) {
             this.getProviderlist(request, response);
+
         }
+
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-    }
 
     private void getProviderlist(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        int pageSize = 5;
+        int currentPageNo = 1;
         System.out.println("getproviderlist ========================= ");
 
         List<Provider> providerList = new ArrayList<Provider>();
         ProviderService providerService = new ProviderServiceImpl();
-        providerList = providerService.getProviderList("", "");
+        providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
         //把providerList转换成json对象输出
         response.setContentType("application/json");
         PrintWriter outPrintWriter = response.getWriter();
@@ -176,10 +191,11 @@ public class BillServlet extends HttpServlet {
 
     private void query(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        int pageSize = 5;
+        int currentPageNo = 1;
         List<Provider> providerList = new ArrayList<Provider>();
         ProviderService providerService = new ProviderServiceImpl();
-        providerList = providerService.getProviderList("", "");
+        providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
         request.setAttribute("providerList", providerList);
 
         String queryProductName = request.getParameter("queryProductName");
@@ -213,8 +229,9 @@ public class BillServlet extends HttpServlet {
 
     }
 
-    @Override
-    public void destroy() {
-        System.out.println("BillServlet Destroyed.");
+    public static void main(String[] args) {
+        System.out.println(new BigDecimal("23.235").setScale(2, BigDecimal.ROUND_HALF_DOWN));
     }
 }
+
+
