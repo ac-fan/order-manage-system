@@ -1,5 +1,6 @@
 package com.qst.pojo;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class User {
@@ -32,11 +33,10 @@ public class User {
     }
 
     public Integer getAge() {
-		/*long time = System.currentTimeMillis()-birthday.getTime();
-		Integer age = Long.valueOf(time/365/24/60/60/1000).IntegerValue();*/
-        Date date = new Date();
-        @SuppressWarnings("deprecation")
-        Integer age = date.getYear() - birthday.getYear();
+        Calendar now = Calendar.getInstance();
+        Calendar birth = Calendar.getInstance();
+        birth.setTime(birthday);
+        Integer age = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
         return age;
     }
 

@@ -31,21 +31,21 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO 自动生成的方法存根
         String method = req.getParameter("method");
-        if (method.equals("savepwd") && method != null) {
+        if ("savepwd".equals(method) && method != null) {
             this.updatePwd(req, resp);
-        } else if (method.equals("pwdmodify") && method != null) {
+        } else if ("pwdmodify".equals(method) && method != null) {
             this.pwdModify(req, resp);
-        } else if (method.equals("query") && method != null) {
+        } else if ("query".equals(method) && method != null) {
             this.query(req, resp);
-        } else if (method != null && method.equals("getrolelist")) {
+        } else if (method != null && "getrolelist".equals(method)) {
             this.getRoleList(req, resp);
-        } else if (method != null && method.equals("ucexist")) {
+        } else if (method != null && "ucexist".equals(method)) {
             this.userCodeExist(req, resp);
-        } else if (method != null && method.equals("deluser")) {
+        } else if (method != null && "deluser".equals(method)) {
             this.delUser(req, resp);
-        } else if (method != null && method.equals("view")) {
+        } else if (method != null && "view".equals(method)) {
             this.getUserById(req, resp, "userview.jsp");
-        } else if (method != null && method.equals("modifyexe")) {
+        } else if (method != null && "modifyexe".equals(method)) {
             this.modify(req, resp);
         }
         // 想添加新的增删改查，直接用if(method != "savepwd" && method != null);
@@ -84,7 +84,7 @@ public class UserServlet extends HttpServlet {
         if (queryUserName == null) {
             queryUserName = "";
         }
-        if (temp != null && !temp.equals("")) {
+        if (temp != null && !"".equals(temp)) {
             queryUserRole = Integer.parseInt(temp);
         }
         if (pageIndex != null) {
@@ -400,6 +400,7 @@ public class UserServlet extends HttpServlet {
      *
      * @throws ServletException if an error occurs
      */
+    @Override
     public void init() throws ServletException {
         // Put your code here
     }

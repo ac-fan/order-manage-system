@@ -107,15 +107,14 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public boolean modify(Bill bill) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if (billDao.modify(connection, bill) > 0)
+            if (billDao.modify(connection, bill) > 0) {
                 flag = true;
+            }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);

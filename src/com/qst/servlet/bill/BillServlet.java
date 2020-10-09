@@ -75,19 +75,19 @@ public class BillServlet extends HttpServlet {
 				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
 
 		String method = request.getParameter("method");
-		if (method != null && method.equals("query")) {
+		if (method != null && "query".equals(method)) {
 			this.query(request, response);
-		} else if (method != null && method.equals("add")) {
+		} else if (method != null && "add".equals(method)) {
 			this.add(request, response);
-		} else if (method != null && method.equals("view")) {
+		} else if (method != null && "view".equals(method)) {
 			this.getBillById(request, response, "billview.jsp");
-		} else if (method != null && method.equals("modify")) {
+		} else if (method != null && "modify".equals(method)) {
 			this.getBillById(request, response, "billmodify.jsp");
-		} else if (method != null && method.equals("modifysave")) {
+		} else if (method != null && "modifysave".equals(method)) {
 			this.modify(request, response);
-		} else if (method != null && method.equals("delbill")) {
+		} else if (method != null && "delbill".equals(method)) {
 			this.delBill(request, response);
-		} else if (method != null && method.equals("getproviderlist")) {
+		} else if (method != null && "getproviderlist".equals(method)) {
 			this.getProviderlist(request, response);
 		}
 

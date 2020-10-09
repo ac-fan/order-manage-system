@@ -22,26 +22,10 @@ public class BaseDao {
 
     static {
         //静态代码块,在类加载的时候执行
-        try {
-            Properties props = new Properties();
-            //通过反射获取类加载器
-            InputStream in = BaseDao.class.getResourceAsStream("db.properties");
-            props.load(in);
-
-
-            //从 props 中获取键值
-            url = props.getProperty("db.url");
-            user = props.getProperty("db.username");
-            password = props.getProperty("db.password");
-            driver = props.getProperty("db.driver");
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        init2();
     }
 
-    private static void init2() {
+    public static void init2() {
         driver = "com.mysql.cj.jdbc.Driver";
         url = "jdbc:mysql://cdb-nzp5bzla.bj.tencentcdb.com:10192/smbms?useSSL=false&useUnicode=true";
         user = "smbms";

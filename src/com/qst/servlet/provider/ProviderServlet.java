@@ -61,17 +61,17 @@ public class ProviderServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String method = request.getParameter("method");
-        if (method != null && method.equals("query")) {
+        if (method != null && "query".equals(method)) {
             this.query(request, response);
-        } else if (method != null && method.equals("add")) {
+        } else if (method != null && "add".equals(method)) {
             this.add(request, response);
-        } else if (method != null && method.equals("view")) {
+        } else if (method != null && "view".equals(method)) {
             this.getProviderById(request, response, "providerview.jsp");
-        } else if (method != null && method.equals("modify")) {
+        } else if (method != null && "modify".equals(method)) {
             this.getProviderById(request, response, "providermodify.jsp");
-        } else if (method != null && method.equals("modifysave")) {
+        } else if (method != null && "modifysave".equals(method)) {
             this.modify(request, response);
-        } else if (method != null && method.equals("delprovider")) {
+        } else if (method != null && "delprovider".equals(method)) {
             this.delProvider(request, response);
         }
     }

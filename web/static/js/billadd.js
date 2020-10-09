@@ -63,7 +63,7 @@ $(function () {
      * jquery的方法传递
      */
     billCode.on("blur", function () {
-        if (billCode.val() != null && billCode.val() != "") {
+        if (billCode.val() != null && billCode.val() !== "") {
             validateTip(billCode.next(), {"color": "green"}, imgYes, true);
         } else {
             validateTip(billCode.next(), {"color": "red"}, imgNo + " 编码不能为空，请重新输入", false);
@@ -76,7 +76,7 @@ $(function () {
     productName.on("focus", function () {
         validateTip(productName.next(), {"color": "#666666"}, "* 请输入商品名称", false);
     }).on("blur", function () {
-        if (productName.val() != null && productName.val() != "") {
+        if (productName.val() != null && productName.val() !== "") {
             validateTip(productName.next(), {"color": "green"}, imgYes, true);
         } else {
             validateTip(productName.next(), {"color": "red"}, imgNo + " 商品名称不能为空，请重新输入", false);
@@ -87,7 +87,7 @@ $(function () {
     productUnit.on("focus", function () {
         validateTip(productUnit.next(), {"color": "#666666"}, "* 请输入商品单位", false);
     }).on("blur", function () {
-        if (productUnit.val() != null && productUnit.val() != "") {
+        if (productUnit.val() != null && productUnit.val() !== "") {
             validateTip(productUnit.next(), {"color": "green"}, imgYes, true);
         } else {
             validateTip(productUnit.next(), {"color": "red"}, imgNo + " 单位不能为空，请重新输入", false);
@@ -98,7 +98,7 @@ $(function () {
     providerId.on("focus", function () {
         validateTip(providerId.next(), {"color": "#666666"}, "* 请选择供应商", false);
     }).on("blur", function () {
-        if (providerId.val() != null && providerId.val() != "" && providerId.val() != 0) {
+        if (providerId.val() != null && providerId.val() !== "" && providerId.val() !== 0) {
             validateTip(providerId.next(), {"color": "green"}, imgYes, true);
         } else {
             validateTip(providerId.next(), {"color": "red"}, imgNo + " 供应商不能为空，请选择", false);
@@ -123,13 +123,13 @@ $(function () {
     });
 
     addBtn.on("click", function () {
-        if (billCode.attr("validateStatus") != "true") {
+        if (billCode.attr("validateStatus") !== "true") {
             billCode.blur();
-        } else if (productName.attr("validateStatus") != "true") {
+        } else if (productName.attr("validateStatus") !== "true") {
             productName.blur();
-        } else if (productUnit.attr("validateStatus") != "true") {
+        } else if (productUnit.attr("validateStatus") !== "true") {
             productUnit.blur();
-        } else if (providerId.attr("validateStatus") != "true") {
+        } else if (providerId.attr("validateStatus") !== "true") {
             providerId.blur();
         } else {
             if (confirm("是否确认提交数据")) {
@@ -139,14 +139,12 @@ $(function () {
     });
 
     backBtn.on("click", function () {
-        if (referer != undefined
-            && null != referer
-            && "" != referer
-            && "null" != referer
+        if (referer !== undefined && "" !== referer && "null" !== referer
             && referer.length > 4) {
             window.location.href = referer;
         } else {
             history.back(-1);
         }
     });
+
 });

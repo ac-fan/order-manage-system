@@ -72,11 +72,11 @@ public class UserDaoImpl implements UserDao {
         // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<User> userList = new ArrayList<User>();
+        List<User> userList = new ArrayList<>();
         if (connection != null) {
             StringBuffer sql = new StringBuffer();
             sql.append("select u.*,r.roleName as userRoleName from smbms_user u,smbms_role r where u.userRole = r.id");
-            List<Object> list = new ArrayList<Object>();
+            List<Object> list = new ArrayList<>();
             if (!StringUtils.isNullOrEmpty(userName)) {
                 sql.append(" and u.userName like ?");
                 list.add("%" + userName + "%");
@@ -193,7 +193,7 @@ public class UserDaoImpl implements UserDao {
         if (connection != null) {
             StringBuffer sql = new StringBuffer();
             sql.append("select count(1) as count from smbms_user u,smbms_role r where u.userRole = r.id");
-            List<Object> list = new ArrayList<Object>();//存放我们的参数
+            List<Object> list = new ArrayList<>();//存放我们的参数
 
             if (!StringUtils.isNullOrEmpty(userName)) {
                 sql.append(" and u.userName like ?");
