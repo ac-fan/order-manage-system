@@ -8,34 +8,24 @@
          version="3.1"><!--将web版本4.0修改为3.1，注意上一行约束文件也要修改 -->
 
     <servlet>
-        <description>This is the description of my J2EE component</description>
-        <display-name>This is the display name of my J2EE component</display-name>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>servlet.user.LoginServlet</servlet-class>
+        <servlet-class>com.qst.servlet.user.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-        <description>This is the description of my J2EE component</description>
-        <display-name>This is the display name of my J2EE component</display-name>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>servlet.user.LogoutServlet</servlet-class>
+        <servlet-class>com.qst.servlet.user.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
-        <description>This is the description of my J2EE component</description>
-        <display-name>This is the display name of my J2EE component</display-name>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>servlet.user.UserServlet</servlet-class>
+        <servlet-class>com.qst.servlet.user.UserServlet</servlet-class>
     </servlet>
     <servlet>
-        <description>This is the description of my J2EE component</description>
-        <display-name>This is the display name of my J2EE component</display-name>
         <servlet-name>ProviderServlet</servlet-name>
-        <servlet-class>servlet.provider.ProviderServlet</servlet-class>
+        <servlet-class>com.qst.servlet.provider.ProviderServlet</servlet-class>
     </servlet>
     <servlet>
-        <description>This is the description of my J2EE component</description>
-        <display-name>This is the display name of my J2EE component</display-name>
         <servlet-name>BillServlet</servlet-name>
-        <servlet-class>servlet.bill.BillServlet</servlet-class>
+        <servlet-class>com.qst.servlet.bill.BillServlet</servlet-class>
     </servlet>
 
 
@@ -62,7 +52,7 @@
 
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
-        <filter-class>filter.CharacterEncodingFilter</filter-class>
+        <filter-class>com.qst.filter.CharacterEncodingFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -71,7 +61,7 @@
 
     <filter>
         <filter-name>SysFilter</filter-name>
-        <filter-class>filter.SysFilter</filter-class>
+        <filter-class>com.qst.filter.SysFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>SysFilter</filter-name>

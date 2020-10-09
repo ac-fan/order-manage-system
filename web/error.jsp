@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>请登录后再访问该页面！</h1>
-<a href="/test-smbms/login.jsp">返回</a>
+<a href="${pageContext.request.contextPath}/login.jsp">返回</a>
 </body>
 </html>
