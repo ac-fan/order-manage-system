@@ -31,19 +31,19 @@
 					 </select>
              </div>
 			 <div>
-                    <label for="data">出生日期：</label>
+                 <label>出生日期：</label>
                     <input type="text" Class="Wdate" id="birthday" name="birthday" value="${user.birthday }"
 					readonly="readonly" onclick="WdatePicker();">
                     <font color="red"></font>
               </div>
 			
 		       <div>
-                    <label for="userphone">用户电话：</label>
+                   <label>用户电话：</label>
                     <input type="text" name="phone" id="phone" value="${user.phone }"> 
                     <font color="red"></font>
                </div>
                 <div>
-                    <label for="userAddress">用户地址：</label>
+                    <label>用户地址：</label>
                     <input type="text" name="address" id="address" value="${user.address }">
                 </div>
 				<div>
