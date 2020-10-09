@@ -16,7 +16,7 @@ public interface ProviderDao {
      * @return
      * @throws Exception
      */
-    public int add(Connection connection, Provider provider) throws Exception;
+    int add(Connection connection, Provider provider) throws Exception;
 
 
     /**
@@ -27,7 +27,7 @@ public interface ProviderDao {
      * @return
      * @throws Exception
      */
-    public List<Provider> getProviderList(Connection connection, String proName, String proCode) throws Exception;
+    List<Provider> getProviderList(Connection connection, String proName, String proCode) throws Exception;
 
     /**
      * 通过proId删除Provider
@@ -36,7 +36,7 @@ public interface ProviderDao {
      * @return
      * @throws Exception
      */
-    public int deleteProviderById(Connection connection, String delId) throws Exception;
+    int deleteProviderById(Connection connection, String delId) throws Exception;
 
 
     /**
@@ -47,7 +47,7 @@ public interface ProviderDao {
      * @return
      * @throws Exception
      */
-    public Provider getProviderById(Connection connection, String id) throws Exception;
+    Provider getProviderById(Connection connection, String id) throws Exception;
 
     /**
      * 修改用户信息
@@ -57,7 +57,7 @@ public interface ProviderDao {
      * @return
      * @throws Exception
      */
-    public int modify(Connection connection, Provider provider) throws Exception;
+    int modify(Connection connection, Provider provider) throws Exception;
 
 
 }

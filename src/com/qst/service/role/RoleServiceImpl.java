@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RoleServiceImpl implements RoleService {
 
-    private RoleDao roleDao;
+    private final RoleDao roleDao;
 
     public RoleServiceImpl() {
         roleDao = new RoleDaoImpl();

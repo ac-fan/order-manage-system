@@ -12,7 +12,7 @@ import java.util.List;
 
 public class BillServiceImpl implements BillService {
 
-    private BillDao billDao;
+    private final BillDao billDao;
 
     public BillServiceImpl() {
         billDao = new BillDaoImpl();

@@ -9,29 +9,29 @@ import java.util.List;
 public interface UserService {
 
     //�����û���Ϣ
-    public boolean add(User user);
+    boolean add(User user);
 
     //�û���¼
-    public User login(String userCode, String password);
+    User login(String userCode, String password);
 
     //����������ѯ�û��б�
-    public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize);
+    List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize);
 
     //��ѯ��¼��
-    public int getUserCount(String username, int userRole);
+    int getUserCount(String username, int userRole);
 
     //����userCode��ѯ��User
-    public User selectUserCodeExist(String userCode);
+    User selectUserCodeExist(String userCode);
 
     //����IDɾ��user
-    public boolean deleteUserById(Integer delId);
+    boolean deleteUserById(Integer delId);
 
     //����ID����user
-    public User getUserById(String id);
+    User getUserById(String id);
 
     //�޸��û���Ϣ
-    public boolean modify(User user);
+    boolean modify(User user);
 
     //�����û�ID�޸�����
-    public boolean updatePwd(int id, String password) throws SQLException, Exception;
+    boolean updatePwd(int id, String password) throws Exception;
 }

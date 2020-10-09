@@ -14,8 +14,8 @@ import java.util.List;
 
 public class ProviderServiceImpl implements ProviderService {
 
-    private ProviderDao providerDao;
-    private BillDao billDao;
+    private final ProviderDao providerDao;
+    private final BillDao billDao;
 
     public ProviderServiceImpl() {
         providerDao = new ProviderDaoImpl();

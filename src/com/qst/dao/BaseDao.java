@@ -10,13 +10,15 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * �������ݿ�Ļ���--��̬��
+ * Class BaseDao
  *
- * @author Administrator
+ * @author sve1r
+ * @description 公共 Dao
+ * @date 2020/10/6
  */
 public class BaseDao {
 
-    static {//��̬�����,������ص�ʱ��ִ��
+    static {
         init();
     }
 
@@ -25,7 +27,6 @@ public class BaseDao {
     private static String user;
     private static String password;
 
-    //��ʼ�����Ӳ���,�������ļ�����
     public static void init() {
         Properties properties = new Properties();
         String configFile = "db.properties";
@@ -42,37 +43,19 @@ public class BaseDao {
 
     }
 
-
-    /**
-     * ��ȡ���ݿ�����
-     *
-     * @return
-     */
-    //static
     public static Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
 
         return connection;
     }
 
-    /**
-     * ��ѯ����
-     *
-     * @param connection
-     * @param pstm
-     * @param rs
-     * @param sql
-     * @param params
-     * @return
-     */
-    //static
     public static ResultSet execute(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet, String sql, Object[] params) throws Exception {
         //Ԥ�����sql����Ҫ���Σ�ֱ��ִ�м���
         preparedStatement = connection.prepareStatement(sql);
@@ -83,17 +66,6 @@ public class BaseDao {
         return resultSet;
     }
 
-    /**
-     * ���²���
-     *
-     * @param connection
-     * @param pstm
-     * @param sql
-     * @param params
-     * @return
-     * @throws Exception
-     */
-    //static
     public static int execute(Connection connection, PreparedStatement preparedStatement, String sql, Object[] params) throws Exception {
         int updateRows = 0;
         preparedStatement = connection.prepareStatement(sql);
@@ -104,15 +76,6 @@ public class BaseDao {
         return updateRows;
     }
 
-    /**
-     * �ͷ���Դ
-     *
-     * @param connection
-     * @param pstm
-     * @param rs
-     * @return
-     */
-    //static
     public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
         boolean flag = true;
         if (resultSet != null) {
@@ -148,5 +111,4 @@ public class BaseDao {
 
         return flag;
     }
-
 }

@@ -16,7 +16,7 @@ public class RoleDaoImpl implements RoleDao {
     public List<Role> getRoleList(Connection connection) throws Exception {
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<Role> roleList = new ArrayList<Role>();
+        List<Role> roleList = new ArrayList<>();
         if (connection != null) {
             String sql = "select * from smbms_role";
             Object[] params = {};

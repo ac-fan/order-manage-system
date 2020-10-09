@@ -79,7 +79,7 @@ public class ProviderServlet extends HttpServlet {
     private void delProvider(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("proid");
-        HashMap<String, String> resultMap = new HashMap<String, String>();
+        HashMap<String, String> resultMap = new HashMap<>();
         if (!StringUtils.isNullOrEmpty(id)) {
             ProviderService providerService = new ProviderServiceImpl();
             int flag = providerService.deleteProviderById(id);
@@ -180,7 +180,7 @@ public class ProviderServlet extends HttpServlet {
         if (StringUtils.isNullOrEmpty(queryProCode)) {
             queryProCode = "";
         }
-        List<Provider> providerList = new ArrayList<Provider>();
+        List<Provider> providerList = new ArrayList<>();
         ProviderService providerService = new ProviderServiceImpl();
         providerList = providerService.getProviderList(queryProName, queryProCode);
         request.setAttribute("providerList", providerList);

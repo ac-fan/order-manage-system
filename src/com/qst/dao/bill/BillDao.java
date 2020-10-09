@@ -15,7 +15,7 @@ public interface BillDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public int add(Connection connection, Bill bill) throws Exception;
+	int add(Connection connection, Bill bill) throws Exception;
 
 
 	/**
@@ -26,7 +26,7 @@ public interface BillDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Bill> getBillList(Connection connection, Bill bill) throws Exception;
+	List<Bill> getBillList(Connection connection, Bill bill) throws Exception;
 
 	/**
 	 * 通过delId删除Bill
@@ -36,7 +36,7 @@ public interface BillDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public int deleteBillById(Connection connection, String delId) throws Exception;
+	int deleteBillById(Connection connection, String delId) throws Exception;
 
 
 	/**
@@ -47,7 +47,7 @@ public interface BillDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public Bill getBillById(Connection connection, String id) throws Exception;
+	Bill getBillById(Connection connection, String id) throws Exception;
 
 	/**
 	 * 修改订单信息
@@ -57,7 +57,7 @@ public interface BillDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public int modify(Connection connection, Bill bill) throws Exception;
+	int modify(Connection connection, Bill bill) throws Exception;
 
 	/**
 	 * 根据供应商ID查询订单数量
@@ -67,6 +67,6 @@ public interface BillDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public int getBillCountByProviderId(Connection connection, String providerId) throws Exception;
+	int getBillCountByProviderId(Connection connection, String providerId) throws Exception;
 
 }

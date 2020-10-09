@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -78,7 +77,7 @@ public class UserServlet extends HttpServlet {
         //第一此请求肯定是走第一页，页面大小固定的
         //设置页面容量
         int pageSize = Constants.pageSize;
-        ;//把它设置在配置文件里,后面方便修改
+        //把它设置在配置文件里,后面方便修改
         //当前页码
         int currentPageNo = 1;
 
@@ -131,11 +130,7 @@ public class UserServlet extends HttpServlet {
         //返回前端
         try {
             req.getRequestDispatcher("userlist.jsp").forward(req, resp);
-        } catch (ServletException e) {
-            // TODO 自动生成的 catch 块
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO 自动生成的 catch 块
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
 
@@ -151,13 +146,10 @@ public class UserServlet extends HttpServlet {
 
             try {
                 flag = userService.updatePwd(((User) o).getId(), newpassword);
-            } catch (SQLException e) {
-                // TODO 自动生成的 catch 块
-                e.printStackTrace();
             } catch (Exception e) {
-                // TODO 自动生成的 catch 块
                 e.printStackTrace();
             }
+
             if (flag) {
                 req.setAttribute("message", "密码修改成功，请退出，使用新密码登录");
                 // 密码修改成功,移除session(移除后不能再次修改密码,建议不移除)
@@ -173,11 +165,7 @@ public class UserServlet extends HttpServlet {
         }
         try {
             req.getRequestDispatcher("/jsp/pwdmodify.jsp").forward(req, resp);
-        } catch (ServletException e) {
-            // TODO 自动生成的 catch 块
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO 自动生成的 catch 块
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -187,7 +175,7 @@ public class UserServlet extends HttpServlet {
         Object o = req.getSession().getAttribute(Constants.USER_SESSION);
         String oldpassword = req.getParameter("oldpassword");
         //万能Map：结果集
-        Map<String, String> resultMap = new HashMap<String, String>();
+        Map<String, String> resultMap = new HashMap<>();
         if (o == null) {//session失效，session过期了
             resultMap.put("result", "sessionerror");
         } else if (StringUtils.isNullOrEmpty(oldpassword)) {//输入密码为空
@@ -226,7 +214,7 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         Object o = request.getSession().getAttribute(Constants.USER_SESSION);
         String oldpassword = request.getParameter("oldpassword");
-        Map<String, String> resultMap = new HashMap<String, String>();
+        Map<String, String> resultMap = new HashMap<>();
 
         if (null == o) {//session过期
             resultMap.put("result", "sessionerror");
@@ -299,14 +287,13 @@ public class UserServlet extends HttpServlet {
     private void delUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("uid");
-        Integer delId = 0;
+        int delId = 0;
         try {
             delId = Integer.parseInt(id);
         } catch (Exception e) {
-            // TODO: handle exception
             delId = 0;
         }
-        HashMap<String, String> resultMap = new HashMap<String, String>();
+        HashMap<String, String> resultMap = new HashMap<>();
         if (delId <= 0) {
             resultMap.put("delResult", "notexist");
         } else {
@@ -331,7 +318,7 @@ public class UserServlet extends HttpServlet {
         //判断用户账号是否可用
         String userCode = request.getParameter("userCode");
 
-        HashMap<String, String> resultMap = new HashMap<String, String>();
+        HashMap<String, String> resultMap = new HashMap<>();
         if (StringUtils.isNullOrEmpty(userCode)) {
             //userCode == null || userCode.equals("")
             resultMap.put("userCode", "exist");

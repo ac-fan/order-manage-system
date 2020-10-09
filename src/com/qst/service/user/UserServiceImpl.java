@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     //ҵ��㶼�����dao��.��������Ҫ����Dao�㣨�ص㣩
     //ֻ�����Ӧҵ��
 
-    private UserDao userDao;
+    private final UserDao userDao;
 
     public UserServiceImpl() {
         userDao = new UserDaoImpl();
@@ -176,7 +176,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updatePwd(int id, String password) throws SQLException, Exception {
+    public boolean updatePwd(int id, String password) throws Exception {
         // TODO �Զ����ɵķ������
         Connection connection = null;
         boolean flag = false;

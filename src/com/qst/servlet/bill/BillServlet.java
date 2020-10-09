@@ -98,7 +98,7 @@ public class BillServlet extends HttpServlet {
 
 		System.out.println("getproviderlist ========================= ");
 
-		List<Provider> providerList = new ArrayList<Provider>();
+		List<Provider> providerList = new ArrayList<>();
 		ProviderService providerService = new ProviderServiceImpl();
 		providerList = providerService.getProviderList("", "");
 		//把providerList转换成json对象输出
@@ -158,7 +158,7 @@ public class BillServlet extends HttpServlet {
 	private void delBill(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("billid");
-		HashMap<String, String> resultMap = new HashMap<String, String>();
+		HashMap<String, String> resultMap = new HashMap<>();
 		if (!StringUtils.isNullOrEmpty(id)) {
 			BillService billService = new BillServiceImpl();
 			boolean flag = billService.deleteBillById(id);
@@ -215,7 +215,7 @@ public class BillServlet extends HttpServlet {
 	private void query(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<Provider> providerList = new ArrayList<Provider>();
+		List<Provider> providerList = new ArrayList<>();
 		ProviderService providerService = new ProviderServiceImpl();
 		providerList = providerService.getProviderList("", "");
 		request.setAttribute("providerList", providerList);
@@ -227,7 +227,7 @@ public class BillServlet extends HttpServlet {
 			queryProductName = "";
 		}
 
-		List<Bill> billList = new ArrayList<Bill>();
+		List<Bill> billList = new ArrayList<>();
 		BillService billService = new BillServiceImpl();
 		Bill bill = new Bill();
 		if (StringUtils.isNullOrEmpty(queryIsPayment)) {

@@ -38,11 +38,11 @@ public class ProviderDaoImpl implements ProviderDao {
         // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<Provider> providerList = new ArrayList<Provider>();
+        List<Provider> providerList = new ArrayList<>();
         if (connection != null) {
             StringBuffer sql = new StringBuffer();
             sql.append("select * from smbms_provider where 1=1 ");
-            List<Object> list = new ArrayList<Object>();
+            List<Object> list = new ArrayList<>();
             if (!StringUtils.isNullOrEmpty(proName)) {
                 sql.append(" and proName like ?");
                 list.add("%" + proName + "%");
