@@ -29,7 +29,7 @@ public class BaseDao {
 
     public static void init() {
         Properties properties = new Properties();
-        String configFile = "db.properties";
+        String configFile = "/WEB-INF/db.properties";
         InputStream is = BaseDao.class.getClassLoader().getResourceAsStream(configFile);
         try {
             properties.load(is);
@@ -49,10 +49,8 @@ public class BaseDao {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
-
             e.printStackTrace();
         }
-
         return connection;
     }
 
