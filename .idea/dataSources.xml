@@ -15,5 +15,17 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="@localhost [2]" uuid="1c7a7839-f452-4d40-b6ed-84635f7b9ee8">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="@cdb-nzp5bzla.bj.tencentcdb.com" uuid="244c60a5-6f98-4355-b8c6-c8ee1f64cf13">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://cdb-nzp5bzla.bj.tencentcdb.com:10192</jdbc-url>
+    </data-source>
   </component>
 </project>
