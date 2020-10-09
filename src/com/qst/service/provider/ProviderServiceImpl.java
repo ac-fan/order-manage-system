@@ -24,7 +24,6 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public boolean add(Provider provider) {
-        // TODO Auto-generated method stub
         boolean flag = false;
         Connection connection = null;
         try {
@@ -35,13 +34,11 @@ public class ProviderServiceImpl implements ProviderService {
             }
             connection.commit();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             try {
                 System.out.println("rollback==================");
                 connection.rollback();
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         } finally {
@@ -53,7 +50,6 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public List<Provider> getProviderList(String proName, String proCode) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         List<Provider> providerList = null;
         System.out.println("query proName ---- > " + proName);
@@ -62,7 +58,6 @@ public class ProviderServiceImpl implements ProviderService {
             connection = BaseDao.getConnection();
             providerList = providerDao.getProviderList(connection, proName, proCode);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
@@ -84,7 +79,6 @@ public class ProviderServiceImpl implements ProviderService {
      */
     @Override
     public int deleteProviderById(String delId) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         int billCount = -1;
         try {
@@ -96,13 +90,11 @@ public class ProviderServiceImpl implements ProviderService {
             }
             connection.commit();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             billCount = -1;
             try {
                 connection.rollback();
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         } finally {
@@ -113,14 +105,12 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public Provider getProviderById(String id) {
-        // TODO Auto-generated method stub
         Provider provider = null;
         Connection connection = null;
         try {
             connection = BaseDao.getConnection();
             provider = providerDao.getProviderById(connection, id);
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
             provider = null;
         } finally {
@@ -131,7 +121,6 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public boolean modify(Provider provider) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         boolean flag = false;
         try {
@@ -140,12 +129,10 @@ public class ProviderServiceImpl implements ProviderService {
                 flag = true;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return flag;
     }
-
 }

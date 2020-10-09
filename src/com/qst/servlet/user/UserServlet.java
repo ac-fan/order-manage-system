@@ -29,7 +29,6 @@ import java.util.Map;
 public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO 自动生成的方法存根
         String method = req.getParameter("method");
         if ("savepwd".equals(method) && method != null) {
             this.updatePwd(req, resp);
@@ -55,13 +54,11 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO 自动生成的方法存根
         doGet(req, resp);
     }
 
     //重点、难点
     private void query(HttpServletRequest req, HttpServletResponse resp) {
-        // TODO 自动生成的方法存根
         //查询用户列表
         //从前端获取数据
         //查询用户列表
@@ -202,7 +199,6 @@ public class UserServlet extends HttpServlet {
             writer.flush();
             writer.close();
         } catch (IOException e) {
-            // TODO 自动生成的 catch 块
             e.printStackTrace();
         }
 
@@ -253,7 +249,6 @@ public class UserServlet extends HttpServlet {
         try {
             user.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         user.setPhone(phone);
@@ -377,7 +372,6 @@ public class UserServlet extends HttpServlet {
         try {
             user.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         user.setGender(Integer.valueOf(gender));

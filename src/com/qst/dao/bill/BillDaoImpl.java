@@ -15,7 +15,6 @@ public class BillDaoImpl implements BillDao {
 
 	@Override
 	public int add(Connection connection, Bill bill) throws Exception {
-		// TODO Auto-generated method stub
 		PreparedStatement pstm = null;
 		int flag = 0;
 		if (null != connection) {
@@ -33,9 +32,7 @@ public class BillDaoImpl implements BillDao {
 	}
 
 	@Override
-	public List<Bill> getBillList(Connection connection, Bill bill)
-			throws Exception {
-		// TODO Auto-generated method stub
+	public List<Bill> getBillList(Connection connection, Bill bill) throws Exception {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<Bill> billList = new ArrayList<>();
@@ -80,9 +77,7 @@ public class BillDaoImpl implements BillDao {
 	}
 
 	@Override
-	public int deleteBillById(Connection connection, String delId)
-			throws Exception {
-		// TODO Auto-generated method stub
+	public int deleteBillById(Connection connection, String delId) throws Exception {
 		PreparedStatement pstm = null;
 		int flag = 0;
 		if (null != connection) {
@@ -96,7 +91,6 @@ public class BillDaoImpl implements BillDao {
 
 	@Override
 	public Bill getBillById(Connection connection, String id) throws Exception {
-		// TODO Auto-generated method stub
 		Bill bill = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -127,7 +121,6 @@ public class BillDaoImpl implements BillDao {
 
 	@Override
 	public int modify(Connection connection, Bill bill) throws Exception {
-		// TODO Auto-generated method stub
 		int flag = 0;
 		PreparedStatement pstm = null;
 		if (null != connection) {
@@ -144,9 +137,7 @@ public class BillDaoImpl implements BillDao {
 	}
 
 	@Override
-	public int getBillCountByProviderId(Connection connection, String providerId)
-			throws Exception {
-		// TODO Auto-generated method stub
+	public int getBillCountByProviderId(Connection connection, String providerId) throws Exception {
 		int count = 0;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -160,7 +151,6 @@ public class BillDaoImpl implements BillDao {
 			}
 			BaseDao.closeResource(null, pstm, rs);
 		}
-
 		return count;
 	}
 }

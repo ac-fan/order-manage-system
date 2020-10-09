@@ -78,7 +78,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         List<User> userList = null;
         System.out.println("queryUserName ---- > " + queryUserName);
@@ -89,7 +88,6 @@ public class UserServiceImpl implements UserService {
             connection = BaseDao.getConnection();
             userList = userDao.getUserList(connection, queryUserName, queryUserRole, currentPageNo, pageSize);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
@@ -99,14 +97,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User selectUserCodeExist(String userCode) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         User user = null;
         try {
             connection = BaseDao.getConnection();
             user = userDao.getLoginUser(connection, userCode);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
@@ -116,7 +112,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean deleteUserById(Integer delId) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         boolean flag = false;
         try {
@@ -125,7 +120,6 @@ public class UserServiceImpl implements UserService {
                 flag = true;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
@@ -135,14 +129,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(String id) {
-        // TODO Auto-generated method stub
         User user = null;
         Connection connection = null;
         try {
             connection = BaseDao.getConnection();
             user = userDao.getUserById(connection, id);
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
             user = null;
         } finally {
@@ -153,7 +145,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean modify(User user) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         boolean flag = false;
         try {
@@ -162,7 +153,6 @@ public class UserServiceImpl implements UserService {
                 flag = true;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
@@ -172,7 +162,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updatePwd(int id, String password) throws Exception {
-        // TODO 自动生成的方法存根
         Connection connection = null;
         boolean flag = false;
         //修改密码
@@ -182,21 +171,17 @@ public class UserServiceImpl implements UserService {
                 flag = true;
             }
         } catch (SQLException e) {
-            // TODO 自动生成的 catch 块
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
 
         }
         return flag;
-
-
     }
 
     //查询记录数
     @Override
     public int getUserCount(String queryUserName, int queryUserRole) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         int count = 0;
         System.out.println("queryUserName ---- > " + queryUserName);
@@ -205,23 +190,10 @@ public class UserServiceImpl implements UserService {
             connection = BaseDao.getConnection();
             count = userDao.getUserCount(connection, queryUserName, queryUserRole);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
         }
-        //System.out.println("count"+count);
         return count;
     }
-
-	/*@Test
-	public void test() {
-		UserServiceImpl userService = new UserServiceImpl();
-		int userCount = userService.getUserCount(null,3);
-		System.out.println(userCount);
-	}
-
-	*/
-
-
 }

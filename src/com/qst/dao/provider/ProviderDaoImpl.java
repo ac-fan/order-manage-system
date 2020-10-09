@@ -14,9 +14,7 @@ import java.util.List;
 public class ProviderDaoImpl implements ProviderDao {
 
     @Override
-    public int add(Connection connection, Provider provider)
-            throws Exception {
-        // TODO Auto-generated method stub
+    public int add(Connection connection, Provider provider) throws Exception {
         PreparedStatement pstm = null;
         int flag = 0;
         if (null != connection) {
@@ -33,9 +31,7 @@ public class ProviderDaoImpl implements ProviderDao {
     }
 
     @Override
-    public List<Provider> getProviderList(Connection connection, String proName, String proCode)
-            throws Exception {
-        // TODO Auto-generated method stub
+    public List<Provider> getProviderList(Connection connection, String proName, String proCode) throws Exception {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         List<Provider> providerList = new ArrayList<>();
@@ -73,9 +69,7 @@ public class ProviderDaoImpl implements ProviderDao {
     }
 
     @Override
-    public int deleteProviderById(Connection connection, String delId)
-            throws Exception {
-        // TODO Auto-generated method stub
+    public int deleteProviderById(Connection connection, String delId) throws Exception {
         PreparedStatement pstm = null;
         int flag = 0;
         if (null != connection) {
@@ -88,9 +82,7 @@ public class ProviderDaoImpl implements ProviderDao {
     }
 
     @Override
-    public Provider getProviderById(Connection connection, String id)
-            throws Exception {
-        // TODO Auto-generated method stub
+    public Provider getProviderById(Connection connection, String id) throws Exception {
         Provider provider = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -119,9 +111,7 @@ public class ProviderDaoImpl implements ProviderDao {
     }
 
     @Override
-    public int modify(Connection connection, Provider provider)
-            throws Exception {
-        // TODO Auto-generated method stub
+    public int modify(Connection connection, Provider provider) throws Exception {
         int flag = 0;
         PreparedStatement pstm = null;
         if (null != connection) {
@@ -134,5 +124,4 @@ public class ProviderDaoImpl implements ProviderDao {
         }
         return flag;
     }
-
 }

@@ -15,7 +15,6 @@ public class UserDaoImpl implements UserDao {
     //增加用户信息
     @Override
     public int add(Connection connection, User user) throws Exception {
-        // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         int updateRows = 0;
         if (null != connection) {
@@ -67,9 +66,7 @@ public class UserDaoImpl implements UserDao {
 
     //通过条件查询-userList
     @Override
-    public List<User> getUserList(Connection connection, String userName, int userRole, int currentPageNo, int pageSize)
-            throws Exception {
-        // TODO Auto-generated method stub
+    public List<User> getUserList(Connection connection, String userName, int userRole, int currentPageNo, int pageSize) throws Exception {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         List<User> userList = new ArrayList<>();
@@ -119,7 +116,6 @@ public class UserDaoImpl implements UserDao {
     //通过userId删除user
     @Override
     public int deleteUserById(Connection connection, Integer delId) throws Exception {
-        // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         int flag = 0;
         if (null != connection) {
@@ -134,7 +130,6 @@ public class UserDaoImpl implements UserDao {
     //通过userId获取user
     @Override
     public User getUserById(Connection connection, String id) throws Exception {
-        // TODO Auto-generated method stub
         User user = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -167,7 +162,6 @@ public class UserDaoImpl implements UserDao {
     //修改用户信息
     @Override
     public int modify(Connection connection, User user) throws Exception {
-        // TODO Auto-generated method stub
         int flag = 0;
         PreparedStatement pstm = null;
         if (null != connection) {
@@ -185,7 +179,6 @@ public class UserDaoImpl implements UserDao {
     //根据用户名或者角色查询用户总数(最难理解的SQL)
     @Override
     public int getUserCount(Connection connection, String userName, int userRole) throws Exception {
-        // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         ResultSet rs = null;
         int count = 0;
@@ -225,7 +218,6 @@ public class UserDaoImpl implements UserDao {
     //修改当前用户密码
     @Override//修改当前密码
     public int updatePwd(Connection connection, int id, String password) throws Exception {
-        // TODO 自动生成的方法存根
         PreparedStatement pstm = null;
         int execute = 0;
         if (connection != null) {
@@ -234,13 +226,8 @@ public class UserDaoImpl implements UserDao {
             execute = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
-
-
         return execute;
-
-
     }
-
 }
 
 
