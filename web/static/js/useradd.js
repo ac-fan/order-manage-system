@@ -116,7 +116,6 @@ $(function () {
         }
     });
 
-
     birthday.bind("focus", function () {
         validateTip(birthday.next(), {"color": "#666666"}, "* 点击输入框，选择日期", false);
     }).bind("blur", function () {
@@ -161,7 +160,7 @@ $(function () {
             birthday.blur();
         } else if (phone.attr("validateStatus") != "true") {
             phone.blur();
-        } else if (userRole.attr("validateStatus") != "true") {
+        } else if (userRole.attr("validateStatus") !== "true") {
             userRole.blur();
         } else {
             if (confirm("是否确认提交数据")) {
@@ -171,10 +170,7 @@ $(function () {
     });
 
     backBtn.on("click", function () {
-        if (referer != undefined
-            && null != referer
-            && "" != referer
-            && "null" != referer
+        if (referer !== undefined && "" !== referer && "null" !== referer
             && referer.length > 4) {
             window.location.href = referer;
         } else {
