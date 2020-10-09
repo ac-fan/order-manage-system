@@ -1,10 +1,8 @@
 package com.qst.dao.provider;
 
-
 import com.qst.dao.BaseDao;
 import com.qst.pojo.Provider;
 import com.mysql.cj.util.StringUtils;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,8 +27,6 @@ public class ProviderDaoImpl implements ProviderDao{
                 sql.append(" and proName like ?");
                 list.add("%"+proName+"%");//index:1
             }
-
-
             //把list转换为数组
             Object[] params=list.toArray();
             System.out.println("ProviderDaoImpl->getProviderCount:"+sql.toString());//输出最后完整的sql语句
@@ -43,10 +39,6 @@ public class ProviderDaoImpl implements ProviderDao{
 
         return count;
     }
-
-   /* public List<Provider> getProviderList(Connection connection, String proName, String proCode) throws Exception {
-        return null;
-    }*/
 
     // 通过供应商名称、编码获取供应商列表-模糊查询-providerList
     public List<Provider> getProviderList(Connection connection, String proName,String proCode,int currentPageNo, int pageSize)
@@ -68,7 +60,6 @@ public class ProviderDaoImpl implements ProviderDao{
                 list.add("%"+proCode+"%");
             }
             //在数据中，分页使用 limit startIndex，pageSize 总数
-
             sql.append("order by creationDate DESC limit ?,?");
             currentPageNo=(currentPageNo-1)*pageSize;
             list.add(currentPageNo);
@@ -95,7 +86,7 @@ public class ProviderDaoImpl implements ProviderDao{
         return providerList;
     }
 
-
+    //增加供应商
     public int add(Connection connection, Provider provider)
             throws Exception {
         // TODO Auto-generated method stub
@@ -114,9 +105,7 @@ public class ProviderDaoImpl implements ProviderDao{
         return flag;
     }
 
-
-
-
+    // 通过proId删除Provider
     public int deleteProviderById(Connection connection, String delId)
             throws Exception {
         // TODO Auto-generated method stub
@@ -131,7 +120,7 @@ public class ProviderDaoImpl implements ProviderDao{
         return flag;
     }
 
-
+    // 通过proId获取Provider
     public Provider getProviderById(Connection connection, String id)
             throws Exception {
         // TODO Auto-generated method stub
@@ -162,7 +151,7 @@ public class ProviderDaoImpl implements ProviderDao{
         return provider;
     }
 
-
+    // 修改供应商信息
     public int modify(Connection connection, Provider provider)
             throws Exception {
         // TODO Auto-generated method stub

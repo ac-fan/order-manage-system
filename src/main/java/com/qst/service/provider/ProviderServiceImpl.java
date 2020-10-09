@@ -20,7 +20,7 @@ public class ProviderServiceImpl implements ProviderService {
         providerDao = new ProviderDaoImpl();
         billDao = new BillDaoImpl();
     }
-
+    //查询记录数
     public int getProviderCount(String proCode, String proName) {
         Connection connection= null;
         int count=0;
@@ -41,7 +41,7 @@ public class ProviderServiceImpl implements ProviderService {
         int providerCount =providerService.getProviderCount(null,"北");
         System.out.println(providerCount);
     }*/
-
+  //增加供应商
     public boolean add(Provider provider) {
         // TODO Auto-generated method stub
         boolean flag = false;
@@ -69,7 +69,7 @@ public class ProviderServiceImpl implements ProviderService {
         return flag;
     }
 
-
+    //通过供应商名称、编码获取供应商列表-模糊查询-providerList
     public List<Provider> getProviderList(String proName,String proCode,int currentPageNo, int pageSize) {
         // TODO Auto-generated method stub
         Connection connection = null;
@@ -100,7 +100,7 @@ public class ProviderServiceImpl implements ProviderService {
      * 如果billCount = -1 失败
      * 若billCount >= 0 成功
      */
-
+    //通过proId删除Provider
     public int deleteProviderById(String delId) {
         // TODO Auto-generated method stub
         Connection connection = null;
@@ -129,7 +129,7 @@ public class ProviderServiceImpl implements ProviderService {
         return billCount;
     }
 
-
+    //通过proId获取Provider
     public Provider getProviderById(String id) {
         // TODO Auto-generated method stub
         Provider provider = null;
@@ -146,7 +146,7 @@ public class ProviderServiceImpl implements ProviderService {
         }
         return provider;
     }
-
+    // 修改用户信息
     public boolean modify(Provider provider) {
         // TODO Auto-generated method stub
         Connection connection = null;
