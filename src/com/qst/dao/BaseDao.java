@@ -1,13 +1,11 @@
 package com.qst.dao;
 
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  * 操作数据库的基类--静态类
@@ -22,16 +20,26 @@ public class BaseDao {
 
     static {
         //静态代码块,在类加载的时候执行
-        init2();
+        init1();
+//        init2();
     }
 
-    public static void init2() {
+    private static void init2() {
+        ResourceBundle resource = ResourceBundle.getBundle("com/qst/dao/db");
+        driver = resource.getString("driver");
+        url = resource.getString("url");
+        user = resource.getString("username");
+        password = resource.getString("password");
+
+    }
+
+    //写死数据库相应数据
+    public static void init1() {
         driver = "com.mysql.cj.jdbc.Driver";
         url = "jdbc:mysql://cdb-nzp5bzla.bj.tencentcdb.com:10192/smbms?useSSL=false&useUnicode=true";
         user = "smbms";
         password = "smbms123456";
     }
-
 
     //初始化连接参数,从配置文件里获得
     public static void init() {
@@ -40,16 +48,17 @@ public class BaseDao {
         InputStream is = BaseDao.class.getResourceAsStream(configFile);
         try {
             properties.load(is);
+            System.out.println(is);
             driver = properties.getProperty("driver");
             url = properties.getProperty("url");
-            user = properties.getProperty("user");
+            user = properties.getProperty("username");
             password = properties.getProperty("password");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    //获取连接
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -61,7 +70,7 @@ public class BaseDao {
         return connection;
     }
 
-
+    //获取查询结果集
     public static ResultSet execute(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet, String sql, Object[] params) throws Exception {
         //预编译的sql不需要传参，直接执行即可
         preparedStatement = connection.prepareStatement(sql);
@@ -72,7 +81,7 @@ public class BaseDao {
         return resultSet;
     }
 
-    //static
+    //执行其他更新结果
     public static int execute(Connection connection, PreparedStatement preparedStatement, String sql, Object[] params) throws Exception {
         int updateRows = 0;
         preparedStatement = connection.prepareStatement(sql);
@@ -83,6 +92,7 @@ public class BaseDao {
         return updateRows;
     }
 
+    //关闭并释放资源
     public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
         boolean flag = true;
         if (resultSet != null) {

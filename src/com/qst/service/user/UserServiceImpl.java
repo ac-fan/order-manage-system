@@ -1,6 +1,5 @@
 package com.qst.service.user;
 
-
 import com.qst.dao.BaseDao;
 import com.qst.dao.user.UserDao;
 import com.qst.dao.user.UserDaoImpl;

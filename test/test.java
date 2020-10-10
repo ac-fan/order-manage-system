@@ -1,3 +1,5 @@
+import com.qst.dao.BaseDao;
+
 /**
  * Class test
  *
@@ -9,6 +11,7 @@
 
 public class test {
     public static void main(String[] args) {
-        System.out.println("This is a test console application");
+        BaseDao.init();
+        System.out.println(BaseDao.getConnection());
     }
 }
