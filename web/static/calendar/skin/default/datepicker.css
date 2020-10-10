@@ -54,7 +54,7 @@
     margin-top: 2px;
     text-align: center;
     height: 20px;
-    border: 0px;
+    border: 0;
     width: 50px;
     cursor: pointer;
 }
@@ -209,7 +209,7 @@
 }
 
 .WdateDiv #dpTime .tB {
-    border-right: 0px;
+    border-right: 0;
 }
 
 .WdateDiv #dpTime .tE {
@@ -226,14 +226,14 @@
 .WdateDiv #dpTime #dpTimeUp {
     height: 10px;
     width: 13px;
-    border: 0px;
+    border: 0;
     background: url(img.gif) no-repeat -32px -16px;
 }
 
 .WdateDiv #dpTime #dpTimeDown {
     height: 10px;
     width: 13px;
-    border: 0px;
+    border: 0;
     background: url(img.gif) no-repeat -48px -16px;
 }
 
@@ -241,7 +241,7 @@
     float: left;
     margin-right: 3px;
     margin-top: 3px;
-    background: url(img.gif) no-repeat 0px -16px;
+    background: url(img.gif) no-repeat 0 -16px;
     width: 20px;
     height: 20px;
     cursor: pointer;

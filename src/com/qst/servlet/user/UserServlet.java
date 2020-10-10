@@ -36,15 +36,15 @@ public class UserServlet extends HttpServlet {
             this.pwdModify(req, resp);
         } else if ("query".equals(method) && method != null) {
             this.query(req, resp);
-        } else if (method != null && "getrolelist".equals(method)) {
+        } else if ("getrolelist".equals(method)) {
             this.getRoleList(req, resp);
-        } else if (method != null && "ucexist".equals(method)) {
+        } else if ("ucexist".equals(method)) {
             this.userCodeExist(req, resp);
-        } else if (method != null && "deluser".equals(method)) {
+        } else if ("deluser".equals(method)) {
             this.delUser(req, resp);
-        } else if (method != null && "view".equals(method)) {
+        } else if ("view".equals(method)) {
             this.getUserById(req, resp, "userview.jsp");
-        } else if (method != null && "modifyexe".equals(method)) {
+        } else if ("modifyexe".equals(method)) {
             this.modify(req, resp);
         }
         // 想添加新的增删改查，直接用if(method != "savepwd" && method != null);

@@ -31,17 +31,17 @@
 
 .WdateDiv .NavImgl a {
     float: left;
-    background: url(img.gif) no-repeat -16px 0px;
+    background: url(img.gif) no-repeat -16px 0;
 }
 
 .WdateDiv .NavImgr a {
     float: right;
-    background: url(img.gif) no-repeat -32px 0px;
+    background: url(img.gif) no-repeat -32px 0;
 }
 
 .WdateDiv .NavImgrr a {
     float: right;
-    background: url(img.gif) no-repeat -48px 0px;
+    background: url(img.gif) no-repeat -48px 0;
 }
 
 .WdateDiv #dpTitle {
@@ -55,7 +55,7 @@
 .WdateDiv .yminput {
     margin-top: 2px;
     text-align: center;
-    border: 0px;
+    border: 0;
     height: 20px;
     width: 50px;
     color: #034c50;
@@ -217,7 +217,7 @@
 }
 
 .WdateDiv #dpTime .tB {
-    border-right: 0px;
+    border-right: 0;
 }
 
 .WdateDiv #dpTime .tE {
@@ -234,14 +234,14 @@
 .WdateDiv #dpTime #dpTimeUp {
     height: 10px;
     width: 13px;
-    border: 0px;
+    border: 0;
     background: url(img.gif) no-repeat -32px -16px;
 }
 
 .WdateDiv #dpTime #dpTimeDown {
     height: 10px;
     width: 13px;
-    border: 0px;
+    border: 0;
     background: url(img.gif) no-repeat -48px -16px;
 }
 
@@ -249,7 +249,7 @@
     float: left;
     margin-right: 3px;
     margin-top: 3px;
-    background: url(img.gif) no-repeat 0px -16px;
+    background: url(img.gif) no-repeat 0 -16px;
     width: 20px;
     height: 20px;
     cursor: pointer;

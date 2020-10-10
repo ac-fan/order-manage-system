@@ -7,13 +7,10 @@ import java.util.List;
 
 public interface BillService {
     /**
-     * 增加订单
-     *
      * @param bill
      * @return
      */
     boolean add(Bill bill);
-
 
     /**
      * 通过条件获取订单列表-模糊查询-billList
@@ -24,7 +21,7 @@ public interface BillService {
     List<Bill> getBillList(Bill bill);
 
     /**
-     * 通过billId删除Bill
+     * 根据订单 id 删除订单
      *
      * @param delId
      * @return
@@ -33,16 +30,14 @@ public interface BillService {
 
 
     /**
-     * 通过billId获取Bill
-     *
+     * 根据订单 id 查询订单
      * @param id
      * @return
      */
     Bill getBillById(String id);
 
     /**
-     * 修改订单信息
-     *
+     * 修改订单
      * @param bill
      * @return
      */

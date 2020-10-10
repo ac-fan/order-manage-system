@@ -31,20 +31,10 @@ public class BillServlet extends HttpServlet {
 	 */
 	@Override
 	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
+		super.destroy();
+		System.out.println("Bill Servlet Destroyed.");
 	}
 
-	/**
-	 * The doGet method of the servlet. <br>
-	 * <p>
-	 * This method is called when a form has its tag value method equals to get.
-	 *
-	 * @param request  the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException      if an error occurred
-	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -52,16 +42,7 @@ public class BillServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
-	/**
-	 * The doPost method of the servlet. <br>
-	 * <p>
-	 * This method is called when a form has its tag value method equals to post.
-	 *
-	 * @param request  the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException      if an error occurred
-	 */
+
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -75,19 +56,19 @@ public class BillServlet extends HttpServlet {
 				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
 
 		String method = request.getParameter("method");
-		if (method != null && "query".equals(method)) {
+		if ("query".equals(method)) {
 			this.query(request, response);
-		} else if (method != null && "add".equals(method)) {
+		} else if ("add".equals(method)) {
 			this.add(request, response);
-		} else if (method != null && "view".equals(method)) {
+		} else if ("view".equals(method)) {
 			this.getBillById(request, response, "billview.jsp");
-		} else if (method != null && "modify".equals(method)) {
+		} else if ("modify".equals(method)) {
 			this.getBillById(request, response, "billmodify.jsp");
-		} else if (method != null && "modifysave".equals(method)) {
+		} else if ("modifysave".equals(method)) {
 			this.modify(request, response);
-		} else if (method != null && "delbill".equals(method)) {
+		} else if ("delbill".equals(method)) {
 			this.delBill(request, response);
-		} else if (method != null && "getproviderlist".equals(method)) {
+		} else if ("getproviderlist".equals(method)) {
 			this.getProviderlist(request, response);
 		}
 
