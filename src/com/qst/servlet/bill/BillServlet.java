@@ -241,11 +241,6 @@ public class BillServlet extends HttpServlet {
 
     }
 
-    /**
-     * Initialization of the servlet. <br>
-     *
-     * @throws ServletException if an error occurs
-     */
     @Override
     public void init() throws ServletException {
         // Put your code here

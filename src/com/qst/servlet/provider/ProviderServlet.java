@@ -22,9 +22,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class ProviderServlet extends HttpServlet {
 
-    /**
-     * Destruction of the servlet. <br>
-     */
+
     @Override
     public void destroy() {
         super.destroy(); // Just puts "destroy" string in log
@@ -32,14 +30,10 @@ public class ProviderServlet extends HttpServlet {
     }
 
     /**
-     * The doGet method of the servlet. <br>
-     * <p>
-     * This method is called when a form has its tag value method equals to get.
-     *
-     * @param request  the request send by the client to the server
-     * @param response the response send by the server to the client
-     * @throws ServletException if an error occurred
-     * @throws IOException      if an error occurred
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,14 +42,10 @@ public class ProviderServlet extends HttpServlet {
     }
 
     /**
-     * The doPost method of the servlet. <br>
-     * <p>
-     * This method is called when a form has its tag value method equals to post.
-     *
-     * @param request  the request send by the client to the server
-     * @param response the response send by the server to the client
-     * @throws ServletException if an error occurred
-     * @throws IOException      if an error occurred
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
      */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -76,6 +66,12 @@ public class ProviderServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     private void delProvider(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("proid");
@@ -101,6 +97,12 @@ public class ProviderServlet extends HttpServlet {
         outPrintWriter.close();
     }
 
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     private void modify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String proContact = request.getParameter("proContact");
@@ -128,6 +130,13 @@ public class ProviderServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @param request
+     * @param response
+     * @param url
+     * @throws ServletException
+     * @throws IOException
+     */
     private void getProviderById(HttpServletRequest request, HttpServletResponse response, String url)
             throws ServletException, IOException {
         String id = request.getParameter("proid");
@@ -140,6 +149,12 @@ public class ProviderServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     private void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String proCode = request.getParameter("proCode");
@@ -170,6 +185,12 @@ public class ProviderServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     private void query(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String queryProName = request.getParameter("queryProName");
