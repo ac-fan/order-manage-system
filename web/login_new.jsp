@@ -27,25 +27,26 @@
                 <!--begin::Aside body-->
                 <div class="d-flex flex-column-fluid flex-column flex-center mt-5 mt-lg-0">
                     <a href="#" class="mb-15 text-center">
-                        <img src="assets/media/logos/logo-letter-1.png" class="max-h-75px" alt=""/>
+                        <img src="static/logos/logo-letter-1.png" class="max-h-75px" alt=""/>
                     </a>
 
                     <!--begin::Signin-->
                     <div class="login-form login-signin">
                         <div class="text-center mb-10 mb-lg-20">
-                            <h2 class="font-weight-bold">Sign In</h2>
-                            <p class="text-muted font-weight-bold">Enter your username and password</p>
+                            <h2 class="font-weight-bold">登录</h2>
+                            <p class="text-muted font-weight-bold">请输入你的用户名及密码</p>
                         </div>
 
                         <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_login_signin_form">
+                        <form class="form" action="${pageContext.request.contextPath }/login.do"
+                              id="kt_login_signin_form">
                             <div class="form-group py-3 m-0">
-                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="Email"
-                                       placeholder="Email" name="username" autocomplete="off"/>
+                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="text"
+                                       placeholder="用户名" name="userCode" autocomplete="off"/>
                             </div>
                             <div class="form-group py-3 border-top m-0">
                                 <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="Password"
-                                       placeholder="Password" name="password"/>
+                                       placeholder="密码" name="userPassword"/>
                             </div>
 
                             <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-3">
@@ -53,108 +54,33 @@
                                     <label class="checkbox checkbox-outline m-0 text-muted">
                                         <input type="checkbox" name="remember"/>
                                         <span></span>
-                                        Remember me
+                                        记住登录
                                     </label>
                                 </div>
-                                <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">Forgot
-                                    Password ?</a>
+                                <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">忘记密码了吗?</a>
                             </div>
 
                             <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-2">
                                 <div class="my-3 mr-2">
-                                    <span class="text-muted mr-2">Don't have an account?</span>
-                                    <a href="javascript:;" id="kt_login_signup" class="font-weight-bold">
-                                        Signup
-                                    </a>
+                                    <button id="kt_login_signin_reset" type="reset"
+                                            class="btn btn-success font-weight-bold px-9 py-4 my-3">重置
+                                    </button>
                                 </div>
-                                <button id="kt_login_signin_submit"
-                                        class="btn btn-primary font-weight-bold px-9 py-4 my-3">Sign In
+                                <button id="kt_login_signin_submit" type="submit"
+                                        class="btn btn-primary font-weight-bold px-9 py-4 my-3">登录
                                 </button>
                             </div>
                         </form>
                         <!--end::Form-->
                     </div>
                     <!--end::Signin-->
-
-                    <!--begin::Signup-->
-                    <div class="login-form login-signup">
-                        <div class="text-center mb-10 mb-lg-20">
-                            <h3 class="">Sign Up</h3>
-                            <p class="text-muted font-weight-bold">Enter your details to create your account</p>
-                        </div>
-
-                        <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_login_signup_form">
-                            <div class="form-group py-3 m-0">
-                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="text"
-                                       placeholder="Fullname" name="fullname" autocomplete="off"/>
-                            </div>
-                            <div class="form-group py-3 border-top m-0">
-                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="password"
-                                       placeholder="Email" name="email" autocomplete="off"/>
-                            </div>
-                            <div class="form-group py-3 border-top m-0">
-                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="password"
-                                       placeholder="Password" name="password" autocomplete="off"/>
-                            </div>
-                            <div class="form-group py-3 border-top m-0">
-                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="password"
-                                       placeholder="Confirm password" name="cpassword" autocomplete="off"/>
-                            </div>
-                            <div class="form-group mt-5">
-                                <div class="checkbox-inline">
-                                    <label class="checkbox checkbox-outline">
-                                        <input type="checkbox" name="agree"/>
-                                        <span></span>
-                                        I Agree the <a href="#" class="ml-1">terms and conditions</a>.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group d-flex flex-wrap flex-center">
-                                <button id="kt_login_signup_submit"
-                                        class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Submit
-                                </button>
-                                <button id="kt_login_signup_cancel"
-                                        class="btn btn-outline-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancel
-                                </button>
-                            </div>
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Signup-->
-
-                    <!--begin::Forgot-->
-                    <div class="login-form login-forgot">
-                        <div class="text-center mb-10 mb-lg-20">
-                            <h3 class="">Forgotten Password ?</h3>
-                            <p class="text-muted font-weight-bold">Enter your email to reset your password</p>
-                        </div>
-
-                        <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_login_forgot_form">
-                            <div class="form-group py-3 border-bottom mb-10">
-                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="email"
-                                       placeholder="Email" name="email" autocomplete="off"/>
-                            </div>
-                            <div class="form-group d-flex flex-wrap flex-center">
-                                <button id="kt_login_forgot_submit"
-                                        class="btn btn-primary  font-weight-bold px-9 py-4 my-3 mx-2">Submit
-                                </button>
-                                <button id="kt_login_forgot_cancel"
-                                        class="btn btn-light-primary  font-weight-bold px-9 py-4 my-3 mx-2">Cancel
-                                </button>
-                            </div>
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Forgot-->
                 </div>
                 <!--end::Aside body-->
 
                 <!--begin: Aside footer for desktop-->
                 <div class="d-flex flex-column-auto justify-content-between mt-15">
                     <div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">
-                        &copy; 2020 Metronic
+                        &copy; 2020 QST
                     </div>
                     <div class="d-flex order-1 order-sm-2 my-2">
                         <a href="#" class="text-muted text-hover-primary">Privacy</a>
@@ -174,7 +100,7 @@
             <!--begin::Content body-->
             <div class="d-flex flex-column-fluid flex-lg-center">
                 <div class="d-flex flex-column justify-content-center">
-                    <h3 class="display-3 font-weight-bold my-7 text-white">Welcome to Metronic!</h3>
+                    <h3 class="display-3 font-weight-bold my-7 text-white">欢迎使用订单管理系统!</h3>
                     <p class="font-weight-bold font-size-lg text-white opacity-80">
                         The ultimate Bootstrap, Angular 8, React & VueJS admin theme<br/>framework for next generation
                         web apps.
@@ -188,8 +114,9 @@
     <!--end::Login-->
 </div>
 
-<script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
+<%--<script src="${pageContext.request.contextPath }/static/js/jQuery-3.5.1.min.js"></script>--%>
 <script src="${pageContext.request.contextPath }/static/js/login_new.js"></script>
 
 </body>
