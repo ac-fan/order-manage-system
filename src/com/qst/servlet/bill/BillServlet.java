@@ -27,67 +27,57 @@ import java.util.List;
 public class BillServlet extends HttpServlet {
 
 
-    @Override
-    public void destroy() {
-        super.destroy();
-        System.out.println("Bill Servlet 已销毁.");
-    }
-
-    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         doPost(request, response);
     }
 
 
-    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-		/*String totalPrice = request.getParameter("totalPrice");
-		//23.234   45
-		BigDecimal totalPriceBigDecimal = 
-				//设置规则，小数点保留两位，多出部分，ROUND_DOWN 舍弃
-				//ROUND_HALF_UP 四舍五入(5入) ROUND_UP 进位 
-				//ROUND_HALF_DOWN 四舍五入（5不入）
-				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
+
+        String totalPrice = request.getParameter("totalPrice");
+        //23.234   45
+        BigDecimal totalPriceBigDecimal =
+                //设置规则，小数点保留两位，多出部分，ROUND_DOWN 舍弃
+                //ROUND_HALF_UP 四舍五入(5入) ROUND_UP 进位
+                //ROUND_HALF_DOWN 四舍五入（5不入）
+                new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_DOWN);
+
 
         String method = request.getParameter("method");
-        if ("query".equals(method)) {
+        if (method != null && method.equals("query")) {
             this.query(request, response);
-        } else if ("add".equals(method)) {
+        } else if (method != null && method.equals("add")) {
             this.add(request, response);
-        } else if ("view".equals(method)) {
+        } else if (method != null && method.equals("view")) {
             this.getBillById(request, response, "billview.jsp");
-        } else if ("modify".equals(method)) {
+        } else if (method != null && method.equals("modify")) {
             this.getBillById(request, response, "billmodify.jsp");
-        } else if ("modifysave".equals(method)) {
+        } else if (method != null && method.equals("modifysave")) {
             this.modify(request, response);
-        } else if ("delbill".equals(method)) {
+
+        } else if (method != null && method.equals("delbill")) {
             this.delBill(request, response);
-        } else if ("getproviderlist".equals(method)) {
+        } else if (method != null && method.equals("getproviderlist")) {
             this.getProviderlist(request, response);
+
         }
 
     }
 
-    /**
-     * 获取供应商列表
-     * 此方法提供于 添加订单时让 ajax 进行异步查询
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
+
     private void getProviderlist(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int pageSize = 5;
+        int currentPageNo = 1;
+        System.out.println("getproviderlist ========================= ");
 
-        System.out.println("获取供应商列表 ========================= ");
-
-        List<Provider> providerList = new ArrayList<>();
+        List<Provider> providerList = new ArrayList<Provider>();
         ProviderService providerService = new ProviderServiceImpl();
-        providerList = providerService.getProviderList("", "");
+        providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
         //把providerList转换成json对象输出
         response.setContentType("application/json");
         PrintWriter outPrintWriter = response.getWriter();
@@ -110,7 +100,7 @@ public class BillServlet extends HttpServlet {
 
     private void modify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("[订单Servlet]: => 修改订单");
+        System.out.println("modify===============");
         String id = request.getParameter("id");
         String productName = request.getParameter("productName");
         String productDesc = request.getParameter("productDesc");
@@ -145,15 +135,13 @@ public class BillServlet extends HttpServlet {
     private void delBill(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("billid");
-        HashMap<String, String> resultMap = new HashMap<>();
+        HashMap<String, String> resultMap = new HashMap<String, String>();
         if (!StringUtils.isNullOrEmpty(id)) {
             BillService billService = new BillServiceImpl();
             boolean flag = billService.deleteBillById(id);
-            if (flag) {
-                //删除成功
+            if (flag) {//删除成功
                 resultMap.put("delResult", "true");
-            } else {
-                //删除失败
+            } else {//删除失败
                 resultMap.put("delResult", "false");
             }
         } else {
@@ -193,7 +181,6 @@ public class BillServlet extends HttpServlet {
         boolean flag = false;
         BillService billService = new BillServiceImpl();
         flag = billService.add(bill);
-        System.out.println("");
         System.out.println("add flag -- > " + flag);
         if (flag) {
             response.sendRedirect(request.getContextPath() + "/jsp/bill.do?method=query");
@@ -204,10 +191,11 @@ public class BillServlet extends HttpServlet {
 
     private void query(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        List<Provider> providerList = new ArrayList<>();
+        int pageSize = 5;
+        int currentPageNo = 1;
+        List<Provider> providerList = new ArrayList<Provider>();
         ProviderService providerService = new ProviderServiceImpl();
-        providerList = providerService.getProviderList("", "");
+        providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
         request.setAttribute("providerList", providerList);
 
         String queryProductName = request.getParameter("queryProductName");
@@ -217,7 +205,7 @@ public class BillServlet extends HttpServlet {
             queryProductName = "";
         }
 
-        List<Bill> billList = new ArrayList<>();
+        List<Bill> billList = new ArrayList<Bill>();
         BillService billService = new BillServiceImpl();
         Bill bill = new Bill();
         if (StringUtils.isNullOrEmpty(queryIsPayment)) {
@@ -241,9 +229,8 @@ public class BillServlet extends HttpServlet {
 
     }
 
-    @Override
-    public void init() throws ServletException {
-        // Put your code here
+    public static void main(String[] args) {
+        System.out.println(new BigDecimal("23.235").setScale(2, BigDecimal.ROUND_HALF_DOWN));
     }
 
 }
