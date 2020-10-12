@@ -30,11 +30,11 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
-        if ("savepwd".equals(method) && method != null) {
+        if ("savepwd".equals(method)) {
             this.updatePwd(req, resp);
-        } else if ("pwdmodify".equals(method) && method != null) {
+        } else if ("pwdmodify".equals(method)) {
             this.pwdModify(req, resp);
-        } else if ("query".equals(method) && method != null) {
+        } else if ("query".equals(method)) {
             this.query(req, resp);
         } else if ("getrolelist".equals(method)) {
             this.getRoleList(req, resp);
@@ -45,6 +45,10 @@ public class UserServlet extends HttpServlet {
         } else if ("view".equals(method)) {
             this.getUserById(req, resp, "userview.jsp");
         } else if ("modifyexe".equals(method)) {
+            this.modify(req, resp);
+        } else if ("add".equals(method)) {
+            this.add(req, resp);
+        } else if ("modify".equals(method)) {
             this.modify(req, resp);
         }
         // 想添加新的增删改查，直接用if(method != "savepwd" && method != null);

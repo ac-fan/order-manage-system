@@ -23,7 +23,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("User tried to login");
-        req.setCharacterEncoding("UTF-8");
         //获取用户名和密码
         String userCode = req.getParameter("userCode");
         String userPassword = req.getParameter("userPassword");
@@ -39,6 +38,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             System.out.println("User:[ " + userCode + " ] Login Failed");
             //页面跳转（login.jsp）带出提示信息--转发
+
             req.setAttribute("error", "用户名或密码不正确");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }

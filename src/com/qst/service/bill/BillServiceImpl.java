@@ -61,9 +61,9 @@ public class BillServiceImpl implements BillService {
     public List<Bill> getBillList(Bill bill) {
         Connection connection = null;
         List<Bill> billList = null;
-        System.out.println("[SQL]:查询供应商名称 ---- > " + bill.getProductName());
-        System.out.println("[SQL]:查询供应商 ID ---- > " + bill.getProviderId());
-        System.out.println("[SQL]:查询支付状态 ---- > " + bill.getIsPayment());
+        System.out.println("[SQL]:查询供应商名称---- > " + bill.getProductName());
+        System.out.println("[SQL]:查询供应商 ID---- > " + bill.getProviderId());
+        System.out.println("[SQL]:查询支付状态---- > " + bill.getIsPayment());
 
         try {
             connection = BaseDao.getConnection();
@@ -139,6 +139,7 @@ public class BillServiceImpl implements BillService {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            //关闭资源
             BaseDao.closeResource(connection, null, null);
         }
         return flag;
