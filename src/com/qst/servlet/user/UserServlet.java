@@ -44,11 +44,11 @@ public class UserServlet extends HttpServlet {
             this.delUser(req, resp);
         } else if ("view".equals(method)) {
             this.getUserById(req, resp, "userview.jsp");
-        } else if ("modifyexe".equals(method)) {
-            this.modify(req, resp);
         } else if ("add".equals(method)) {
             this.add(req, resp);
         } else if ("modify".equals(method)) {
+            this.getUserById(req, resp, "usermodify.jsp");
+        } else if (method != null && method.equals("modifyexe")) {
             this.modify(req, resp);
         }
         // 想添加新的增删改查，直接用if(method != "savepwd" && method != null);
