@@ -19,10 +19,10 @@
                     <label >用户性别：</label>
                     <select name="gender" id="gender">
 						<c:choose>
-							<c:when test="${user.gender == 1 }">
-								<option value="1" selected="selected">男</option>
-					    		<option value="2">女</option>
-							</c:when>
+                            <c:when test="${user.gender ==1}">
+                                <option value="1" selected="selected">男</option>
+                                <option value="2">女</option>
+                            </c:when>
 							<c:otherwise>
 								<option value="1">男</option>
 					    		<option value="2" selected="selected">女</option>

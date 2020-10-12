@@ -44,6 +44,10 @@ public class UserServlet extends HttpServlet {
             this.getRoleList(req, resp);
         } else if (method != null && method.equals("ucexist")) {
             this.userCodeExist(req, resp);
+        } else if (method != null && method.equals("add")) {
+            this.add(req, resp);
+        } else if (method != null && method.equals("modify")) {
+            this.modify(req, resp);
         } else if (method != null && method.equals("deluser")) {
             this.delUser(req, resp);
         } else if (method != null && method.equals("view")) {
@@ -218,7 +222,7 @@ public class UserServlet extends HttpServlet {
 
     }
 
-    //
+
     @SuppressWarnings("unused")
     private void getPwdByUserId(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -246,7 +250,6 @@ public class UserServlet extends HttpServlet {
         outPrintWriter.close();
     }
 
-    //修改
     private void modify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("uid");
@@ -260,13 +263,15 @@ public class UserServlet extends HttpServlet {
         User user = new User();
         user.setId(Integer.valueOf(id));
         user.setUserName(userName);
-        user.setGender(Integer.valueOf(gender));
+
+
         try {
             user.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        user.setGender(Integer.valueOf(gender));
         user.setPhone(phone);
         user.setAddress(address);
         user.setUserRole(Integer.valueOf(userRole));
@@ -282,7 +287,6 @@ public class UserServlet extends HttpServlet {
 
     }
 
-    //
     private void getUserById(HttpServletRequest request, HttpServletResponse response, String url)
             throws ServletException, IOException {
         String id = request.getParameter("uid");
@@ -326,9 +330,10 @@ public class UserServlet extends HttpServlet {
         user.setUserRole(Integer.valueOf(userRole));
         user.setCreationDate(new Date());
         user.setCreatedBy(((User) request.getSession().getAttribute(Constants.USER_SESSION)).getId());
-
+        boolean flag = false;
         UserService userService = new UserServiceImpl();
-        if (userService.add(user)) {
+        flag = userService.add(user);
+        if (flag) {
             response.sendRedirect(request.getContextPath() + "/jsp/user.do?method=query");
         } else {
             request.getRequestDispatcher("useradd.jsp").forward(request, response);
@@ -366,7 +371,6 @@ public class UserServlet extends HttpServlet {
         outPrintWriter.close();
     }
 
-    //
     private void userCodeExist(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断用户账号是否可用
@@ -398,7 +402,7 @@ public class UserServlet extends HttpServlet {
         outPrintWriter.close();//关闭流
     }
 
-    //
+
     private void getRoleList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Role> roleList = null;
