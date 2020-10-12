@@ -26,14 +26,14 @@ public class UserServiceImpl implements UserService {
         try {
             connection = BaseDao.getConnection();
             connection.setAutoCommit(false);//开启JDBC事务管理
-            /*int updateRows = userDao.add(connection, user);
+            int updateRows = userDao.add(connection, user);
             connection.commit();
             if (updateRows > 0) {
                 flag = true;
                 System.out.println("add success!");
             } else {
                 System.out.println("add failed!");
-            }*/
+            }
             if (userDao.add(connection, user) > 0) {
                 flag = true;
             }

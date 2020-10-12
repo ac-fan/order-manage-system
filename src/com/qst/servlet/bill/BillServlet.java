@@ -26,26 +26,24 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class BillServlet extends HttpServlet {
 
-	/**
-	 * Destruction of the servlet. <br>
-	 */
-	@Override
-	public void destroy() {
-		super.destroy();
-		System.out.println("Bill Servlet Destroyed.");
-	}
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    @Override
+    public void destroy() {
+        super.destroy();
+        System.out.println("Bill Servlet 已销毁.");
+    }
 
-		doPost(request, response);
-	}
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        doPost(request, response);
+    }
 
 
-	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
 		/*String totalPrice = request.getParameter("totalPrice");
 		//23.234   45
@@ -55,191 +53,203 @@ public class BillServlet extends HttpServlet {
 				//ROUND_HALF_DOWN 四舍五入（5不入）
 				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
 
-		String method = request.getParameter("method");
-		if ("query".equals(method)) {
-			this.query(request, response);
-		} else if ("add".equals(method)) {
-			this.add(request, response);
-		} else if ("view".equals(method)) {
-			this.getBillById(request, response, "billview.jsp");
-		} else if ("modify".equals(method)) {
-			this.getBillById(request, response, "billmodify.jsp");
-		} else if ("modifysave".equals(method)) {
-			this.modify(request, response);
-		} else if ("delbill".equals(method)) {
-			this.delBill(request, response);
-		} else if ("getproviderlist".equals(method)) {
-			this.getProviderlist(request, response);
-		}
+        String method = request.getParameter("method");
+        if ("query".equals(method)) {
+            this.query(request, response);
+        } else if ("add".equals(method)) {
+            this.add(request, response);
+        } else if ("view".equals(method)) {
+            this.getBillById(request, response, "billview.jsp");
+        } else if ("modify".equals(method)) {
+            this.getBillById(request, response, "billmodify.jsp");
+        } else if ("modifysave".equals(method)) {
+            this.modify(request, response);
+        } else if ("delbill".equals(method)) {
+            this.delBill(request, response);
+        } else if ("getproviderlist".equals(method)) {
+            this.getProviderlist(request, response);
+        }
 
-	}
+    }
 
-	private void getProviderlist(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    /**
+     * 获取供应商列表
+     * 此方法提供于 添加订单时让 ajax 进行异步查询
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void getProviderlist(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		System.out.println("getproviderlist ========================= ");
+        System.out.println("获取供应商列表 ========================= ");
 
-		List<Provider> providerList = new ArrayList<>();
-		ProviderService providerService = new ProviderServiceImpl();
-		providerList = providerService.getProviderList("", "");
-		//把providerList转换成json对象输出
-		response.setContentType("application/json");
-		PrintWriter outPrintWriter = response.getWriter();
-		outPrintWriter.write(JSONArray.toJSONString(providerList));
-		outPrintWriter.flush();
-		outPrintWriter.close();
-	}
+        List<Provider> providerList = new ArrayList<>();
+        ProviderService providerService = new ProviderServiceImpl();
+        providerList = providerService.getProviderList("", "");
+        //把providerList转换成json对象输出
+        response.setContentType("application/json");
+        PrintWriter outPrintWriter = response.getWriter();
+        outPrintWriter.write(JSONArray.toJSONString(providerList));
+        outPrintWriter.flush();
+        outPrintWriter.close();
+    }
 
-	private void getBillById(HttpServletRequest request, HttpServletResponse response, String url)
-			throws ServletException, IOException {
-		String id = request.getParameter("billid");
-		if (!StringUtils.isNullOrEmpty(id)) {
-			BillService billService = new BillServiceImpl();
-			Bill bill = null;
-			bill = billService.getBillById(id);
-			request.setAttribute("bill", bill);
-			request.getRequestDispatcher(url).forward(request, response);
-		}
-	}
+    private void getBillById(HttpServletRequest request, HttpServletResponse response, String url)
+            throws ServletException, IOException {
+        String id = request.getParameter("billid");
+        if (!StringUtils.isNullOrEmpty(id)) {
+            BillService billService = new BillServiceImpl();
+            Bill bill = null;
+            bill = billService.getBillById(id);
+            request.setAttribute("bill", bill);
+            request.getRequestDispatcher(url).forward(request, response);
+        }
+    }
 
-	private void modify(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		System.out.println("modify===============");
-		String id = request.getParameter("id");
-		String productName = request.getParameter("productName");
-		String productDesc = request.getParameter("productDesc");
-		String productUnit = request.getParameter("productUnit");
-		String productCount = request.getParameter("productCount");
-		String totalPrice = request.getParameter("totalPrice");
-		String providerId = request.getParameter("providerId");
-		String isPayment = request.getParameter("isPayment");
+    private void modify(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        System.out.println("[订单Servlet]: => 修改订单");
+        String id = request.getParameter("id");
+        String productName = request.getParameter("productName");
+        String productDesc = request.getParameter("productDesc");
+        String productUnit = request.getParameter("productUnit");
+        String productCount = request.getParameter("productCount");
+        String totalPrice = request.getParameter("totalPrice");
+        String providerId = request.getParameter("providerId");
+        String isPayment = request.getParameter("isPayment");
 
-		Bill bill = new Bill();
-		bill.setId(Integer.valueOf(id));
-		bill.setProductName(productName);
-		bill.setProductDesc(productDesc);
-		bill.setProductUnit(productUnit);
-		bill.setProductCount(new BigDecimal(productCount).setScale(2, BigDecimal.ROUND_DOWN));
-		bill.setIsPayment(Integer.parseInt(isPayment));
-		bill.setTotalPrice(new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_DOWN));
-		bill.setProviderId(Integer.parseInt(providerId));
+        Bill bill = new Bill();
+        bill.setId(Integer.valueOf(id));
+        bill.setProductName(productName);
+        bill.setProductDesc(productDesc);
+        bill.setProductUnit(productUnit);
+        bill.setProductCount(new BigDecimal(productCount).setScale(2, BigDecimal.ROUND_DOWN));
+        bill.setIsPayment(Integer.parseInt(isPayment));
+        bill.setTotalPrice(new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_DOWN));
+        bill.setProviderId(Integer.parseInt(providerId));
 
-		bill.setModifyBy(((User) request.getSession().getAttribute(Constants.USER_SESSION)).getId());
-		bill.setModifyDate(new Date());
-		boolean flag = false;
-		BillService billService = new BillServiceImpl();
-		flag = billService.modify(bill);
-		if (flag) {
-			response.sendRedirect(request.getContextPath() + "/jsp/bill.do?method=query");
-		} else {
-			request.getRequestDispatcher("billmodify.jsp").forward(request, response);
-		}
-	}
+        bill.setModifyBy(((User) request.getSession().getAttribute(Constants.USER_SESSION)).getId());
+        bill.setModifyDate(new Date());
+        boolean flag = false;
+        BillService billService = new BillServiceImpl();
+        flag = billService.modify(bill);
+        if (flag) {
+            response.sendRedirect(request.getContextPath() + "/jsp/bill.do?method=query");
+        } else {
+            request.getRequestDispatcher("billmodify.jsp").forward(request, response);
+        }
+    }
 
-	private void delBill(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String id = request.getParameter("billid");
-		HashMap<String, String> resultMap = new HashMap<>();
-		if (!StringUtils.isNullOrEmpty(id)) {
-			BillService billService = new BillServiceImpl();
-			boolean flag = billService.deleteBillById(id);
-			if (flag) {//删除成功
-				resultMap.put("delResult", "true");
-			} else {//删除失败
-				resultMap.put("delResult", "false");
-			}
-		} else {
-			resultMap.put("delResult", "notexit");
-		}
-		//把resultMap转换成json对象输出
-		response.setContentType("application/json");
-		PrintWriter outPrintWriter = response.getWriter();
-		outPrintWriter.write(JSONArray.toJSONString(resultMap));
-		outPrintWriter.flush();
-		outPrintWriter.close();
-	}
+    private void delBill(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("billid");
+        HashMap<String, String> resultMap = new HashMap<>();
+        if (!StringUtils.isNullOrEmpty(id)) {
+            BillService billService = new BillServiceImpl();
+            boolean flag = billService.deleteBillById(id);
+            if (flag) {
+                //删除成功
+                resultMap.put("delResult", "true");
+            } else {
+                //删除失败
+                resultMap.put("delResult", "false");
+            }
+        } else {
+            resultMap.put("delResult", "notexit");
+        }
+        //把resultMap转换成json对象输出
+        response.setContentType("application/json");
+        PrintWriter outPrintWriter = response.getWriter();
+        outPrintWriter.write(JSONArray.toJSONString(resultMap));
+        outPrintWriter.flush();
+        outPrintWriter.close();
+    }
 
-	private void add(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String billCode = request.getParameter("billCode");
-		String productName = request.getParameter("productName");
-		String productDesc = request.getParameter("productDesc");
-		String productUnit = request.getParameter("productUnit");
+    private void add(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String billCode = request.getParameter("billCode");
+        String productName = request.getParameter("productName");
+        String productDesc = request.getParameter("productDesc");
+        String productUnit = request.getParameter("productUnit");
 
-		String productCount = request.getParameter("productCount");
-		String totalPrice = request.getParameter("totalPrice");
-		String providerId = request.getParameter("providerId");
-		String isPayment = request.getParameter("isPayment");
+        String productCount = request.getParameter("productCount");
+        String totalPrice = request.getParameter("totalPrice");
+        String providerId = request.getParameter("providerId");
+        String isPayment = request.getParameter("isPayment");
 
-		Bill bill = new Bill();
-		bill.setBillCode(billCode);
-		bill.setProductName(productName);
-		bill.setProductDesc(productDesc);
-		bill.setProductUnit(productUnit);
-		bill.setProductCount(new BigDecimal(productCount).setScale(2, BigDecimal.ROUND_DOWN));
-		bill.setIsPayment(Integer.parseInt(isPayment));
-		bill.setTotalPrice(new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_DOWN));
-		bill.setProviderId(Integer.parseInt(providerId));
-		bill.setCreatedBy(((User) request.getSession().getAttribute(Constants.USER_SESSION)).getId());
-		bill.setCreationDate(new Date());
-		boolean flag = false;
-		BillService billService = new BillServiceImpl();
-		flag = billService.add(bill);
-		System.out.println("add flag -- > " + flag);
-		if (flag) {
-			response.sendRedirect(request.getContextPath() + "/jsp/bill.do?method=query");
-		} else {
-			request.getRequestDispatcher("billadd.jsp").forward(request, response);
-		}
-	}
+        Bill bill = new Bill();
+        bill.setBillCode(billCode);
+        bill.setProductName(productName);
+        bill.setProductDesc(productDesc);
+        bill.setProductUnit(productUnit);
+        bill.setProductCount(new BigDecimal(productCount).setScale(2, BigDecimal.ROUND_DOWN));
+        bill.setIsPayment(Integer.parseInt(isPayment));
+        bill.setTotalPrice(new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_DOWN));
+        bill.setProviderId(Integer.parseInt(providerId));
+        bill.setCreatedBy(((User) request.getSession().getAttribute(Constants.USER_SESSION)).getId());
+        bill.setCreationDate(new Date());
+        boolean flag = false;
+        BillService billService = new BillServiceImpl();
+        flag = billService.add(bill);
+        System.out.println("");
+        System.out.println("add flag -- > " + flag);
+        if (flag) {
+            response.sendRedirect(request.getContextPath() + "/jsp/bill.do?method=query");
+        } else {
+            request.getRequestDispatcher("billadd.jsp").forward(request, response);
+        }
+    }
 
-	private void query(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    private void query(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		List<Provider> providerList = new ArrayList<>();
-		ProviderService providerService = new ProviderServiceImpl();
-		providerList = providerService.getProviderList("", "");
-		request.setAttribute("providerList", providerList);
+        List<Provider> providerList = new ArrayList<>();
+        ProviderService providerService = new ProviderServiceImpl();
+        providerList = providerService.getProviderList("", "");
+        request.setAttribute("providerList", providerList);
 
-		String queryProductName = request.getParameter("queryProductName");
-		String queryProviderId = request.getParameter("queryProviderId");
-		String queryIsPayment = request.getParameter("queryIsPayment");
-		if (StringUtils.isNullOrEmpty(queryProductName)) {
-			queryProductName = "";
-		}
+        String queryProductName = request.getParameter("queryProductName");
+        String queryProviderId = request.getParameter("queryProviderId");
+        String queryIsPayment = request.getParameter("queryIsPayment");
+        if (StringUtils.isNullOrEmpty(queryProductName)) {
+            queryProductName = "";
+        }
 
-		List<Bill> billList = new ArrayList<>();
-		BillService billService = new BillServiceImpl();
-		Bill bill = new Bill();
-		if (StringUtils.isNullOrEmpty(queryIsPayment)) {
-			bill.setIsPayment(0);
-		} else {
-			bill.setIsPayment(Integer.parseInt(queryIsPayment));
-		}
+        List<Bill> billList = new ArrayList<>();
+        BillService billService = new BillServiceImpl();
+        Bill bill = new Bill();
+        if (StringUtils.isNullOrEmpty(queryIsPayment)) {
+            bill.setIsPayment(0);
+        } else {
+            bill.setIsPayment(Integer.parseInt(queryIsPayment));
+        }
 
-		if (StringUtils.isNullOrEmpty(queryProviderId)) {
-			bill.setProviderId(0);
-		} else {
-			bill.setProviderId(Integer.parseInt(queryProviderId));
-		}
-		bill.setProductName(queryProductName);
-		billList = billService.getBillList(bill);
-		request.setAttribute("billList", billList);
-		request.setAttribute("queryProductName", queryProductName);
-		request.setAttribute("queryProviderId", queryProviderId);
-		request.setAttribute("queryIsPayment", queryIsPayment);
-		request.getRequestDispatcher("billlist.jsp").forward(request, response);
+        if (StringUtils.isNullOrEmpty(queryProviderId)) {
+            bill.setProviderId(0);
+        } else {
+            bill.setProviderId(Integer.parseInt(queryProviderId));
+        }
+        bill.setProductName(queryProductName);
+        billList = billService.getBillList(bill);
+        request.setAttribute("billList", billList);
+        request.setAttribute("queryProductName", queryProductName);
+        request.setAttribute("queryProviderId", queryProviderId);
+        request.setAttribute("queryIsPayment", queryIsPayment);
+        request.getRequestDispatcher("billlist.jsp").forward(request, response);
 
-	}
+    }
 
-	/**
-	 * Initialization of the servlet. <br>
-	 *
-	 * @throws ServletException if an error occurs
-	 */
-	@Override
-	public void init() throws ServletException {
-		// Put your code here
-	}
+    /**
+     * Initialization of the servlet. <br>
+     *
+     * @throws ServletException if an error occurs
+     */
+    @Override
+    public void init() throws ServletException {
+        // Put your code here
+    }
 
 }

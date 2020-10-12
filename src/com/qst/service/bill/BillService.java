@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface BillService {
     /**
+     * 添加订单抽象方法
+     *
      * @param bill
      * @return
      */
@@ -31,6 +33,7 @@ public interface BillService {
 
     /**
      * 根据订单 id 查询订单
+     *
      * @param id
      * @return
      */
@@ -38,6 +41,7 @@ public interface BillService {
 
     /**
      * 修改订单
+     *
      * @param bill
      * @return
      */

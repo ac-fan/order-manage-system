@@ -4,7 +4,7 @@
     <img class="wColck" src="${pageContext.request.contextPath }/static/images/clock.jpg" alt=""/>
     <div class="wFont">
         <h2>${userSession.userName }</h2>
-        <p>欢迎来到超市订单管理系统!</p>
+        <p>欢迎来到订单管理系统!</p>
     </div>
 </div>
 </section>
