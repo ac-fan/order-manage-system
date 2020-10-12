@@ -11,78 +11,55 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+
 public class ProviderServiceImpl implements ProviderService {
 
+    private final ProviderDao providerDao;
+    private final BillDao billDao;
 
-    private ProviderDao providerDao;
-    private BillDao billDao;
-    public ProviderServiceImpl(){
+    public ProviderServiceImpl() {
         providerDao = new ProviderDaoImpl();
         billDao = new BillDaoImpl();
     }
-    //查询记录数
-    public int getProviderCount(String proCode, String proName) {
-        Connection connection= null;
-        int count=0;
-        try {
-            connection= BaseDao.getConnection();
-           count= providerDao.getProviderCount(connection,proCode,proName);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            BaseDao.closeResource(connection,null,null);
-        }
 
-        return count;
-    }
-  /*  @Test
-    public void test(){
-        ProviderServiceImpl providerService=new ProviderServiceImpl();
-        int providerCount =providerService.getProviderCount(null,"北");
-        System.out.println(providerCount);
-    }*/
-  //增加供应商
+    @Override
     public boolean add(Provider provider) {
-        // TODO Auto-generated method stub
         boolean flag = false;
         Connection connection = null;
         try {
             connection = BaseDao.getConnection();
             connection.setAutoCommit(false);//开启JDBC事务管理
-            if(providerDao.add(connection,provider) > 0)
+            if (providerDao.add(connection, provider) > 0) {
                 flag = true;
+            }
             connection.commit();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             try {
                 System.out.println("rollback==================");
                 connection.rollback();
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-        }finally{
+        } finally {
             //在service层进行connection连接的关闭
             BaseDao.closeResource(connection, null, null);
         }
         return flag;
     }
 
-    //通过供应商名称、编码获取供应商列表-模糊查询-providerList
-    public List<Provider> getProviderList(String proName,String proCode,int currentPageNo, int pageSize) {
-        // TODO Auto-generated method stub
+    @Override
+    public List<Provider> getProviderList(String proName, String proCode) {
         Connection connection = null;
         List<Provider> providerList = null;
         System.out.println("query proName ---- > " + proName);
         System.out.println("query proCode ---- > " + proCode);
         try {
             connection = BaseDao.getConnection();
-            providerList = providerDao.getProviderList(connection, proName,proCode, currentPageNo, pageSize);
+            providerList = providerDao.getProviderList(connection, proName, proCode);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-        }finally{
+        } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return providerList;
@@ -95,74 +72,67 @@ public class ProviderServiceImpl implements ProviderService {
      * 返回值billCount
      * 1> billCount == 0  删除---1 成功 （0） 2 不成功 （-1）
      * 2> billCount > 0    不能删除 查询成功（0）查询不成功（-1）
-     *
+     * <p>
      * ---判断
      * 如果billCount = -1 失败
      * 若billCount >= 0 成功
      */
-    //通过proId删除Provider
+    @Override
     public int deleteProviderById(String delId) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         int billCount = -1;
         try {
             connection = BaseDao.getConnection();
             connection.setAutoCommit(false);
-            billCount = billDao.getBillCountByProviderId(connection,delId);
-            if(billCount == 0){
+            billCount = billDao.getBillCountByProviderId(connection, delId);
+            if (billCount == 0) {
                 providerDao.deleteProviderById(connection, delId);
             }
             connection.commit();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             billCount = -1;
             try {
                 connection.rollback();
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-        }finally{
+        } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return billCount;
     }
 
-    //通过proId获取Provider
+    @Override
     public Provider getProviderById(String id) {
-        // TODO Auto-generated method stub
         Provider provider = null;
         Connection connection = null;
-        try{
+        try {
             connection = BaseDao.getConnection();
             provider = providerDao.getProviderById(connection, id);
-        }catch (Exception e) {
-            // TODO: handle exception
+        } catch (Exception e) {
             e.printStackTrace();
             provider = null;
-        }finally{
+        } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return provider;
     }
-    // 修改用户信息
+
+    @Override
     public boolean modify(Provider provider) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if(providerDao.modify(connection,provider) > 0)
+            if (providerDao.modify(connection, provider) > 0) {
                 flag = true;
+            }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-        }finally{
+        } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return flag;
     }
-
-
 }

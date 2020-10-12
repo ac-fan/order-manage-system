@@ -4,16 +4,14 @@ import com.qst.dao.BaseDao;
 import com.qst.dao.role.RoleDao;
 import com.qst.dao.role.RoleDaoImpl;
 import com.qst.pojo.Role;
-import org.junit.Test;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
+
 
 public class RoleServiceImpl implements RoleService {
 
-    //引入dao
-    private RoleDao roleDao;
+    private final RoleDao roleDao;
 
     public RoleServiceImpl() {
         roleDao = new RoleDaoImpl();
@@ -26,14 +24,12 @@ public class RoleServiceImpl implements RoleService {
         try {
             connection = BaseDao.getConnection();
             roleList = roleDao.getRoleList(connection);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return roleList;
-
     }
-
 
 }
