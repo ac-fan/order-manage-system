@@ -29,7 +29,8 @@
         <div class="aside aside-left d-flex flex-column " id="kt_aside">
             <!--begin::头部 logo-->
             <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-4 py-lg-8">
-                <a href="index.html"><img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
+                <a href="index.html"><img alt="Logo"
+                                          src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
                                           class="max-h-30px"/></a>
             </div>
             <!--end::头部 logo-->
@@ -116,9 +117,80 @@
                 <%--end::子标题--%>
                 <div class="d-flex flex-column-fluid">
                     <div class=" container ">
-                        <div class="row">
-                            <%--页面内容放在这--%>
+                        <div class="card">
+                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                <div class="card-title">
+                                    <h3 class="card-label">订单详情</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-xl-7 my-2">
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">订单编号</label>
+                                        <div class="col-9">
+                                            <input class="form-control form-control-lg form-control-solid"
+                                                   type="text" value="${bill.billCode }"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">商品名称</label>
+                                        <div class="col-9">
+                                            <input class="form-control form-control-lg form-control-solid"
+                                                   type="text" value="${bill.productName }"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">商品单位</label>
+                                        <div class="col-9">
+                                            <input class="form-control form-control-lg form-control-solid"
+                                                   type="text" value="${bill.productUnit }"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">Contact
+                                            Phone</label>
+                                        <div class="col-9">
+                                            <div class="input-group input-group-lg input-group-solid">
+                                                <div class="input-group-prepend"><span
+                                                        class="input-group-text"><i
+                                                        class="la la-phone"></i></span></div>
+                                                <input type="text"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       value="+45678967456" placeholder="Phone"/>
+                                            </div>
+                                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">Email
+                                            Address</label>
+                                        <div class="col-9">
+                                            <div class="input-group input-group-lg input-group-solid">
+                                                <div class="input-group-prepend"><span
+                                                        class="input-group-text"><i
+                                                        class="la la-at"></i></span></div>
+                                                <input type="text"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       value="anna.krox@loop.com" placeholder="Email"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">Company
+                                            Site</label>
+                                        <div class="col-9">
+                                            <div class="input-group input-group-lg input-group-solid">
+                                                <input type="text"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       placeholder="Username" value="loop"/>
+                                                <div class="input-group-append"><span
+                                                        class="input-group-text">.com</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
