@@ -20,7 +20,6 @@
     <link href="${pageContext.request.contextPath }/static/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="${pageContext.request.contextPath }/static/images/favicon.ico"/>
 </head>
-
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
 <div id="kt_header_mobile" class="header-mobile  header-mobile-fixed ">
     <!--begin::Logo-->
@@ -65,7 +64,7 @@
             <!--begin::头部 logo-->
             <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-4 py-lg-8">
                 <!--begin::Logo-->
-                <a href="index.html">
+                <a href="/">
                     <img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png" class="max-h-30px"/>
                 </a>
                 <!--end::Logo-->
