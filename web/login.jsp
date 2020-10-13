@@ -102,7 +102,7 @@
 </div>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
-<script src="${pageContext.request.contextPath }/static/js/login_new.js"></script>
+<%--<script src="${pageContext.request.contextPath }/static/js/login_new.js"></script>--%>
 </body>
 </html>
 

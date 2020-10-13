@@ -1,5 +1,20 @@
 package com.qst.servlet.bill;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.alibaba.fastjson.JSONArray;
 import com.mysql.cj.util.StringUtils;
 import com.qst.pojo.Bill;
@@ -11,22 +26,29 @@ import com.qst.service.provider.ProviderService;
 import com.qst.service.provider.ProviderServiceImpl;
 import com.qst.util.Constants;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class BillServlet extends HttpServlet {
 
+    /**
+     * Destruction of the servlet. <br>
+     */
+    @Override
+    public void destroy() {
+        super.destroy(); // Just puts "destroy" string in log
+        // Put your code here
+    }
 
+    /**
+     * The doGet method of the servlet. <br>
+     * <p>
+     * This method is called when a form has its tag value method equals to get.
+     *
+     * @param request  the request send by the client to the server
+     * @param response the response send by the server to the client
+     * @throws ServletException if an error occurred
+     * @throws IOException      if an error occurred
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,20 +56,27 @@ public class BillServlet extends HttpServlet {
         doPost(request, response);
     }
 
-
+    /**
+     * The doPost method of the servlet. <br>
+     * <p>
+     * This method is called when a form has its tag value method equals to post.
+     *
+     * @param request  the request send by the client to the server
+     * @param response the response send by the server to the client
+     * @throws ServletException if an error occurred
+     * @throws IOException      if an error occurred
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-        String totalPrice = request.getParameter("totalPrice");
-        //23.234   45
-        BigDecimal totalPriceBigDecimal =
-                //设置规则，小数点保留两位，多出部分，ROUND_DOWN 舍弃
-                //ROUND_HALF_UP 四舍五入(5入) ROUND_UP 进位
-                //ROUND_HALF_DOWN 四舍五入（5不入）
-                new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_DOWN);
-
+		/*String totalPrice = request.getParameter("totalPrice");
+		//23.234   45
+		BigDecimal totalPriceBigDecimal =
+				//设置规则，小数点保留两位，多出部分，ROUND_DOWN 舍弃
+				//ROUND_HALF_UP 四舍五入(5入) ROUND_UP 进位
+				//ROUND_HALF_DOWN 四舍五入（5不入）
+				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
 
         String method = request.getParameter("method");
         if (method != null && method.equals("query")) {
@@ -60,26 +89,22 @@ public class BillServlet extends HttpServlet {
             this.getBillById(request, response, "billmodify.jsp");
         } else if (method != null && method.equals("modifysave")) {
             this.modify(request, response);
-
         } else if (method != null && method.equals("delbill")) {
             this.delBill(request, response);
         } else if (method != null && method.equals("getproviderlist")) {
             this.getProviderlist(request, response);
-
         }
 
     }
 
-
     private void getProviderlist(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int pageSize = 5;
-        int currentPageNo = 1;
+
         System.out.println("getproviderlist ========================= ");
 
         List<Provider> providerList = new ArrayList<Provider>();
         ProviderService providerService = new ProviderServiceImpl();
-        providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
+        providerList = providerService.getProviderList("", "",1,5);
         //把providerList转换成json对象输出
         response.setContentType("application/json");
         PrintWriter outPrintWriter = response.getWriter();
@@ -193,11 +218,10 @@ public class BillServlet extends HttpServlet {
 
     private void query(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int pageSize = 5;
-        int currentPageNo = 1;
+
         List<Provider> providerList = new ArrayList<Provider>();
         ProviderService providerService = new ProviderServiceImpl();
-        providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
+        providerList = providerService.getProviderList("", "",1,5);
         request.setAttribute("providerList", providerList);
 
         String queryProductName = request.getParameter("queryProductName");
@@ -233,6 +257,16 @@ public class BillServlet extends HttpServlet {
 
     public static void main(String[] args) {
         System.out.println(new BigDecimal("23.235").setScale(2, BigDecimal.ROUND_HALF_DOWN));
+    }
+
+    /**
+     * Initialization of the servlet. <br>
+     *
+     * @throws ServletException if an error occurs
+     */
+    @Override
+    public void init() throws ServletException {
+        // Put your code here
     }
 
 }
