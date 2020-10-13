@@ -27,7 +27,7 @@ public class SysFilter implements Filter {
         if (user == null) {
             //已经被移除或者注销了，或者未登录
             //跳转到对应的错误页面
-            response.sendRedirect("/jsp/error.jsp");
+            response.sendRedirect("/error.jsp");
         } else {
             //调用过滤器
             chain.doFilter(req, resp);
