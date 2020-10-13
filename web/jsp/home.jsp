@@ -9,46 +9,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-<!--begin::Head-->
 <head>
     <meta charset="utf-8"/>
     <title>用户中心 | 订单管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
-    <!--end::Fonts-->
-
-    <!--begin::Page Vendors Styles(used by this page)-->
     <link href="${pageContext.request.contextPath }/static/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
           type="text/css"/>
-    <!--end::Page Vendors Styles-->
-
-
-    <!--begin::Global Theme Styles(used by all pages)-->
     <link href="${pageContext.request.contextPath }/static/css/plugins.bundle.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath }/static/css/style.bundle.css" rel="stylesheet" type="text/css"/>
-    <!--end::Global Theme Styles-->
-
-    <!--begin::Layout Themes(used by all pages)-->
-    <!--end::Layout Themes-->
-
     <link rel="shortcut icon" href="${pageContext.request.contextPath }/static/images/favicon.ico"/>
-
 </head>
-<!--end::Head-->
 
-<!--begin::Body-->
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
-
-<!--begin::Main-->
-<!--begin::Header Mobile-->
 <div id="kt_header_mobile" class="header-mobile  header-mobile-fixed ">
     <!--begin::Logo-->
-    <a href="/">
-        <img alt="Logo" src="assets/media/logos/logo-letter-3.png" class="logo-default max-h-30px"/>
-    </a>
+    <a href="/"><img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png" class="logo-default max-h-30px"/></a>
     <!--end::Logo-->
-
     <!--begin::Toolbar-->
     <div class="d-flex align-items-center">
         <!--begin::Aside Mobile Toggle-->
@@ -80,13 +57,12 @@
     </div>
     <!--end::Toolbar-->
 </div>
-<!--end::Header Mobile-->
+<%--begin::页面主体内容--%>
 <div class="d-flex flex-column flex-root">
-    <!--begin::Page-->
     <div class="d-flex flex-row flex-column-fluid page">
-        <!--begin::Aside-->
+        <!--begin::左侧导航栏-->
         <div class="aside aside-left d-flex flex-column " id="kt_aside">
-            <!--begin::Brand-->
+            <!--begin::头部 logo-->
             <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-4 py-lg-8">
                 <!--begin::Logo-->
                 <a href="index.html">
@@ -94,71 +70,48 @@
                 </a>
                 <!--end::Logo-->
             </div>
-            <!--end::Brand-->
-
-            <!--begin::Nav Wrapper-->
+            <!--end::头部 logo-->
+            <!--begin::快捷菜单-->
             <div class="aside-nav d-flex flex-column align-items-center flex-column-fluid pt-7">
-                <!--begin::Nav-->
                 <ul class="nav flex-column">
-                    <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="用户中心">
                         <a href="/jsp/home.jsp" class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg active">
                             <i class="flaticon2-protection icon-lg"></i>
                         </a>
                     </li>
-                    <!--end::Item-->
-
-                    <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="订单管理">
-                        <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query" class="nav-link btn btn-icon btn-icon-white btn-lg" data-toggle="tab"
-                           data-target="#kt_aside_tab_2" role="tab">
+                        <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query" class="nav-link btn btn-icon btn-icon-white btn-lg">
                             <i class="flaticon2-list-3 icon-lg"></i>
                         </a>
                     </li>
-                    <!--end::Item-->
-
-                    <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="供应商管理">
-                        <a href="${pageContext.request.contextPath }/jsp/provider.do?method=query" class="nav-link btn btn-icon btn-icon-white btn-lg" data-toggle="tab"
-                           data-target="#kt_aside_tab_3" role="tab">
+                        <a href="${pageContext.request.contextPath }/jsp/provider.do?method=query" class="nav-link btn btn-icon btn-icon-white btn-lg">
                             <i class="flaticon2-calendar-6 icon-lg"></i>
                         </a>
                     </li>
-                    <!--end::Item-->
-
-                    <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="用户管理">
-                        <a href="${pageContext.request.contextPath }/jsp/user.do?method=query" class="nnav-link btn btn-icon btn-icon-white btn-lg" data-toggle="tab"
-                           data-target="#kt_aside_tab_5" role="tab">
+                        <a href="${pageContext.request.contextPath }/jsp/user.do?method=query" class="nnav-link btn btn-icon btn-icon-white btn-lg">
                             <i class="flaticon2-analytics-2 icon-lg"></i>
                         </a>
                     </li>
-                    <!--end::Item-->
-
-                    <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="修改密码">
-                        <a href="${pageContext.request.contextPath }/jsp/pwdmodify.jsp" class="nav-link btn btn-icon btn-icon-white btn-lg" data-toggle="tab"
-                           data-target="#kt_aside_tab_4" role="tab">
+                        <a href="${pageContext.request.contextPath }/jsp/pwdmodify.jsp" class="nav-link btn btn-icon btn-icon-white btn-lg">
                             <i class="flaticon2-hourglass-1 icon-lg"></i>
                         </a>
                     </li>
-                    <!--end::Item-->
-
                 </ul>
-                <!--end::Nav-->
             </div>
-            <!--end::Nav Wrapper-->
+            <!--end::快捷菜单-->
         </div>
-        <!--end::Aside-->
-
-        <!--begin::Wrapper-->
+        <!--end::左侧导航栏-->
+        <!--begin::右侧页面框架-->
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-            <!--begin::Header-->
+            <!--begin::页面头部-->
             <div id="kt_header" class="header bg-white  header-fixed ">
                 <!--begin::Container-->
                 <div class=" container-fluid  d-flex align-items-stretch justify-content-between">
@@ -196,110 +149,22 @@
                 </div>
                 <!--end::Container-->
             </div>
-            <!--end::Header-->
+            <!--end::页面头部-->
 
-            <!--begin::Content-->
+            <!--begin::页面内容-->
             <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
                 <!--begin::Subheader-->
                 <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
                     <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                         <!--begin::Info-->
                         <div class="d-flex align-items-center flex-wrap mr-1">
-
                             <!--begin::Page Heading-->
                             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                                <!--begin::Page Title-->
-                                <h5 class="text-dark font-weight-bold my-1 mr-5">
-                                    订单管理系统</h5>
-                                <!--end::Page Title-->
-
+                                <h5 class="text-dark font-weight-bold my-1 mr-5">订单管理系统</h5>
                             </div>
                             <!--end::Page Heading-->
                         </div>
                         <!--end::Info-->
-
-                        <!--begin::Toolbar-->
-                        <div class="d-flex align-items-center">
-                            <!--begin::Actions-->
-                            <a href="#" class="btn btn-light-primary font-weight-bolder btn-sm">
-                                Actions
-                            </a>
-                            <!--end::Actions-->
-
-                            <!--begin::Dropdown-->
-                            <div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions"
-                                 data-placement="left">
-                                <a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                    <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:assets/media/svg/icons/Files/File-plus.svg--><svg
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                            height="24px" viewBox="0 0 24 24" version="1.1">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon points="0 0 24 0 24 24 0 24"/>
-        <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z"
-              fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-        <path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z"
-              fill="#000000"/>
-    </g>
-</svg><!--end::Svg Icon--></span> </a>
-                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right p-0 m-0">
-                                    <!--begin::Navigation-->
-                                    <ul class="navi navi-hover">
-                                        <li class="navi-header font-weight-bold py-4">
-                                            <span class="font-size-lg">Choose Label:</span>
-                                            <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip"
-                                               data-placement="right" title="Click to learn more..."></i>
-                                        </li>
-                                        <li class="navi-separator mb-3 opacity-70"></li>
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-            <span class="navi-text">
-                <span class="label label-xl label-inline label-light-success">Customer</span>
-            </span>
-                                            </a>
-                                        </li>
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-            <span class="navi-text">
-                <span class="label label-xl label-inline label-light-danger">Partner</span>
-            </span>
-                                            </a>
-                                        </li>
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-            <span class="navi-text">
-                <span class="label label-xl label-inline label-light-warning">Suplier</span>
-            </span>
-                                            </a>
-                                        </li>
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-            <span class="navi-text">
-                <span class="label label-xl label-inline label-light-primary">Member</span>
-            </span>
-                                            </a>
-                                        </li>
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-            <span class="navi-text">
-                <span class="label label-xl label-inline label-light-dark">Staff</span>
-            </span>
-                                            </a>
-                                        </li>
-                                        <li class="navi-separator mt-3 opacity-70"></li>
-                                        <li class="navi-footer py-4">
-                                            <a class="btn btn-clean font-weight-bold btn-sm" href="#">
-                                                <i class="ki ki-plus icon-sm"></i>
-                                                Add new
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <!--end::Navigation-->
-                                </div>
-                            </div>
-                            <!--end::Dropdown-->
-                        </div>
-                        <!--end::Toolbar-->
                     </div>
                 </div>
                 <!--end::Subheader-->
@@ -728,39 +593,36 @@
                 </div>
                 <!--end::Entry-->
             </div>
-            <!--end::Content-->
+            <!--end::页面内容-->
 
-            <!--begin::Footer-->
+            <!--begin::页面底部-->
             <div class="footer bg-white py-4 d-flex flex-lg-column " id="kt_footer">
-                <!--begin::Container-->
                 <div class=" container  d-flex flex-column flex-md-row align-items-center justify-content-between">
-                    <!--begin::Copyright-->
+                    <!--begin::版权-->
                     <div class="text-dark order-2 order-md-1">
                         <span class="text-muted font-weight-bold mr-2">2020&copy;</span>
                         <a href="http://keenthemes.com/metronic" target="_blank"
                            class="text-dark-75 text-hover-primary">QST</a>
                     </div>
-                    <!--end::Copyright-->
+                    <!--end::版权-->
 
-                    <!--begin::Nav-->
+                    <!--begin::底部导航-->
                     <div class="nav nav-dark order-1 order-md-2">
                         <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pr-3 pl-0">About</a>
                         <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link px-3">Team</a>
                         <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
                     </div>
-                    <!--end::Nav-->
+                    <!--end::底部导航-->
                 </div>
                 <!--end::Container-->
             </div>
-            <!--end::Footer-->
+            <!--end::页面底部-->
         </div>
-        <!--end::Wrapper-->
+        <!--end::右侧页面框架-->
     </div>
-    <!--end::Page-->
 </div>
-<!--end::Main-->
-
-<!-- begin::User Panel-->
+<%--end::页面主体内容--%>
+<!-- begin::用户弹出面板-->
 <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
     <!--begin::Header-->
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
@@ -926,9 +788,8 @@
     </div>
     <!--end::Content-->
 </div>
-<!-- end::User Panel-->
-
-<!--begin::Scrolltop-->
+<!-- end::用户弹出面板-->
+<!--begin::滚动至顶端按钮-->
 <div id="kt_scrolltop" class="scrolltop">
     <span class="svg-icon"><!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg--><svg
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -940,22 +801,9 @@
           fill="#000000" fill-rule="nonzero"/>
     </g>
     </svg><!--end::Svg Icon--></span></div>
-<!--end::Scrolltop-->
-
-<!--begin::Global Theme Bundle(used by all pages)-->
+<!--end::滚动至顶端按钮-->
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
-<!--end::Global Theme Bundle-->
-
-<!--begin::Page Vendors(used by this page)-->
-<script src="${pageContext.request.contextPath }/static/fullcalendar/fullcalendar.bundle.js"></script>
-<!--end::Page Vendors-->
-
-<!--begin::Page Scripts(used by this page)-->
 <script src="${pageContext.request.contextPath }/static/js/widgets.js"></script>
-<!--end::Page Scripts-->
 </body>
-<!--end::Body-->
 </html>
-
-
