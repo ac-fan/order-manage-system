@@ -6,27 +6,20 @@
     <title>登录 | 订单管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
-    <%--${pageContext.request.contextPath }--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/login.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/plugins.bundle.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/style.bundle.css"/>
-
     <link rel="shortcut icon" href="${pageContext.request.contextPath }/static/images/favicon.ico"/>
 </head>
-
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
-
-<!--begin::Main-->
 <div class="d-flex flex-column flex-root">
-    <!--begin::Login-->
     <div class="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid bg-white" id="kt_login">
-        <!--begin::Aside-->
+        <!--begin::登录表单区域-->
         <div class="login-aside order-2 order-lg-1 d-flex flex-column-fluid flex-lg-row-auto bgi-size-cover bgi-no-repeat p-7 p-lg-10">
-            <!--begin: Aside Container-->
             <div class="d-flex flex-row-fluid flex-column justify-content-between">
-                <!--begin::Aside body-->
+                <!--begin::侧边-->
                 <div class="d-flex flex-column-fluid flex-column flex-center mt-5 mt-lg-0">
-                    <a href="#" class="mb-15 text-center">
+                    <a href="/" class="mb-15 text-center">
                         <img src="static/images/logo-letter-1.png" class="max-h-75px" alt=""/>
                     </a>
 
@@ -78,49 +71,38 @@
                 </div>
                 <!--end::Aside body-->
 
-                <!--begin: Aside footer for desktop-->
+                <!--begin: 版权标识-->
                 <div class="d-flex flex-column-auto justify-content-between mt-15">
                     <div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">
                         &copy; 2020 QST
                     </div>
                     <div class="d-flex order-1 order-sm-2 my-2">
-                        <a href="#" class="text-muted text-hover-primary">Privacy</a>
-                        <a href="#" class="text-muted text-hover-primary ml-4">Legal</a>
-                        <a href="#" class="text-muted text-hover-primary ml-4">Contact</a>
+                        <a href="#" class="text-muted text-hover-primary">隐私政策</a>
+                        <a href="#" class="text-muted text-hover-primary ml-4">使用条款</a>
+                        <a href="#" class="text-muted text-hover-primary ml-4">联系我们</a>
                     </div>
                 </div>
-                <!--end: Aside footer for desktop-->
+                <!--end: 版权标识-->
             </div>
-            <!--end: Aside Container-->
         </div>
-        <!--begin::Aside-->
-
-        <!--begin::Content-->
+        <!--end::登录表单区域-->
+        <!--begin::侧边主体内容-->
         <div class="order-1 order-lg-2 flex-column-auto flex-lg-row-fluid d-flex flex-column p-7"
              style="background-image: url(static/images/bg-4.jpg);">
             <!--begin::Content body-->
             <div class="d-flex flex-column-fluid flex-lg-center">
                 <div class="d-flex flex-column justify-content-center">
                     <h3 class="display-3 font-weight-bold my-7 text-white">欢迎使用订单管理系统!</h3>
-                    <p class="font-weight-bold font-size-lg text-white opacity-80">
-                        The ultimate Bootstrap, Angular 8, React & VueJS admin theme<br/>framework for next generation
-                        web apps.
-                    </p>
                 </div>
             </div>
             <!--end::Content body-->
         </div>
-        <!--end::Content-->
+        <!--end::侧边主体内容-->
     </div>
-    <!--end::Login-->
 </div>
-
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
-<%--<script src="${pageContext.request.contextPath }/static/js/jQuery-3.5.1.min.js"></script>--%>
 <script src="${pageContext.request.contextPath }/static/js/login_new.js"></script>
-
 </body>
-
 </html>
 
