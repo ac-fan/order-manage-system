@@ -6,6 +6,7 @@
 --%>
 
 <%@ page import="com.qst.pojo.User" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,6 +130,7 @@
                                         <label class="col-form-label col-3 text-lg-right text-left">订单编号</label>
                                         <div class="col-9">
                                             <input class="form-control form-control-lg form-control-solid"
+                                                   readonly="readonly"
                                                    type="text" value="${bill.billCode }"/>
                                         </div>
                                     </div>
@@ -136,6 +138,7 @@
                                         <label class="col-form-label col-3 text-lg-right text-left">商品名称</label>
                                         <div class="col-9">
                                             <input class="form-control form-control-lg form-control-solid"
+                                                   readonly="readonly"
                                                    type="text" value="${bill.productName }"/>
                                         </div>
                                     </div>
@@ -143,52 +146,70 @@
                                         <label class="col-form-label col-3 text-lg-right text-left">商品单位</label>
                                         <div class="col-9">
                                             <input class="form-control form-control-lg form-control-solid"
+                                                   readonly="readonly"
                                                    type="text" value="${bill.productUnit }"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">Contact
-                                            Phone</label>
+                                        <label class="col-form-label col-3 text-lg-right text-left">商品数量</label>
                                         <div class="col-9">
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
-                                                        class="la la-phone"></i></span></div>
-                                                <input type="text"
+                                                        class="la la-cart-arrow-down"></i></span></div>
+                                                <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
-                                                       value="+45678967456" placeholder="Phone"/>
+                                                       value="${bill.productCount }"/>
                                             </div>
-                                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">Email
-                                            Address</label>
+                                        <label class="col-form-label col-3 text-lg-right text-left">总金额</label>
                                         <div class="col-9">
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
-                                                        class="la la-at"></i></span></div>
-                                                <input type="text"
+                                                        class="la la-wallet"></i></span></div>
+                                                <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
-                                                       value="anna.krox@loop.com" placeholder="Email"/>
+                                                       value="${bill.totalPrice }"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">Company
-                                            Site</label>
+                                        <label class="col-form-label col-3 text-lg-right text-left">供应商</label>
                                         <div class="col-9">
                                             <div class="input-group input-group-lg input-group-solid">
-                                                <input type="text"
+                                                <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
-                                                       placeholder="Username" value="loop"/>
-                                                <div class="input-group-append"><span
-                                                        class="input-group-text">.com</span></div>
+                                                       value="${bill.providerName }"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">付款状态</label>
+                                        <div class="col-9">
+                                            <div class="input-group input-group-lg input-group-solid">
+                                                <input type="text" readonly="readonly"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       value="<c:if test="${bill.isPayment == 1}">未付款</c:if>
+				                                <c:if test="${bill.isPayment == 2}">已付款</c:if>"/>
                                             </div>
                                         </div>
                                     </div>
 
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-2"></div>
+                                    <div class="col-xl-7">
+                                        <div class="row">
+                                            <div class="col-3"></div>
+                                            <div class="col-9">
+                                                <a href="javascript:window.history.back(-1);" id="back" name="back"
+                                                   class="btn btn-light-primary font-weight-bold">返回</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -205,6 +226,7 @@
 
 <%@include file="/jsp/common/user_panel.jsp" %>
 <%@include file="/jsp/common/scrollToTop.jsp" %>
+
 
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
