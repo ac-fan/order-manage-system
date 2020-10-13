@@ -54,20 +54,17 @@ public class BillServiceImpl implements BillService {
     /**
      * 获取订单集合
      *
-     * @param bill
+     * @param productname,providerid,ispayment
      * @return java.util.List<com.qst.pojo.Bill>
      */
     @Override
-    public List<Bill> getBillList(Bill bill) {
+    public List<Bill> getBillList(String productname, int providerid, int ispayment, int currentPageNo, int pageSize) {
         Connection connection = null;
         List<Bill> billList = null;
-        System.out.println("[SQL]:查询供应商名称---- > " + bill.getProductName());
-        System.out.println("[SQL]:查询供应商 ID---- > " + bill.getProviderId());
-        System.out.println("[SQL]:查询支付状态---- > " + bill.getIsPayment());
 
         try {
             connection = BaseDao.getConnection();
-            billList = billDao.getBillList(connection, bill);
+            billList = billDao.getBillList(connection, productname, providerid, ispayment, currentPageNo, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -145,4 +142,20 @@ public class BillServiceImpl implements BillService {
         return flag;
     }
 
+    //查询记录数
+    @Override
+    public int getBillCount(String productname, int providerid, int ispayment) {
+        Connection connection = null;
+        int count = 0;
+
+        try {
+            connection = BaseDao.getConnection();
+            count = billDao.getBillCount(connection, productname, providerid, ispayment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            BaseDao.closeResource(connection, null, null);
+        }
+        return count;
+    }
 }

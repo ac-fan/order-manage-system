@@ -66,7 +66,7 @@ public class UserServlet extends HttpServlet {
         //查询用户列表
         //从前端获取数据
         //查询用户列表
-        String queryUserName = req.getParameter("queryname");
+        String queryUserName = req.getParameter("queryUsername");
         String temp = req.getParameter("queryUserRole");
         String pageIndex = req.getParameter("pageIndex");
         int queryUserRole = 0;

@@ -2,6 +2,7 @@ package com.qst.service.bill;
 
 import com.qst.pojo.Bill;
 
+import java.sql.Connection;
 import java.util.List;
 
 
@@ -15,12 +16,12 @@ public interface BillService {
     boolean add(Bill bill);
 
     /**
-     * 通过条件获取订单列表-模糊查询-billList
+     * 通过条件获取订单列表-billList
      *
-     * @param bill
+     * @param productname,providerid,ispayment
      * @return
      */
-    List<Bill> getBillList(Bill bill);
+    List<Bill> getBillList(String productname, int providerid, int ispayment, int currentPageNo, int pageSize);
 
     /**
      * 根据订单 id 删除订单
@@ -47,4 +48,6 @@ public interface BillService {
      */
     boolean modify(Bill bill);
 
+    //根据产品名或者供应商或者是否支付查询订单总数
+    int getBillCount(String productname, int providerid, int ispayment);
 }

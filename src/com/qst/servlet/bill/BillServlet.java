@@ -25,6 +25,7 @@ import com.qst.service.bill.BillServiceImpl;
 import com.qst.service.provider.ProviderService;
 import com.qst.service.provider.ProviderServiceImpl;
 import com.qst.util.Constants;
+import com.qst.util.PageSupport;
 
 
 @SuppressWarnings("serial")
@@ -101,10 +102,12 @@ public class BillServlet extends HttpServlet {
             throws ServletException, IOException {
 
         System.out.println("getproviderlist ========================= ");
+        int pageSize = Constants.pageSize;
 
+        int currentPageNo = 1;
         List<Provider> providerList = new ArrayList<Provider>();
         ProviderService providerService = new ProviderServiceImpl();
-        providerList = providerService.getProviderList("", "",1,5);
+        providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
         //把providerList转换成json对象输出
         response.setContentType("application/json");
         PrintWriter outPrintWriter = response.getWriter();
@@ -216,42 +219,83 @@ public class BillServlet extends HttpServlet {
         }
     }
 
-    private void query(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void query(HttpServletRequest request, HttpServletResponse response) {
 
-        List<Provider> providerList = new ArrayList<Provider>();
-        ProviderService providerService = new ProviderServiceImpl();
-        providerList = providerService.getProviderList("", "",1,5);
-        request.setAttribute("providerList", providerList);
 
         String queryProductName = request.getParameter("queryProductName");
-        String queryProviderId = request.getParameter("queryProviderId");
-        String queryIsPayment = request.getParameter("queryIsPayment");
-        if (StringUtils.isNullOrEmpty(queryProductName)) {
+        String tempp = request.getParameter("queryProviderId");
+        String tempi = request.getParameter("queryIsPayment");
+        int queryProviderId = 0, queryIsPayment = 0;
+
+        String pageIndex = request.getParameter("pageIndex");
+        //第一此请求肯定是走第一页，页面大小固定的
+        //设置页面容量
+        int pageSize = Constants.pageSize;
+        //把它设置在配置文件里,后面方便修改
+        //当前页码
+        int currentPageNo = 1;
+
+        List<Provider> providerList = null;
+        ProviderService providerService = new ProviderServiceImpl();
+        providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
+        request.setAttribute("providerList", providerList);
+
+        if (queryProductName == null) {
             queryProductName = "";
         }
 
-        List<Bill> billList = new ArrayList<Bill>();
+        List<Bill> billList = null;
         BillService billService = new BillServiceImpl();
-        Bill bill = new Bill();
-        if (StringUtils.isNullOrEmpty(queryIsPayment)) {
-            bill.setIsPayment(0);
-        } else {
-            bill.setIsPayment(Integer.parseInt(queryIsPayment));
+
+
+        if (tempi != null && !"".equals(tempi)) {
+            queryIsPayment = Integer.parseInt(tempi);
+        }
+        if (tempp != null && !"".equals(tempp)) {
+            queryProviderId = Integer.parseInt(tempp);
+        }
+        if (pageIndex != null) {
+            currentPageNo = Integer.parseInt(pageIndex);
+        }
+        //获取总数（分页	上一页：下一页的情况）
+        //总数量（表）
+        int totalCount = billService.getBillCount(queryProductName, queryProviderId, queryIsPayment);
+
+        //总页数支持
+        PageSupport pageSupport = new PageSupport();
+        pageSupport.setCurrentPageNo(currentPageNo);
+        pageSupport.setPageSize(pageSize);
+        pageSupport.setTotalCount(totalCount);
+
+        int totalPageCount = pageSupport.getTotalPageCount();//总共有几页
+        //(totalCount+pageSize-1/pageSize)取整
+        // pageSupport.getTotalCount()
+
+        //System.out.println("totalCount ="+totalCount);
+        //System.out.println("pageSize ="+pageSize);
+        //System.out.println("totalPageCount ="+totalPageCount);
+        //控制首页和尾页
+        //如果页面小于 1 就显示第一页的东西
+        if (currentPageNo < 1) {
+            currentPageNo = 1;
+        } else if (currentPageNo > totalPageCount) {//如果页面大于了最后一页就显示最后一页
+            currentPageNo = totalPageCount;
         }
 
-        if (StringUtils.isNullOrEmpty(queryProviderId)) {
-            bill.setProviderId(0);
-        } else {
-            bill.setProviderId(Integer.parseInt(queryProviderId));
-        }
-        bill.setProductName(queryProductName);
-        billList = billService.getBillList(bill);
+
+        billList = billService.getBillList(queryProductName, queryProviderId, queryIsPayment, currentPageNo, pageSize);
         request.setAttribute("billList", billList);
-        request.setAttribute("queryProductName", queryProductName);
-        request.setAttribute("queryProviderId", queryProviderId);
+        request.setAttribute("queryProductId", queryProviderId);
         request.setAttribute("queryIsPayment", queryIsPayment);
-        request.getRequestDispatcher("billlist.jsp").forward(request, response);
+        request.setAttribute("totalCount", totalCount);
+        request.setAttribute("currentPageNo", currentPageNo);
+        request.setAttribute("totalPageCount", totalPageCount);
+
+        try {
+            request.getRequestDispatcher("billlist.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

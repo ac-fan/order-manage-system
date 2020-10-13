@@ -10,7 +10,7 @@
         <form method="get" action="${pageContext.request.contextPath }/jsp/user.do">
             <input name="method" value="query" class="input-text" type="hidden">
             <span>用户名：</span>
-            <input name="queryname" class="input-text" type="text" value="${queryUserName }">
+            <input name="queryUsername" class="input-text" type="text" value="${queryUserName }">
 
             <span>用户角色：</span>
             <select name="queryUserRole">

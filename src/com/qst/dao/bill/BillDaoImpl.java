@@ -32,7 +32,7 @@ public class BillDaoImpl implements BillDao {
 	}
 
 	@Override
-	public List<Bill> getBillList(Connection connection, Bill bill) throws Exception {
+    public List<Bill> getBillList(Connection connection, String productname, int providerid, int ispayment, int currentPageNo, int pageSize) throws Exception {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<Bill> billList = new ArrayList<>();
@@ -40,18 +40,27 @@ public class BillDaoImpl implements BillDao {
 			StringBuffer sql = new StringBuffer();
 			sql.append("select b.*,p.proName as providerName from smbms_bill b, smbms_provider p where b.providerId = p.id");
 			List<Object> list = new ArrayList<>();
-			if (!StringUtils.isNullOrEmpty(bill.getProductName())) {
+            if (!StringUtils.isNullOrEmpty(productname)) {
 				sql.append(" and productName like ?");
-				list.add("%" + bill.getProductName() + "%");
+                list.add("%" + productname + "%");
 			}
-			if (bill.getProviderId() > 0) {
+            if (providerid > 0) {
 				sql.append(" and providerId = ?");
-				list.add(bill.getProviderId());
+                list.add(providerid);
 			}
-			if (bill.getIsPayment() > 0) {
+            if (ispayment > 0) {
 				sql.append(" and isPayment = ?");
-				list.add(bill.getIsPayment());
+                list.add(ispayment);
 			}
+            //在数据库中，分页显示 limit startIndex，pageSize；总数
+            //当前页  (当前页-1)*页面大小
+            //0,5	1,0	 01234
+            //5,5	5,0	 56789
+            //10,5	10,0 10~
+            sql.append(" order by creationDate DESC limit ?,?");
+            currentPageNo = (currentPageNo - 1) * pageSize;
+            list.add(currentPageNo);
+            list.add(pageSize);
 			Object[] params = list.toArray();
 			System.out.println("sql --------- > " + sql.toString());
 			rs = BaseDao.execute(connection, pstm, rs, sql.toString(), params);
@@ -153,4 +162,43 @@ public class BillDaoImpl implements BillDao {
 		}
 		return count;
 	}
+
+    @Override
+    public int getBillCount(Connection connection, String productname, int providerid, int ispayment) throws Exception {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        int count = 0;
+
+        if (connection != null) {
+            StringBuffer sql = new StringBuffer();
+            sql.append("select count(1) as count from smbms_bill b, smbms_provider p where b.providerId = p.id");
+            List<Object> list = new ArrayList<>();
+            if (!StringUtils.isNullOrEmpty(productname)) {
+                sql.append(" and productName like ?");
+                list.add("%" + productname + "%");
+            }
+            if (providerid > 0) {
+                sql.append(" and providerId = ?");
+                list.add(providerid);
+            }
+            if (ispayment > 0) {
+                sql.append(" and isPayment = ?");
+                list.add(ispayment);
+            }
+            //怎么把List 转成数组
+            Object[] params = list.toArray();
+            //输出最后的完整语句
+            System.out.println("BillDaoImpl->getBillCount:" + sql.toString());
+
+            rs = BaseDao.execute(connection, pstm, rs, sql.toString(), params);
+
+            if (rs.next()) {
+                count = rs.getInt("count");//从结果集中获取最终数量
+
+            }
+            BaseDao.closeResource(null, pstm, rs);
+
+        }
+        return count;
+    }
 }
