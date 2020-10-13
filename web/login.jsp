@@ -69,18 +69,8 @@
                 </div>
                 <!--end::Aside body-->
 
-                <!--begin: 版权标识-->
-                <div class="d-flex flex-column-auto justify-content-between mt-15">
-                    <div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">
-                        &copy; 2020 QST
-                    </div>
-                    <div class="d-flex order-1 order-sm-2 my-2">
-                        <a href="#" class="text-muted text-hover-primary">隐私政策</a>
-                        <a href="#" class="text-muted text-hover-primary ml-4">使用条款</a>
-                        <a href="#" class="text-muted text-hover-primary ml-4">联系我们</a>
-                    </div>
-                </div>
-                <!--end: 版权标识-->
+                <%@include file="/jsp/common/footer.jsp" %>
+
             </div>
         </div>
         <!--end::登录表单区域-->
