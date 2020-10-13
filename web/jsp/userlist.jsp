@@ -66,7 +66,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="供应商管理">
                         <a href="${pageContext.request.contextPath }/jsp/provider.do?method=query"
-                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg ">
+                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg">
                             <i class="flaticon2-calendar-6 icon-lg"></i>
                         </a>
                     </li>
@@ -76,7 +76,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="用户管理">
                         <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
-                           class="nnav-link btn btn-icon btn-clean btn-icon-white btn-lg active">
+                           class="nnav-link btn btn-icon btn-clean btn-icon-white btn-lg  active">
                             <i class="flaticon2-analytics-2 icon-lg"></i>
                         </a>
                     </li>
