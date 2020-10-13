@@ -91,7 +91,7 @@
                     <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="订单管理">
-                        <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
+                        <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query"
                            class="nav-link btn btn-icon btn-icon-white btn-lg" data-toggle="tab"
                            data-target="#kt_aside_tab_2">
                             <i class="flaticon2-list-3 icon-lg"></i>
@@ -102,7 +102,7 @@
                     <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="供应商管理">
-                        <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
+                        <a href="${pageContext.request.contextPath }/jsp/provider.do?method=query"
                            class="nav-link btn btn-icon btn-icon-white btn-lg">
                             <i class="flaticon2-calendar-6 icon-lg"></i>
                         </a>
@@ -226,7 +226,7 @@
                                                 </span>
                                                 </button>&nbsp;&nbsp;
                                                 <a class="btn btn-outline-warning btn-outline-warning--icon"
-                                                   href="${pageContext.request.contextPath }/jsp/billadd.jsp">添加用户</a>
+                                                   href="${pageContext.request.contextPath }/jsp/useradd.jsp">添加用户</a>
                                             </div>
                                         </div>
                                 </form>
@@ -276,6 +276,12 @@
                                 </table>
                                 <!--end: Datatable-->
                             </div>
+                            <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
+                            <c:import url="rollpage.jsp">
+                                <c:param name="totalCount" value="${totalCount}"/>
+                                <c:param name="currentPageNo" value="${currentPageNo}"/>
+                                <c:param name="totalPageCount" value="${totalPageCount}"/>
+                            </c:import>
                         </div>
                     </div>
                 </div>
