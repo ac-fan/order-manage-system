@@ -27,6 +27,7 @@ import java.util.List;
 public class BillServlet extends HttpServlet {
 
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -34,6 +35,7 @@ public class BillServlet extends HttpServlet {
     }
 
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
