@@ -90,7 +90,7 @@
 
                     <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
-                        data-boundary="window" title="用户管理">
+                        data-boundary="window" title="订单管理">
                         <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
                            class="nav-link btn btn-icon btn-icon-white btn-lg" data-toggle="tab"
                            data-target="#kt_aside_tab_2">
@@ -101,7 +101,7 @@
 
                     <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
-                        data-boundary="window" title="用户管理">
+                        data-boundary="window" title="供应商管理">
                         <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
                            class="nav-link btn btn-icon btn-icon-white btn-lg">
                             <i class="flaticon2-calendar-6 icon-lg"></i>
@@ -184,82 +184,53 @@
                         <div class="card">
                             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                                 <div class="card-title">
-                                    <h3 class="card-label">用户查询</h3>
+                                    <h3 class="card-label">用户管理</h3>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <!--begin: Search Form-->
-                                <form class="kt-form kt-form--fit mb-15">
+                                <form method="get" action="${pageContext.request.contextPath }/jsp/user.do"
+                                      class="kt-form kt-form--fit mb-15">
+                                    <input name="method" value="query" class="input-text" type="hidden">
                                     <div class="row mb-6">
                                         <div class="col-lg-3 mb-lg-0 mb-6">
-                                            <label>RecordID:</label>
+                                            <label>用户名：</label>
                                             <input type="text" class="form-control datatable-input"
-                                                   placeholder="E.g: 4590" data-col-index="0"/>
+                                                   value="${queryUserName }" data-col-index="0"/>
                                         </div>
                                         <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>OrderID:</label>
-                                            <input type="text" class="form-control datatable-input"
-                                                   placeholder="E.g: 37000-300" data-col-index="1"/>
-                                        </div>
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Country:</label>
-                                            <select class="form-control datatable-input" data-col-index="2">
-                                                <option value="">Select</option>
+                                            <label>用户角色：</label>
+                                            <select name="queryUserRole"  class="form-control datatable-input"
+                                                    data-col-index="6">
+                                                <c:if test="${roleList  != null }">
+                                                    <option value="0">--请选择--</option>
+                                                    <c:forEach var="role" items="${roleList}">
+                                                        <option
+                                                                <c:if test="${role.id == queryUserRole}">selected="selected"</c:if>
+                                                                value="${role.id}">${role.roleName}</option>
+                                                    </c:forEach>
+                                                </c:if>
                                             </select>
                                         </div>
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Agent:</label>
-                                            <input type="text" class="form-control datatable-input"
-                                                   placeholder="Agent ID or name" data-col-index="4"/>
-                                        </div>
                                     </div>
-
-                                    <div class="row mb-8">
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Ship Date:</label>
-                                            <div class="input-daterange input-group" id="kt_datepicker">
-                                                <input type="text" class="form-control datatable-input" name="start"
-                                                       placeholder="From" data-col-index="5"/>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text"><i
-                                                            class="la la-ellipsis-h"></i></span>
-                                                </div>
-                                                <input type="text" class="form-control datatable-input" name="end"
-                                                       placeholder="To" data-col-index="5"/>
+                                        <div class="row mt-8">
+                                            <div class="col-lg-12">
+                                                <button class="btn btn-primary btn-primary--icon" id="kt_search">
+                                                <span>
+                                                    <i class="la la-search"></i><span>查询</span>
+                                                </span>
+                                                </button>&nbsp;&nbsp;
+                                                <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+                                                <span>
+                                                    <i class="la la-close"></i><span>重置</span>
+                                                </span>
+                                                </button>&nbsp;&nbsp;
+                                                <a class="btn btn-outline-warning btn-outline-warning--icon"
+                                                   href="${pageContext.request.contextPath }/jsp/billadd.jsp">添加用户</a>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Status:</label>
-                                            <select class="form-control datatable-input" data-col-index="6">
-                                                <option value="">Select</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Type:</label>
-                                            <select class="form-control datatable-input" data-col-index="7">
-                                                <option value="">Select</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-8">
-                                        <div class="col-lg-12">
-                                            <button class="btn btn-primary btn-primary--icon" id="kt_search">
-						<span>
-							<i class="la la-search"></i>
-							<span>Search</span>
-						</span>
-                                            </button>
-                                            &nbsp;&nbsp;
-                                            <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
-						<span>
-							<i class="la la-close"></i>
-							<span>Reset</span>
-						</span>
-                                            </button>
-                                        </div>
-                                    </div>
                                 </form>
+
                                 <!--end::Search Form-->
 
                                 <!--begin: Datatable-->
