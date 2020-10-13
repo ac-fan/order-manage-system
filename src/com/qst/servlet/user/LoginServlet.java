@@ -34,7 +34,9 @@ public class LoginServlet extends HttpServlet {
             //放入session
             req.getSession().setAttribute(Constants.USER_SESSION, user);
             //页面跳转（frame.jsp）
-            resp.sendRedirect("jsp/frame.jsp");
+//            resp.sendRedirect("jsp/frame.jsp");// 旧跳转
+            resp.sendRedirect("jsp/home.jsp");//跳转到新首页
+
         } else {
             System.out.println("User:[ " + userCode + " ] Login Failed");
             //页面跳转（login.jsp）带出提示信息--转发
