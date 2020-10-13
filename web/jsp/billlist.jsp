@@ -189,7 +189,8 @@
                             </div>
                             <div class="card-body">
                                 <!--begin: Search Form-->
-                                <form method="get" action="${pageContext.request.contextPath }/jsp/bill.do" class="kt-form kt-form--fit mb-15">
+                                <form method="get" action="${pageContext.request.contextPath }/jsp/bill.do"
+                                      class="kt-form kt-form--fit mb-15">
                                     <input name="method" value="query" class="input-text" type="hidden">
                                     <div class="row mb-6">
                                         <div class="col-lg-3 mb-lg-0 mb-6">
@@ -224,7 +225,6 @@
                                                 </option>
                                             </select>
                                         </div>
-
                                     </div>
 
                                     <div class="row mt-8">
@@ -233,13 +233,14 @@
                                                 <span>
                                                     <i class="la la-search"></i><span>查询</span>
                                                 </span>
-                                            </button>
-                                            &nbsp;&nbsp;
+                                            </button>&nbsp;&nbsp;
                                             <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
                                                 <span>
                                                     <i class="la la-close"></i><span>重置</span>
                                                 </span>
-                                            </button>
+                                            </button>&nbsp;&nbsp;
+                                            <a class="btn btn-outline-warning btn-outline-warning--icon"
+                                               href="${pageContext.request.contextPath }/jsp/billadd.jsp">添加订单</a>
                                         </div>
                                     </div>
                                 </form>
