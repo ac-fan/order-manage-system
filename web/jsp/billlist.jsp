@@ -189,73 +189,56 @@
                             </div>
                             <div class="card-body">
                                 <!--begin: Search Form-->
-                                <form class="kt-form kt-form--fit mb-15">
+                                <form method="get" action="${pageContext.request.contextPath }/jsp/bill.do" class="kt-form kt-form--fit mb-15">
+                                    <input name="method" value="query" class="input-text" type="hidden">
                                     <div class="row mb-6">
                                         <div class="col-lg-3 mb-lg-0 mb-6">
-                                            <label>RecordID:</label>
+                                            <label>商品名称</label>
                                             <input type="text" class="form-control datatable-input"
-                                                   placeholder="E.g: 4590" data-col-index="0"/>
+                                                   value="${queryProductName }" data-col-index="0"/>
                                         </div>
                                         <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>OrderID:</label>
-                                            <input type="text" class="form-control datatable-input"
-                                                   placeholder="E.g: 37000-300" data-col-index="1"/>
-                                        </div>
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Country:</label>
-                                            <select class="form-control datatable-input" data-col-index="2">
-                                                <option value="">Select</option>
+                                            <label>供应商:</label>
+                                            <select name="queryProviderId" class="form-control datatable-input"
+                                                    data-col-index="6">
+                                                <c:if test="${providerList != null }">
+                                                    <option value="0">--请选择--</option>
+                                                    <c:forEach var="provider" items="${providerList}">
+                                                        <option
+                                                                <c:if test="${provider.id == queryProviderId }">selected="selected"</c:if>
+                                                                value="${provider.id}">${provider.proName}</option>
+                                                    </c:forEach>
+                                                </c:if>
                                             </select>
                                         </div>
                                         <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Agent:</label>
-                                            <input type="text" class="form-control datatable-input"
-                                                   placeholder="Agent ID or name" data-col-index="4"/>
+                                            <label>付款状态:</label>
+                                            <select name="queryIsPayment" class="form-control datatable-input"
+                                                    data-col-index="7">
+                                                <option value="0">--请选择--</option>
+                                                <option value="1" ${queryIsPayment == 1 ? "selected=\"selected\"":"" }>
+                                                    未付款
+                                                </option>
+                                                <option value="2" ${queryIsPayment == 2 ? "selected=\"selected\"":"" }>
+                                                    已付款
+                                                </option>
+                                            </select>
                                         </div>
-                                    </div>
 
-                                    <div class="row mb-8">
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Ship Date:</label>
-                                            <div class="input-daterange input-group" id="kt_datepicker">
-                                                <input type="text" class="form-control datatable-input" name="start"
-                                                       placeholder="From" data-col-index="5"/>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text"><i
-                                                            class="la la-ellipsis-h"></i></span>
-                                                </div>
-                                                <input type="text" class="form-control datatable-input" name="end"
-                                                       placeholder="To" data-col-index="5"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Status:</label>
-                                            <select class="form-control datatable-input" data-col-index="6">
-                                                <option value="">Select</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-3  mb-lg-0 mb-6">
-                                            <label>Type:</label>
-                                            <select class="form-control datatable-input" data-col-index="7">
-                                                <option value="">Select</option>
-                                            </select>
-                                        </div>
                                     </div>
 
                                     <div class="row mt-8">
                                         <div class="col-lg-12">
                                             <button class="btn btn-primary btn-primary--icon" id="kt_search">
-						<span>
-							<i class="la la-search"></i>
-							<span>Search</span>
-						</span>
+                                                <span>
+                                                    <i class="la la-search"></i><span>查询</span>
+                                                </span>
                                             </button>
                                             &nbsp;&nbsp;
                                             <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
-						<span>
-							<i class="la la-close"></i>
-							<span>Reset</span>
-						</span>
+                                                <span>
+                                                    <i class="la la-close"></i><span>重置</span>
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -290,13 +273,19 @@
                                                 <fmt:formatDate value="${bill.creationDate}" pattern="yyyy-MM-dd"/>
                                             </td>
                                             <td>
-                                                <a href="javascript:;" billid=${bill.id } billcc=${bill.billCode } id="view" class="btn btn-sm btn-clean btn-icon viewBill" title="查看详情">
+                                                <a href="javascript:;" billid=${bill.id } billcc=${bill.billCode }
+                                                   id="view" class="btn btn-sm btn-clean btn-icon viewBill"
+                                                   title="查看详情">
                                                     <i class="la la-cog"></i>
                                                 </a>
-                                                <a href="javascript:;" billid=${bill.id } billcc=${bill.billCode } id="edit" class="btn btn-sm btn-clean btn-icon modifyBill" title="编辑">
+                                                <a href="javascript:;" billid=${bill.id } billcc=${bill.billCode }
+                                                   id="edit" class="btn btn-sm btn-clean btn-icon modifyBill"
+                                                   title="编辑">
                                                     <i class="la la-edit"></i>
                                                 </a>
-                                                <a href="javascript:;" billid=${bill.id } billcc=${bill.billCode } id="delete"  class="btn btn-sm btn-clean btn-icon deleteBill" title="删除">
+                                                <a href="javascript:;" billid=${bill.id } billcc=${bill.billCode }
+                                                   id="delete" class="btn btn-sm btn-clean btn-icon deleteBill"
+                                                   title="删除">
                                                     <i class="la la-trash"></i>
                                                 </a>
                                             </td>
