@@ -5,6 +5,7 @@
   Time: 18:30
 --%>
 <!-- begin::用户弹出面板-->
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
         <h3 class="font-weight-bold m-0">用户资料</h3>

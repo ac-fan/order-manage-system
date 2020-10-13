@@ -5,6 +5,7 @@
   Time: 19:18
 --%>
 <!--begin::页面头部-->
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="kt_header" class="header bg-white  header-fixed ">
     <div class=" container-fluid  d-flex align-items-stretch justify-content-between">
         <div class="d-flex align-items-stretch mr-2">

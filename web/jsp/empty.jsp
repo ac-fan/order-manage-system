@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>用户中心 | 订单管理系统</title>
+    <title> | 订单管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
     <link href="${pageContext.request.contextPath }/static/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
@@ -29,12 +29,8 @@
         <div class="aside aside-left d-flex flex-column " id="kt_aside">
             <!--begin::头部 logo-->
             <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-4 py-lg-8">
-                <!--begin::Logo-->
-                <a href="index.html">
-                    <img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
-                         class="max-h-30px"/>
-                </a>
-                <!--end::Logo-->
+                <a href="index.html"><img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
+                         class="max-h-30px"/></a>
             </div>
             <!--end::头部 logo-->
 
