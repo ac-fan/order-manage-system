@@ -23,7 +23,8 @@
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
 <div id="kt_header_mobile" class="header-mobile  header-mobile-fixed ">
     <!--begin::Logo-->
-    <a href="/"><img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png" class="logo-default max-h-30px"/></a>
+    <a href="/"><img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
+                     class="logo-default max-h-30px"/></a>
     <!--end::Logo-->
     <!--begin::Toolbar-->
     <div class="d-flex align-items-center">
@@ -65,47 +66,13 @@
             <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-4 py-lg-8">
                 <!--begin::Logo-->
                 <a href="/">
-                    <img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png" class="max-h-30px"/>
+                    <img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
+                         class="max-h-30px"/>
                 </a>
                 <!--end::Logo-->
             </div>
             <!--end::头部 logo-->
-            <!--begin::快捷菜单-->
-            <div class="aside-nav d-flex flex-column align-items-center flex-column-fluid pt-7">
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
-                        data-boundary="window" title="用户中心">
-                        <a href="/jsp/home.jsp" class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg active">
-                            <i class="flaticon2-protection icon-lg"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
-                        data-boundary="window" title="订单管理">
-                        <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query" class="nav-link btn btn-icon btn-icon-white btn-lg">
-                            <i class="flaticon2-list-3 icon-lg"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
-                        data-boundary="window" title="供应商管理">
-                        <a href="${pageContext.request.contextPath }/jsp/provider.do?method=query" class="nav-link btn btn-icon btn-icon-white btn-lg">
-                            <i class="flaticon2-calendar-6 icon-lg"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
-                        data-boundary="window" title="用户管理">
-                        <a href="${pageContext.request.contextPath }/jsp/user.do?method=query" class="nnav-link btn btn-icon btn-icon-white btn-lg">
-                            <i class="flaticon2-analytics-2 icon-lg"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
-                        data-boundary="window" title="修改密码">
-                        <a href="${pageContext.request.contextPath }/jsp/pwdmodify.jsp" class="nav-link btn btn-icon btn-icon-white btn-lg">
-                            <i class="flaticon2-hourglass-1 icon-lg"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!--end::快捷菜单-->
+            <%@include file="/jsp/common/nav.jsp" %>
         </div>
         <!--end::左侧导航栏-->
         <!--begin::右侧页面框架-->
