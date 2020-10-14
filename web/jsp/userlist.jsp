@@ -32,7 +32,7 @@
             <!--begin::头部 logo-->
             <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-4 py-lg-8">
                 <!--begin::Logo-->
-                <a href="/">
+                <a href="index.html">
                     <img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
                          class="max-h-30px"/>
                 </a>
@@ -200,13 +200,18 @@
                                             <td>${user.userRoleName}</td>
 
                                             <td>
-                                                <a href="javascript:;" userid=${user.id } username=${user.userName } id="view" class="btn btn-sm btn-clean btn-icon viewBill" title="查看详情">
+                                                <a href="javascript:;" userid=${user.id } username=${user.userName }
+                                                   id="view" class="btn btn-sm btn-clean btn-icon viewUser"
+                                                   title="查看详情">
                                                     <i class="la la-cog"></i>
                                                 </a>
-                                                <a href="javascript:;" userid=${user.id } username=${user.userName } id="edit" class="btn btn-sm btn-clean btn-icon modifyBill" title="编辑">
+                                                <a href="javascript:;" userid=${user.id } username=${user.userName }
+                                                   id="edit" class="btn btn-sm btn-clean btn-icon modifyUser"
+                                                   title="编辑">
                                                     <i class="la la-edit"></i>
                                                 </a>
-                                                <a href="javascript:;" userid=${user.id } username=${user.userName } id="delete"  class="btn btn-sm btn-clean btn-icon deleteBill" title="删除">
+                                                <a href="javascript:;" userid=${user.id } username=${user.userName }
+                                                   class="btn btn-sm btn-clean btn-icon deleteUser" title="删除">
                                                     <i class="la la-trash"></i>
                                                 </a>
                                             </td>
@@ -215,40 +220,19 @@
                                     </tbody>
                                 </table>
                                 <!--end: Datatable-->
+                                <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
+                                <c:import url="rollpage.jsp">
+                                    <c:param name="totalCount" value="${totalCount}"/>
+                                    <c:param name="currentPageNo" value="${currentPageNo}"/>
+                                    <c:param name="totalPageCount" value="${totalPageCount}"/>
+                                </c:import>
                             </div>
-
-                            <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
-                            <c:import url="rollpage.jsp">
-                                <c:param name="totalCount" value="${totalCount}"/>
-                                <c:param name="currentPageNo" value="${currentPageNo}"/>
-                                <c:param name="totalPageCount" value="${totalPageCount}"/>
-                            </c:import>
                         </div>
                     </div>
                 </div>
             </div>
             <!--end::页面内容-->
-            <!--begin::页面底部-->
-            <div class="footer bg-white py-4 d-flex flex-lg-column " id="kt_footer">
-                <div class=" container  d-flex flex-column flex-md-row align-items-center justify-content-between">
-                    <!--begin::版权-->
-                    <div class="text-dark order-2 order-md-1">
-                        <span class="text-muted font-weight-bold mr-2">2020&copy;</span>
-                        <a href="http://keenthemes.com/metronic" target="_blank"
-                           class="text-dark-75 text-hover-primary">QST</a>
-                    </div>
-                    <!--end::版权-->
-                    <!--begin::底部导航-->
-                    <div class="nav nav-dark order-1 order-md-2">
-                        <a href="#" target="_blank" class="nav-link pr-3 pl-0">About</a>
-                        <a href="#" target="_blank" class="nav-link px-3">Team</a>
-                        <a href="#" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
-                    </div>
-                    <!--end::底部导航-->
-                </div>
-                <!--end::Container-->
-            </div>
-            <!--end::页面底部-->
+            <%@include file="/jsp/common/footer.jsp" %>
         </div>
         <!--end::右侧页面框架-->
     </div>
