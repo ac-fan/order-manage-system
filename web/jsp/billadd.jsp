@@ -119,6 +119,8 @@
                         <div class="card">
                             <form id="billForm" name="billForm" method="post"
                                   action="${pageContext.request.contextPath }/jsp/bill.do">
+                                <input type="hidden" name="method" value="modifysave">
+                                <input type="hidden" name="id" value="${bill.id }">
                                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
                                     <div class="card-title">
                                         <h3 class="card-label">添加订单</h3>
