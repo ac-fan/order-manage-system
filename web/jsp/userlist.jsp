@@ -242,6 +242,7 @@
 <%@include file="/jsp/common/user_panel.jsp" %>
 <%@include file="/jsp/common/scrollToTop.jsp" %>
 
+<script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/datatables.bundle.js"></script>

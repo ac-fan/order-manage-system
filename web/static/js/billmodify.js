@@ -11,7 +11,7 @@ function priceReg(value) {
 }
 
 function submitForm(){
-    $("#billForm").submit();
+    $("#BillEditForm").submit();
 }
 
 var formControls = function () {
@@ -46,7 +46,7 @@ var formControls = function () {
      */
     var validateForm = function () {
         FormValidation.formValidation(
-            document.getElementById('editForm'),
+            document.getElementById('BillEditForm'),
             {
                 fields: {
                     /**

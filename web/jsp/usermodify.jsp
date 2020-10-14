@@ -118,106 +118,115 @@
                 <div class="d-flex flex-column-fluid">
                     <div class=" container ">
                         <div class="card">
-                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
-                                <div class="card-title">
-                                    <h3 class="card-label">用户修改</h3>
+                            <form id="UserEditForm" name="UserEditForm" method="post"
+                                  action="${pageContext.request.contextPath }/jsp/user.do">
+                                <input type="hidden" name="method" value="modifyexe">
+                                <input type="hidden" name="uid" value="${user.id }"/>
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">用户修改</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="col-xl-7 my-2">
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">用户名称</label>
-                                        <div class="col-9">
-                                            <input name="userName" id="userName" value="${user.userName }"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">用户性别</label>
-                                        <div class="col-9 col-form-label">
-                                            <div class="radio-inline">
-                                                <c:if test="${user.gender == 1 }">
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="gender" value="1"
-                                                               checked="checked"/><span></span>男
-                                                    </label>
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="gender" value="2"/><span></span>女
-                                                    </label>
-                                                </c:if>
-                                                <c:if test="${user.gender == 2 }">
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="gender" value="1"/><span></span>男
-                                                    </label>
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="gender" value="2"
-                                                               checked="checked"/><span></span>女
-                                                    </label>
-                                                </c:if>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">出生日期</label>
-                                        <div class="col-9">
-                                            <input name="birthday" id="birthday"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="${user.birthday }"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">用户电话</label>
-                                        <div class="col-9">
-                                            <input name="phone" id="phone"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="${user.phone }"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">用户地址</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <div class="input-group-prepend"><span
-                                                        class="input-group-text"><i
-                                                        class="la la-cart-arrow-down"></i></span></div>
-                                                <input type="text" name="address" id="address"
-                                                       class="form-control form-control-lg form-control-solid"
-                                                       value="${user.address }"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">用户角色</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <input type="hidden" value="${user.userRole }" id="rid"/>
-                                                <select name="userRole" id="userRole">
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-xl-2"></div>
-                                    <div class="col-xl-7">
-                                        <div class="row">
-                                            <div class="col-3"></div>
+                                <div class="card-body">
+                                    <div class="col-xl-7 my-2">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户名称</label>
                                             <div class="col-9">
-                                                <a href="javascript:;" name="save" id="save"
-                                                   class="btn btn-light-primary font-weight-bold">保存更改</a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="javascript:window.history.back(-1);"
-                                                   class="btn btn-clean font-weight-bold">取消并返回</a>
+                                                <input name="userName" id="userName" value="${user.userName }"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户性别</label>
+                                            <div class="col-9 col-form-label">
+                                                <div class="radio-inline">
+                                                    <c:if test="${user.gender == 1 }">
+                                                        <label class="radio radio-danger">
+                                                            <input type="radio" name="gender" value="1"
+                                                                   checked="checked"/><span></span>男
+                                                        </label>
+                                                        <label class="radio radio-danger">
+                                                            <input type="radio" name="gender" value="2"/><span></span>女
+                                                        </label>
+                                                    </c:if>
+                                                    <c:if test="${user.gender == 2 }">
+                                                        <label class="radio radio-danger">
+                                                            <input type="radio" name="gender" value="1"/><span></span>男
+                                                        </label>
+                                                        <label class="radio radio-danger">
+                                                            <input type="radio" name="gender" value="2"
+                                                                   checked="checked"/><span></span>女
+                                                        </label>
+                                                    </c:if>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">出生日期</label>
+                                            <div class="col-9 input-group date mb-2">
+                                                <input type="text" class="form-control" name="birthday" id="birthday"
+                                                       value="${user.birthday }"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="la la-bullhorn"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户电话</label>
+                                            <div class="col-9">
+                                                <input name="phone" id="phone"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${user.phone }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户地址</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend"><span
+                                                            class="input-group-text"><i
+                                                            class="la la-address-book"></i></span></div>
+                                                    <input type="text" name="address" id="address"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           value="${user.address }"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户角色</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <input type="hidden" value="${user.userRole }" id="rid"/>
+                                                    <select class="form-control form-control-solid" name="userRole"
+                                                            id="userRole">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-xl-2"></div>
+                                        <div class="col-xl-7">
+                                            <div class="row">
+                                                <div class="col-3"></div>
+                                                <div class="col-9">
+                                                    <button name="saveUserEdit" id="saveUserEdit"
+                                                            class="btn btn-light-primary font-weight-bold">保存更改
+                                                    </button>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="javascript:window.history.back(-1);"
+                                                       class="btn btn-clean font-weight-bold">取消并返回</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -236,6 +245,6 @@
 <script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/useradd.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/usermodify.js"></script>
 </body>
 </html>
