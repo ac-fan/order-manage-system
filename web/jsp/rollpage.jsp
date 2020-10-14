@@ -46,6 +46,8 @@
         </c:if>
     </div>
     <div class="d-flex align-items-center py-3">
+        <span >共${totalCount}条记录&nbsp;&nbsp; ${currentPageNo }/${totalPageCount }页</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span class="page-go-form" style="float:right;padding-right:25px;"><label>跳转至</label>
 	        <input type="text" name="pageIndex" id="pageIndex" class="page-key" style="width: 40px"/>页
 	        <button type="button" class="btn btn-icon btn-sm btn-light mr-2 my-1"
