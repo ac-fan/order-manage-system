@@ -1,72 +1,258 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@include file="/jsp/common/head.jsp" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: sveir
+  Date: 2020/10/13
+  Time: 08:50
+--%>
+<%@ page import="com.qst.pojo.User" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>添加用户 | 订单管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <link href="${pageContext.request.contextPath }/static/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="${pageContext.request.contextPath }/static/css/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath }/static/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath }/static/images/favicon.ico"/>
+</head>
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
+<%@include file="/jsp/common/header.jsp" %>
+<%--begin::页面主体内容--%>
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <!--begin::左侧导航栏-->
+        <div class="aside aside-left d-flex flex-column " id="kt_aside">
+            <!--begin::头部 logo-->
+            <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-4 py-lg-8">
+                <a href="/"><img alt="Logo"
+                                 src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
+                                 class="max-h-30px"/></a>
+            </div>
+            <!--end::头部 logo-->
 
-<div class="right">
-    <div class="location">
-        <strong>你现在所在的位置是:</strong>
-        <span>用户管理页面 >> 用户添加页面</span>
-    </div>
-    <div class="providerAdd">
-        <form id="userForm" name="userForm" method="post" action="${pageContext.request.contextPath }/jsp/user.do">
-            <input type="hidden" name="method" value="add">
-            <!--div的class 为error是验证错误，ok是验证成功-->
-            <div>
-                <label for="userCode">用户编码：</label>
-                <input type="text" name="userCode" id="userCode" value="">
-                <!-- 放置提示信息 -->
-                <font color="red"></font>
+            <!--begin::快捷菜单-->
+            <div class="aside-nav d-flex flex-column align-items-center flex-column-fluid pt-7">
+                <!--begin::Nav-->
+                <ul class="nav flex-column">
+                    <!--begin::Item-->
+                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
+                        data-boundary="window" title="用户中心">
+                        <a href="/jsp/home.jsp" class="nav-link btn btn-icon  btn-icon-white btn-clean btn-lg ">
+                            <i class="flaticon2-protection icon-lg"></i>
+                        </a>
+                    </li>
+                    <!--end::Item-->
+
+                    <!--begin::Item-->
+                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
+                        data-boundary="window" title="订单管理">
+                        <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query"
+                           class="nav-link btn btn-icon btn-icon-white btn-clean btn-lg active">
+                            <i class="flaticon2-list-3 icon-lg"></i>
+                        </a>
+                    </li>
+                    <!--end::Item-->
+
+                    <!--begin::Item-->
+                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
+                        data-boundary="window" title="供应商管理">
+                        <a href="${pageContext.request.contextPath }/jsp/provider.do?method=query"
+                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg">
+                            <i class="flaticon2-calendar-6 icon-lg"></i>
+                        </a>
+                    </li>
+                    <!--end::Item-->
+
+                    <!--begin::Item-->
+                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
+                        data-boundary="window" title="用户管理">
+                        <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
+                           class="nnav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg">
+                            <i class="flaticon2-analytics-2 icon-lg"></i>
+                        </a>
+                    </li>
+                    <!--end::Item-->
+
+                    <!--begin::Item-->
+                    <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
+                        data-boundary="window" title="修改密码">
+                        <a href="${pageContext.request.contextPath }/jsp/pwdmodify.jsp"
+                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg">
+                            <i class="flaticon2-hourglass-1 icon-lg"></i>
+                        </a>
+                    </li>
+                    <!--end::Item-->
+
+                </ul>
+                <!--end::Nav-->
             </div>
-            <div>
-                <label for="userName">用户名称：</label>
-                <input type="text" name="userName" id="userName" value="">
-                <font color="red"></font>
+            <!--end::快捷菜单-->
+        </div>
+        <!--end::左侧导航栏-->
+        <!--begin::右侧页面框架-->
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <%@include file="/jsp/common/subheader.jsp" %>
+            <!--begin::页面内容-->
+            <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+                <%--begin::子标题--%>
+                <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+                    <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center flex-wrap mr-1">
+                            <!--begin::Page Heading-->
+                            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                                <h5 class="text-dark font-weight-bold my-1 mr-5">用户管理系统</h5>
+                            </div>
+                            <!--end::Page Heading-->
+                        </div>
+                        <!--end::Info-->
+                    </div>
+                </div>
+                <%--end::子标题--%>
+                <div class="d-flex flex-column-fluid">
+                    <div class=" container ">
+                        <div class="card">
+                            <form id="billForm" name="billForm" method="post"
+                                  action="${pageContext.request.contextPath }/jsp/bill.do">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">添加用户</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <input type="hidden" name="method" value="add">
+                                    <div class="col-xl-7 my-2">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户编码 *</label>
+                                            <div class="col-9">
+                                                <input name="userCode" id="userCode"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${user.userCode }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户名称 *</label>
+                                            <div class="col-9">
+                                                <input name="userName" id="userName"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${user.userName }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户密码 *</label>
+                                            <div class="col-9">
+                                                <input name="userPassword" id="userPassword"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="password" value=""/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">确认密码 *</label>
+                                            <div class="col-9">
+                                                <input name="newuserPassword" id="newuserPassword"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="password" value=""/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户性别 *</label>
+                                            <div class="col-9 col-form-label">
+                                                <div class="radio-inline">
+                                                    <label class="radio radio-danger">
+                                                        <input type="radio" name="gender" value="1"
+                                                               checked="checked"/><span></span>男
+                                                    </label>
+                                                    <label class="radio radio-danger">
+                                                        <input type="radio" name="gender" value="2"/><span></span>女
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">出生日期 *</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend"><span
+                                                            class="input-group-text"><i
+                                                            class="la la-wallet"></i></span></div>
+                                                    <input type="text" name="birthday" id="birthday"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户电话 *</label>
+                                            <div class="col-9">
+                                                <input name="phone" id="phone"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${user.phone}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户地址 *</label>
+                                            <div class="col-9">
+                                                <input name="address" id="address"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${user.address }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">用户角色 *</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <input type="hidden" value="${user.userRole }" id="uid"/>
+                                                    <select class="form-control form-control-solid" name="userRole"
+                                                            id="userRole">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-xl-2"></div>
+                                        <div class="col-xl-7">
+                                            <div class="row">
+                                                <div class="col-3"></div>
+                                                <div class="col-9">
+                                                    <button name="addButton" id="addButton"
+                                                            class="btn btn-light-primary font-weight-bold">确认添加
+                                                    </button>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="javascript:window.history.back(-1);"
+                                                       class="btn btn-clean font-weight-bold">取消并返回</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--end::页面内容-->
+                <%@include file="/jsp/common/footer.jsp" %>
             </div>
-            <div>
-                <label for="userPassword">用户密码：</label>
-                <input type="password" name="userPassword" id="userPassword" value="">
-                <font color="red"></font>
-            </div>
-            <div>
-                <label for="ruserPassword">确认密码：</label>
-                <input type="password" name="ruserPassword" id="ruserPassword" value="">
-                <font color="red"></font>
-            </div>
-            <div>
-                <label>用户性别：</label>
-                <select name="gender" id="gender">
-                    <option value="1" selected="selected">男</option>
-                    <option value="2">女</option>
-                </select>
-            </div>
-            <div>
-                <label for="birthday">出生日期：</label>
-                <input type="text" Class="Wdate" id="birthday" name="birthday"
-                       readonly="readonly" onclick="WdatePicker();">
-                <font color="red"></font>
-            </div>
-            <div>
-                <label for="phone">用户电话：</label>
-                <input type="text" name="phone" id="phone" value="">
-                <font color="red"></font>
-            </div>
-            <div>
-                <label for="address">用户地址：</label>
-                <input name="address" id="address" value="">
-            </div>
-            <div>
-                <label>用户角色：</label>
-                <!-- 列出所有的角色分类 -->
-                <select name="userRole" id="userRole"></select>
-                <font color="red"></font>
-            </div>
-            <div class="providerAddBtn">
-                <input type="button" name="add" id="add" value="保存">
-                <input type="button" id="back" name="back" value="返回">
-            </div>
-        </form>
+            <!--end::右侧页面框架-->
+        </div>
     </div>
 </div>
-</section>
-<%@include file="/jsp/common/foot.jsp" %>
+<%--end::页面主体内容--%>
+
+<%@include file="/jsp/common/user_panel.jsp" %>
+<%@include file="/jsp/common/scrollToTop.jsp" %>
+
+<script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/useradd.js"></script>
+</body>
+</html>
+
