@@ -220,7 +220,8 @@
                                                 <a href="javascript:;" name="save" id="save"
                                                    class="btn btn-light-primary font-weight-bold">保存更改</a>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="javascript:window.history.back(-1);" class="btn btn-clean font-weight-bold">取消并返回</a>
+                                                <a href="javascript:window.history.back(-1);"
+                                                   class="btn btn-clean font-weight-bold">取消并返回</a>
                                             </div>
                                         </div>
                                     </div>
@@ -236,12 +237,12 @@
         </div>
     </div>
     <%--end::页面主体内容--%>
+</div>
+<%@include file="/jsp/common/user_panel.jsp" %>
+<%@include file="/jsp/common/scrollToTop.jsp" %>
 
-    <%@include file="/jsp/common/user_panel.jsp" %>
-    <%@include file="/jsp/common/scrollToTop.jsp" %>
-
-    <script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
-    <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
-    <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
 </body>
 </html>
