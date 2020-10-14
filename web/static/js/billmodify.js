@@ -30,12 +30,12 @@ $(function () {
     backBtn = $("#back");
 
     //初始化的时候，要把所有的提示信息变为：* 以提示必填项，更灵活，不要写在页面上
-    billCode.next().html("*");
-    productName.next().html("*");
-    productUnit.next().html("*");
-    productCount.next().html("*");
-    totalPrice.next().html("*");
-    providerId.next().html("*");
+    // billCode.next().html("*");
+    // productName.next().html("*");
+    // productUnit.next().html("*");
+    // productCount.next().html("*");
+    // totalPrice.next().html("*");
+    // providerId.next().html("*");
 
     $.ajax({
         type: "GET",//请求类型

@@ -255,31 +255,6 @@
 </div>
 <%--end::页面主体内容--%>
 
-<!-- 删除确认弹出框-->
-<div class="modal fade" id="delConfirm" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">删除确认</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h3 id="delInfo">您确认要删除该订单吗?</h3>
-                <span class="text-danger">此操作一旦完成,无法恢复.</span>
-            </div>
-            <div class="modal-footer">
-                <button id="no" type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">取消
-                </button>
-                <button id="yes" type="button" class="btn btn-danger font-weight-bold">确认删除</button>
-            </div>
-        </div>
-    </div>
-</div>
-<%-- 删除确认弹出框 --%>
-
 <%@include file="/jsp/common/user_panel.jsp" %>
 <%@include file="/jsp/common/scrollToTop.jsp" %>
 
