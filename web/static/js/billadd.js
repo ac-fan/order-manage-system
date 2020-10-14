@@ -14,34 +14,6 @@ function submitForm(){
     $("#billForm").submit();
 }
 
-/*$(function () {
-    billCode = $("#billCode");
-    productName = $("#productName");
-    productUnit = $("#productUnit");
-    productCount = $("#productCount");
-    totalPrice = $("#totalPrice");
-    providerId = $("#providerId");
-    addBtn = $("#add");
-    backBtn = $("#back");
-
-    addBtn.on("click", function () {
-        if (billCode.attr("validateStatus") !== "true") {
-            billCode.blur();
-        } else if (productName.attr("validateStatus") !== "true") {
-            productName.blur();
-        } else if (productUnit.attr("validateStatus") !== "true") {
-            productUnit.blur();
-        } else if (providerId.attr("validateStatus") !== "true") {
-            providerId.blur();
-        } else {
-            if (confirm("是否确认提交数据")) {
-                $("#billForm").submit();
-            }
-        }
-    });
-
-});*/
-
 var formControls = function () {
 
     addBtn = $("#addButton"); //指定添加按钮
@@ -165,31 +137,9 @@ var formControls = function () {
                     Swal.fire("已取消该操作", "操作已取消:)", "error")
                 }
             });
-        })
+        })//表格有效时才显示提交提醒
     }
 
-    /**
-     * 点击确认提交按钮时弹出提示
-     */
-    /*addBtn.on("click", function () {
-        validateForm();
-        Swal.fire({
-            title: "确认提交",    //提示标题
-            text: "你确认要提交数据吗?",      //提示内容
-            icon: "warning",            //上端图标类型
-            showCancelButton: true,     //是否展示取消按钮
-            cancelButtonText: "不,我再想想.", //取消按钮文本
-            confirmButtonText: "确认提交" //确认按钮文本
-        }).then(function (result) {
-            if (result.value) {
-                //选择确认执行的操作
-                submitForm();
-            } else if (result.dismiss === "cancel") {
-                //选择取消按钮执行的操作
-                Swal.fire("已取消该操作", "操作已取消:)", "error")
-            }
-        });
-    });*/
 
     return {
         init: function () {

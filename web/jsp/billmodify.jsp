@@ -118,118 +118,124 @@
                 <div class="d-flex flex-column-fluid">
                     <div class=" container ">
                         <div class="card">
-                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
-                                <div class="card-title">
-                                    <h3 class="card-label">订单修改</h3>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="col-xl-7 my-2">
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">订单编号</label>
-                                        <div class="col-9">
-                                            <input name="billCode" id="billCode" value="${bill.billCode }"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="${bill.billCode }"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">商品名称</label>
-                                        <div class="col-9">
-                                            <input name="productName" id="productName"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="${bill.productName }"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">商品单位</label>
-                                        <div class="col-9">
-                                            <input name="productUnit" id="productUnit"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="${bill.productUnit }"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">商品数量</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <div class="input-group-prepend"><span
-                                                        class="input-group-text"><i
-                                                        class="la la-cart-arrow-down"></i></span></div>
-                                                <input type="text" name="productCount" id="productCount"
-                                                       class="form-control form-control-lg form-control-solid"
-                                                       value="${bill.productCount }"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">总金额</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <div class="input-group-prepend"><span
-                                                        class="input-group-text"><i
-                                                        class="la la-wallet"></i></span></div>
-                                                <input type="text" name="totalPrice" id="totalPrice"
-                                                       class="form-control form-control-lg form-control-solid"
-                                                       value="${bill.totalPrice }"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">供应商</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <input type="hidden" value="${bill.providerId }" id="pid"/>
-                                                <select name="providerId" id="providerId">
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">付款状态</label>
-                                        <div class="col-9 col-form-label">
-                                            <div class="radio-inline">
-                                                <c:if test="${bill.isPayment == 1 }">
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="isPayment" value="1"
-                                                               checked="checked"/><span></span>未付款
-                                                    </label>
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="isPayment" value="2"/><span></span>已付款
-                                                    </label>
-                                                </c:if>
-                                                <c:if test="${bill.isPayment == 2 }">
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="isPayment" value="1"/><span></span>未付款
-                                                    </label>
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="isPayment" value="2"
-                                                               checked="checked"/><span></span>已付款
-                                                    </label>
-                                                </c:if>
-                                            </div>
-                                            <span class="form-text text-danger">请确认后再修改付款状态</span>
-                                        </div>
+                            <form id="editForm" name="editForm" method="post"
+                                  action="${pageContext.request.contextPath }/jsp/bill.do">
+                                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                    <div class="card-title">
+                                        <h3 class="card-label">订单修改</h3>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-xl-2"></div>
-                                    <div class="col-xl-7">
-                                        <div class="row">
-                                            <div class="col-3"></div>
+                                <div class="card-body">
+                                    <div class="col-xl-7 my-2">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">订单编号</label>
                                             <div class="col-9">
-                                                <a href="javascript:;" name="save" id="save"
-                                                   class="btn btn-light-primary font-weight-bold">保存更改</a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="javascript:window.history.back(-1);"
-                                                   class="btn btn-clean font-weight-bold">取消并返回</a>
+                                                <input name="billCode" id="billCode" value="${bill.billCode }"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${bill.billCode }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">商品名称</label>
+                                            <div class="col-9">
+                                                <input name="productName" id="productName"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${bill.productName }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">商品单位</label>
+                                            <div class="col-9">
+                                                <input name="productUnit" id="productUnit"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${bill.productUnit }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">商品数量</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend"><span
+                                                            class="input-group-text"><i
+                                                            class="la la-cart-arrow-down"></i></span></div>
+                                                    <input type="text" name="productCount" id="productCount"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           value="${bill.productCount }"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">总金额</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend"><span
+                                                            class="input-group-text"><i
+                                                            class="la la-wallet"></i></span></div>
+                                                    <input type="text" name="totalPrice" id="totalPrice"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           value="${bill.totalPrice }"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">供应商</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <input type="hidden" value="${bill.providerId }" id="pid"/>
+                                                    <select class="form-control form-control-solid" name="providerId"
+                                                            id="providerId">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">付款状态</label>
+                                            <div class="col-9 col-form-label">
+                                                <div class="radio-inline">
+                                                    <c:if test="${bill.isPayment == 1 }">
+                                                        <label class="radio radio-danger">
+                                                            <input type="radio" name="isPayment" value="1"
+                                                                   checked="checked"/><span></span>未付款
+                                                        </label>
+                                                        <label class="radio radio-danger">
+                                                            <input type="radio" name="isPayment"
+                                                                   value="2"/><span></span>已付款
+                                                        </label>
+                                                    </c:if>
+                                                    <c:if test="${bill.isPayment == 2 }">
+                                                        <label class="radio radio-danger">
+                                                            <input type="radio" name="isPayment"
+                                                                   value="1"/><span></span>未付款
+                                                        </label>
+                                                        <label class="radio radio-danger">
+                                                            <input type="radio" name="isPayment" value="2"
+                                                                   checked="checked"/><span></span>已付款
+                                                        </label>
+                                                    </c:if>
+                                                </div>
+                                                <span class="form-text text-danger">请确认后再修改付款状态</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-xl-2"></div>
+                                        <div class="col-xl-7">
+                                            <div class="row">
+                                                <div class="col-3"></div>
+                                                <div class="col-9">
+                                                    <button name="saveButton" id="saveButton"
+                                                       class="btn btn-light-primary font-weight-bold">保存更改</button>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="javascript:window.history.back(-1);"
+                                                       class="btn btn-clean font-weight-bold">取消并返回</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -248,6 +254,6 @@
 <script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/billadd.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/billmodify.js"></script>
 </body>
 </html>
