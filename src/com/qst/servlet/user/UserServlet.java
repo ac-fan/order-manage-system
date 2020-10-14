@@ -320,14 +320,14 @@ public class UserServlet extends HttpServlet {
         HashMap<String, String> resultMap = new HashMap<>();
         if (StringUtils.isNullOrEmpty(userCode)) {
             //userCode == null || userCode.equals("")
-            resultMap.put("userCode", "exist");
+            resultMap.put("valid", "false");
         } else {
             UserService userService = new UserServiceImpl();
             User user = userService.selectUserCodeExist(userCode);
             if (null != user) {
-                resultMap.put("userCode", "exist");
+                resultMap.put("valid", "false");
             } else {
-                resultMap.put("userCode", "notexist");
+                resultMap.put("valid", "true");
             }
         }
 

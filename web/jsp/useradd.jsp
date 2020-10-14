@@ -52,7 +52,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="订单管理">
                         <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query"
-                           class="nav-link btn btn-icon btn-icon-white btn-clean btn-lg active">
+                           class="nav-link btn btn-icon btn-icon-white btn-clean btn-lg">
                             <i class="flaticon2-list-3 icon-lg"></i>
                         </a>
                     </li>
@@ -72,7 +72,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="用户管理">
                         <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
-                           class="nnav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg">
+                           class="nnav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg active">
                             <i class="flaticon2-analytics-2 icon-lg"></i>
                         </a>
                     </li>
@@ -106,7 +106,7 @@
                         <div class="d-flex align-items-center flex-wrap mr-1">
                             <!--begin::Page Heading-->
                             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                                <h5 class="text-dark font-weight-bold my-1 mr-5">用户管理系统</h5>
+                                <h5 class="text-dark font-weight-bold my-1 mr-5">添加用户</h5>
                             </div>
                             <!--end::Page Heading-->
                         </div>
@@ -117,8 +117,9 @@
                 <div class="d-flex flex-column-fluid">
                     <div class=" container ">
                         <div class="card">
-                            <form id="billForm" name="billForm" method="post"
-                                  action="${pageContext.request.contextPath }/jsp/bill.do">
+                            <form id="addUserForm" name="addUserForm" method="post"
+                                  action="${pageContext.request.contextPath }/jsp/user.do">
+                                <input type="hidden" name="method" value="add">
                                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
                                     <div class="card-title">
                                         <h3 class="card-label">添加用户</h3>
@@ -154,7 +155,7 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-3 text-lg-right text-left">确认密码 *</label>
                                             <div class="col-9">
-                                                <input name="newuserPassword" id="newuserPassword"
+                                                <input name="reUserPassword" id="reUserPassword"
                                                        class="form-control form-control-lg form-control-solid"
                                                        type="password" value=""/>
                                             </div>
@@ -179,10 +180,9 @@
                                                 <div class="input-group input-group-lg input-group-solid">
                                                     <div class="input-group-prepend"><span
                                                             class="input-group-text"><i
-                                                            class="la la-wallet"></i></span></div>
-                                                    <input type="text" name="birthday" id="birthday"
-                                                           class="form-control form-control-lg form-control-solid"
-                                                    />
+                                                            class="la la-calendar"></i></span></div>
+                                                    <input type="text" class="form-control" name="birthday" id="birthday"
+                                                           value="${user.birthday }"/>
                                                 </div>
                                             </div>
                                         </div>
