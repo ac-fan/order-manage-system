@@ -166,7 +166,7 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    <input type="hidden" name="pageIndex" value="1"/>
                                     <div class="row mt-8">
                                         <div class="col-lg-12">
                                             <button class="btn btn-primary btn-primary--icon" id="kt_search">
@@ -236,6 +236,12 @@
                                     </tbody>
                                 </table>
                                 <!--end: Datatable-->
+                                <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
+                                <c:import url="rollpage.jsp">
+                                    <c:param name="totalCount" value="${totalCount}"/>
+                                    <c:param name="currentPageNo" value="${currentPageNo}"/>
+                                    <c:param name="totalPageCount" value="${totalPageCount}"/>
+                                </c:import>
                             </div>
                         </div>
                     </div>
