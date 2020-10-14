@@ -236,8 +236,9 @@
             <!--end::右侧页面框架-->
         </div>
     </div>
-    <%--end::页面主体内容--%>
 </div>
+<%--end::页面主体内容--%>
+
 <%@include file="/jsp/common/user_panel.jsp" %>
 <%@include file="/jsp/common/scrollToTop.jsp" %>
 
