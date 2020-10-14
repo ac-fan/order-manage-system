@@ -18,7 +18,7 @@
 
             <input type="hidden" name="pageIndex" value="1"/>
             <input value="查 询" type="submit" id="searchbutton">
-            <a href="${pageContext.request.contextPath}/jsp/provideradd.jsp">添加供应商</a>
+            <a href="${pageContext.request.contextPath}/jsp/provideradd_old.jsp">添加供应商</a>
         </form>
     </div>
     <!--供应商操作表格-->

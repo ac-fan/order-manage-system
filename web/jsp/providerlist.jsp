@@ -161,7 +161,7 @@
                                                 </span>
                                             </button>&nbsp;&nbsp;
                                             <a class="btn btn-outline-warning btn-outline-warning--icon"
-                                               href="${pageContext.request.contextPath }/jsp/provideradd.jsp">添加订单</a>
+                                               href="${pageContext.request.contextPath }/jsp/provideradd.jsp">添加供应商</a>
                                         </div>
                                     </div>
                                 </form>
