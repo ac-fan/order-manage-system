@@ -185,7 +185,7 @@
                                                 <div class="input-group input-group-lg input-group-solid">
                                                     <input type="hidden" value="${bill.providerId }" id="pid"/>
                                                     <select class="form-control form-control-solid" name="providerId"
-                                                            id="providerId">
+                                                            id="providerId" >
                                                     </select>
                                                 </div>
                                             </div>

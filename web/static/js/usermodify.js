@@ -31,6 +31,7 @@ var formControls = function () {
             rightArrow: '<i class="la la-angle-right"></i>'
         }
     }
+
     /**
      * 获取用户角色列表函数
      */

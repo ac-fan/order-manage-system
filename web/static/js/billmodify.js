@@ -26,11 +26,16 @@ var formControls = function () {
             dataType: "json",//ajax接口（请求url）返回的数据类型
             success: function (data) {//data：返回数据（json对象）
                 if (data != null) {
+                    var pid = $("#pid").val();
                     $("select").html("");
                     //通过标签选择器，得到select标签，适用于页面里只有一个select
                     var options = "<option value=\"0\">请选择</option>";
                     for (var i = 0; i < data.length; i++) {
-                        options += "<option value=\"" + data[i].id + "\">" + data[i].proName + "</option>";
+                        if(pid != null && data[i].id === pid ){
+                            options += "<option selected=\"selected\" value=\""+data[i].id+"\" >"+data[i].proName+"</option>";
+                        }else{
+                            options += "<option value=\""+data[i].id+"\" >"+data[i].proName+"</option>";
+                        }
                     }
                     $("select").html(options);
                 }
