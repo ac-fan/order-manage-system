@@ -155,7 +155,7 @@
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
-                                                        class="la la-cart-arrow-down"></i></span></div>
+                                                        class="la la-phone"></i></span></div>
                                                 <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
                                                        value="${provider.proPhone }"/>
@@ -168,7 +168,7 @@
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
-                                                        class="la la-cart-arrow-down"></i></span></div>
+                                                        class="la la-address-book"></i></span></div>
                                                 <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
                                                        value="${provider.proAddress }"/>
@@ -181,7 +181,7 @@
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
-                                                        class="la la-wallet"></i></span></div>
+                                                        class="la la-fax"></i></span></div>
                                                 <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
                                                        value="${provider.proFax }"/>

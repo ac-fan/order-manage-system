@@ -182,7 +182,7 @@
                                             <div class="col-9">
                                                 <div class="input-group input-group-lg input-group-solid">
                                                     <input type="hidden" value="${bill.providerId }" id="pid"/>
-                                                    <select name="providerId" id="providerId">
+                                                    <select class="form-control form-control-solid" name="providerId" id="providerId">
                                                     </select>
                                                 </div>
                                             </div>
@@ -211,8 +211,8 @@
                                             <div class="row">
                                                 <div class="col-3"></div>
                                                 <div class="col-9">
-                                                    <a href="javascript:;" name="addButton" id="addButton"
-                                                       class="btn btn-light-primary font-weight-bold">确认添加</a>
+                                                    <button name="addButton" id="addButton"
+                                                       class="btn btn-light-primary font-weight-bold">确认添加</button>
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     <a href="javascript:window.history.back(-1);"
                                                        class="btn btn-clean font-weight-bold">取消并返回</a>
@@ -240,7 +240,7 @@
 <script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/billmodify.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/billadd.js"></script>
 </body>
 </html>
 

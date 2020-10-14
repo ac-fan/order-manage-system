@@ -224,7 +224,6 @@
                                                    title="编辑">
                                                     <i class="la la-edit"></i>
                                                 </a>
-                                                    <%--href="javascript:;" --%>
                                                 <a billid=${bill.id } billcc=${bill.billCode }
                                                    class="btn btn-sm btn-clean btn-icon deleteBill"
                                                    title="删除">

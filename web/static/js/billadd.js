@@ -1,11 +1,3 @@
-var billCode = null;
-var productName = null;
-var productUnit = null;
-var productCount = null;
-var totalPrice = null;
-var providerId = null;
-var addBtn = null;
-var backBtn = null;
 
 function priceReg(value) {
     value = value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
@@ -19,7 +11,7 @@ function priceReg(value) {
 }
 
 
-$(function () {
+/*$(function () {
     billCode = $("#billCode");
     productName = $("#productName");
     productUnit = $("#productUnit");
@@ -28,99 +20,6 @@ $(function () {
     providerId = $("#providerId");
     addBtn = $("#add");
     backBtn = $("#back");
-    //初始化的时候，要把所有的提示信息变为：* 以提示必填项，更灵活，不要写在页面上
-    billCode.next().html("*");
-    productName.next().html("*");
-    productUnit.next().html("*");
-    productCount.next().html("*");
-    totalPrice.next().html("*");
-    providerId.next().html("*");
-
-    $.ajax({
-        type: "GET",//请求类型
-        url: path + "/jsp/bill.do",//请求的url
-        data: {method: "getproviderlist"},//请求参数
-        dataType: "json",//ajax接口（请求url）返回的数据类型
-        success: function (data) {//data：返回数据（json对象）
-            if (data != null) {
-                $("select").html("");//通过标签选择器，得到select标签，适用于页面里只有一个select
-                var options = "<option value=\"0\">请选择</option>";
-                for (var i = 0; i < data.length; i++) {
-                    //alert(data[i].id);
-                    //alert(data[i].proName);
-                    options += "<option value=\"" + data[i].id + "\">" + data[i].proName + "</option>";
-                }
-                $("select").html(options);
-            }
-        },
-        error: function (data) {//当访问时候，404，500 等非200的错误状态码
-            validateTip(providerId.next(), {"color": "red"}, imgNo + " 获取供应商列表error", false);
-        }
-    });
-    /*
-     * 验证
-     * 失焦\获焦
-     * jquery的方法传递
-     */
-    billCode.on("blur", function () {
-        if (billCode.val() != null && billCode.val() !== "") {
-            validateTip(billCode.next(), {"color": "green"}, imgYes, true);
-        } else {
-            validateTip(billCode.next(), {"color": "red"}, imgNo + " 编码不能为空，请重新输入", false);
-        }
-    }).on("focus", function () {
-        //显示友情提示
-        validateTip(billCode.next(), {"color": "#666666"}, "* 请输入订单编码", false);
-    }).focus();
-
-    productName.on("focus", function () {
-        validateTip(productName.next(), {"color": "#666666"}, "* 请输入商品名称", false);
-    }).on("blur", function () {
-        if (productName.val() != null && productName.val() !== "") {
-            validateTip(productName.next(), {"color": "green"}, imgYes, true);
-        } else {
-            validateTip(productName.next(), {"color": "red"}, imgNo + " 商品名称不能为空，请重新输入", false);
-        }
-
-    });
-
-    productUnit.on("focus", function () {
-        validateTip(productUnit.next(), {"color": "#666666"}, "* 请输入商品单位", false);
-    }).on("blur", function () {
-        if (productUnit.val() != null && productUnit.val() !== "") {
-            validateTip(productUnit.next(), {"color": "green"}, imgYes, true);
-        } else {
-            validateTip(productUnit.next(), {"color": "red"}, imgNo + " 单位不能为空，请重新输入", false);
-        }
-
-    });
-
-    providerId.on("focus", function () {
-        validateTip(providerId.next(), {"color": "#666666"}, "* 请选择供应商", false);
-    }).on("blur", function () {
-        if (providerId.val() != null && providerId.val() !== "" && providerId.val() !== 0) {
-            validateTip(providerId.next(), {"color": "green"}, imgYes, true);
-        } else {
-            validateTip(providerId.next(), {"color": "red"}, imgNo + " 供应商不能为空，请选择", false);
-        }
-
-    });
-
-    productCount.on("focus", function () {
-        validateTip(productCount.next(), {"color": "#666666"}, "* 请输入大于0的正自然数，小数点后保留2位", false);
-    }).on("keyup", function () {
-        this.value = priceReg(this.value);
-    }).on("blur", function () {
-        this.value = priceReg(this.value);
-    });
-
-    totalPrice.on("focus", function () {
-        validateTip(totalPrice.next(), {"color": "#666666"}, "* 请输入大于0的正自然数，小数点后保留2位", false);
-    }).on("keyup", function () {
-        this.value = priceReg(this.value);
-    }).on("blur", function () {
-        this.value = priceReg(this.value);
-    });
 
     addBtn.on("click", function () {
         if (billCode.attr("validateStatus") !== "true") {
@@ -138,13 +37,149 @@ $(function () {
         }
     });
 
-    backBtn.on("click", function () {
-        if (referer !== undefined && "" !== referer && "null" !== referer
-            && referer.length > 4) {
-            window.location.href = referer;
-        } else {
-            history.back(-1);
-        }
+});*/
+
+var formControls = function () {
+
+    addBtn = $("#addButton"); //指定添加按钮
+
+    /**
+     * 获取供应商列表函数
+     */
+    var getProviderList =function(){
+        $.ajax({
+            type: "GET",//请求类型
+            url:  "/jsp/bill.do",//请求的url
+            data: {method: "getproviderlist"},//请求参数
+            dataType: "json",//ajax接口（请求url）返回的数据类型
+            success: function (data) {//data：返回数据（json对象）
+                if (data != null) {
+                    $("select").html("");
+                    //通过标签选择器，得到select标签，适用于页面里只有一个select
+                    var options = "<option value=\"0\">请选择</option>";
+                    for (var i = 0; i < data.length; i++) {
+                        options += "<option value=\"" + data[i].id + "\">" + data[i].proName + "</option>";
+                    }
+                    $("select").html(options);
+                }
+            },
+            error: function (data) {//当访问时候，404，500 等非200的错误状态码
+                validateTip(providerId.next(), {"color": "red"}, imgNo + " 获取供应商列表error", false);
+            }
+        });
+    }
+
+    /**
+     * 检查表格函数
+     */
+    var validateForm = function () {
+        FormValidation.formValidation(
+            document.getElementById('billForm'),
+            {
+                fields: {
+                    /**
+                     * 判断表单各项是否为空,并在空时返回 message 提示
+                     */
+                    billCode: {
+                        validators: {
+                            notEmpty: {
+                                message: '订单编号不能为空.'
+                            }
+                        }
+                    },
+                    productName: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入商品名称'
+                            },
+                            stringLength: {
+                                min: 1,
+                                max: 100,
+                                message: '请输入长度为 1 到 100 的字符'
+                            }
+                        }
+                    },
+                    productUnit: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入商品单位'
+                            }
+                        }
+                    },
+                    productCount: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入商品数量'
+                            }
+                        }
+                    },
+                    totalPrice: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入商品数量'
+                            }
+                        }
+                    },
+                    providerId: {
+                        validators: {
+                            notEmpty: {
+                                message: '请选择供应商'
+                            }
+                        }
+                    },
+                    isPayment: {
+                        validators: {
+                            choice: {
+                                min: 1,
+                                message: '请选择付款状态'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    // Bootstrap Framework Integration
+                    bootstrap: new FormValidation.plugins.Bootstrap(),
+                    // Validate fields when clicking the Submit button
+                    submitButton: new FormValidation.plugins.SubmitButton(),
+                    // Submit the form when all fields are valid
+                    defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                }
+            }
+        );
+    }
+
+    /**
+     * 点击确认提交按钮时弹出提示
+     */
+    addBtn.on("click", function () {
+
+        Swal.fire({
+            title: "确认提交",    //提示标题
+            text: "你确认要提交数据吗?",      //提示内容
+            icon: "warning",            //上端图标类型
+            showCancelButton: true,     //是否展示取消按钮
+            cancelButtonText: "不,我再想想.", //取消按钮文本
+            confirmButtonText: "确认提交" //确认按钮文本
+        }).then(function (result) {
+            if (result.value) {
+                //选择确认执行的操作
+                $("#billForm").submit();
+            } else if (result.dismiss === "cancel") {
+                //选择取消按钮执行的操作
+                Swal.fire("已取消该操作", "操作已取消:)", "error")
+            }
+        });
     });
 
+    return {
+        init: function () {
+            getProviderList();
+            validateForm();
+        }
+    };
+}();
+
+jQuery(document).ready(function () {
+    formControls.init();    //加载页面时就启用检查函数
 });

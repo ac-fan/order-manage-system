@@ -192,13 +192,18 @@
                                                 <fmt:formatDate value="${provider.creationDate}" pattern="yyyy-MM-dd"/>
                                             </td>
                                             <td>
-                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="view" class="btn btn-sm btn-clean btn-icon viewProvider" title="查看详情">
+                                                <a href="javascript:;"
+                                                   proid=${provider.id } proname=${provider.proName }
+                                                   class="btn btn-sm btn-clean btn-icon viewProvider" title="查看详情">
                                                     <i class="la la-cog"></i>
                                                 </a>
-                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="edit" class="btn btn-sm btn-clean btn-icon modifyProvider" title="编辑">
+                                                <a href="javascript:;"
+                                                   proid=${provider.id } proname=${provider.proName }
+                                                   class="btn btn-sm btn-clean btn-icon modifyProvider" title="编辑">
                                                     <i class="la la-edit"></i>
                                                 </a>
-                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="delete"  class="btn btn-sm btn-clean btn-icon deleteProvider" title="删除">
+                                                <a proid=${provider.id } proname=${provider.proName }
+                                                   class="btn btn-sm btn-clean btn-icon deleteProvider" title="删除">
                                                     <i class="la la-trash"></i>
                                                 </a>
                                             </td>
