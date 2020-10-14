@@ -4,7 +4,7 @@ var userObj;
 function deleteUser(obj) {
     $.ajax({
         type: "GET",
-        url: path + "/jsp/user.do",
+        url: "/jsp/user.do",
         data: {method: "deluser", uid: obj.attr("userid")},
         dataType: "json",
         success: function (data) {
@@ -13,11 +13,9 @@ function deleteUser(obj) {
                 Swal.fire("已删除!", "该用户已被删除.", "success");
             } else if (data.delResult == "false") {//删除失败
                 //alert("对不起，删除用户【"+obj.attr("username")+"】失败");
-
                 Swal.fire("已取消该操作", "对不起，删除用户【" + obj.attr("username") + "】失败", "error");
             } else if (data.delResult == "notexist") {
                 //alert("对不起，用户【"+obj.attr("username")+"】不存在");
-
                 Swal.fire("已取消该操作", "对不起，用户【" + obj.attr("username") + "】不存在", "error");
             }
         },
@@ -44,9 +42,9 @@ $(function () {
 
     //点击删除按钮的提示
     $(".deleteUser").on("click", function () {
-        billObj = $(this);
+        userObj = $(this);
         Swal.fire({
-            title: "你确定要删除用户【" + billObj.attr("username") + "】吗?",    //提示标题
+            title: "你确定要删除用户【" + userObj.attr("username") + "】吗?",    //提示标题
             text: "此操作一旦完成将无法恢复!",      //提示内容
             icon: "warning",            //上端图标类型
             showCancelButton: true,     //是否展示取消按钮
