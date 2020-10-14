@@ -10,10 +10,12 @@ function jump_to(frm, num) {
     var totalPageCount = document.getElementById("totalPageCount").value;
     //alert(totalPageCount);
     if (!regexp.test(num)) {
-        alert("请输入大于0的正整数！");
+        //alert("请输入大于0的正整数！");
+        Swal.fire("Oh!","请输入大于0的正整数！","error");
         return false;
     } else if ((num - totalPageCount) > 0) {
-        alert("请输入小于总页数的页码");
+        //alert("请输入小于总页数的页码");
+        Swal.fire("Oh!","请输入小于总页数的页码","error");
         return false;
     } else {
         page_nav(frm, num);
