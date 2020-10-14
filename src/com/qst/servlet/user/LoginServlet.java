@@ -30,10 +30,21 @@ public class LoginServlet extends HttpServlet {
         UserService userService = new UserServiceImpl();
         User user = userService.login(userCode, userPassword);
         if (null != user) {
-            System.out.println("User:[ " + userCode + " ] Login Succeed");
+
+
             //放入session
             req.setCharacterEncoding("UTF-8");
             req.getSession().setAttribute(Constants.USER_SESSION, user);
+            User u = (User) req.getSession().getAttribute(Constants.USER_SESSION);
+            if (u.getUserRole() == 1) {
+                System.out.println("User:" + u.getUserName() + "系统管理员Login Succeed");
+            } else if (u.getUserRole() == 2) {
+                System.out.println("User:" + u.getUserName() + "经理Login Succeed");
+            } else if (u.getUserRole() == 3) {
+                System.out.println("User:" + u.getUserName() + "员工Login Succeed");
+            }
+
+
             //页面跳转（frame.jsp）
 //            resp.sendRedirect("jsp/frame.jsp");// 旧跳转
             resp.sendRedirect("jsp/home.jsp");//跳转到新首页
