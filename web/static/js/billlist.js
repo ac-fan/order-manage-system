@@ -42,11 +42,11 @@ $(function () {
     $(".deleteBill").on("click", function () {
         billObj = $(this);
         Swal.fire({
-            title: "你确定要删除订单【" + billObj.attr("billcc") + "】吗?",
-            text: "此操作一旦完成将无法恢复!",
-            icon: "warning",
-            showCancelButton: true,
-            cancelButtonText: "不,我再想想.", //删除按钮文本
+            title: "你确定要删除订单【" + billObj.attr("billcc") + "】吗?",    //提示标题
+            text: "此操作一旦完成将无法恢复!",      //提示内容
+            icon: "warning",            //上端图标类型
+            showCancelButton: true,     //是否展示取消按钮
+            cancelButtonText: "不,我再想想.", //取消按钮文本
             confirmButtonText: "是的,删除它!" //确认按钮文本
         }).then(function (result) {
             if (result.value) {
@@ -56,7 +56,6 @@ $(function () {
                 //选择取消按钮执行的操作
                 Swal.fire("已取消该操作", "操作已取消,你成功救了它一命 :)", "error")
             }
-
         });
     });
 });
