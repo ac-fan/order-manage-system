@@ -43,7 +43,7 @@
                     <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="用户中心">
-                        <a href="/jsp/home.jsp" class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg">
+                        <a href="/jsp/home.jsp" class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg ">
                             <i class="flaticon2-protection icon-lg"></i>
                         </a>
                     </li>
@@ -53,8 +53,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="订单管理">
                         <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query"
-                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg  active" data-toggle="tab"
-                           data-target="#kt_aside_tab_2">
+                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg active">
                             <i class="flaticon2-list-3 icon-lg"></i>
                         </a>
                     </li>
@@ -199,13 +198,15 @@
                                     </div>
 
                                 </div>
+                            </div>
+                            <div class="card-footer">
                                 <div class="row">
                                     <div class="col-xl-2"></div>
                                     <div class="col-xl-7">
                                         <div class="row">
                                             <div class="col-3"></div>
                                             <div class="col-9">
-                                                <a href="javascript:window.history.back(-1);" id="back" name="back"
+                                                <a href="javascript:window.history.back(-1);"
                                                    class="btn btn-light-primary font-weight-bold">返回</a>
                                             </div>
                                         </div>
@@ -227,7 +228,7 @@
 <%@include file="/jsp/common/user_panel.jsp" %>
 <%@include file="/jsp/common/scrollToTop.jsp" %>
 
-
+<script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
 </body>
