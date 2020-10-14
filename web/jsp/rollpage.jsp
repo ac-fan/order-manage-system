@@ -11,8 +11,8 @@
 <body>
 <div class="page-bar">
     <ul class="page-num-ul clearfix">
-        <li>共${totalCount}条记录&nbsp;&nbsp; ${currentPageNo }/${totalPageCount }页</li>
-        <c:if test="${currentPageNo > 1}">
+        <li>共${totalCount}条记录&nbsp;&nbsp; ${currentPageNo }/${totalPageCount }页
+       <c:if test="${currentPageNo > 1}">
             <a href="javascript:;" onclick="page_nav(document.forms[0],1)">首页</a>
             <a href="javascript:;" onclick="page_nav(document.forms[0],${currentPageNo-1})">上一页</a>
         </c:if>
@@ -20,12 +20,13 @@
             <a href="javascript:;" onclick="page_nav(document.forms[0],${currentPageNo+1})">下一页</a>
             <a href="javascript:;" onclick="page_nav(document.forms[0],${totalPageCount})">最后一页</a>
         </c:if>
-        &nbsp;&nbsp;
+            <span class="page-go-form" style="float:right;padding-right:25px;"><label>跳转至</label>
+	        <input type="text" name="pageIndex" id="pageIndex" class="page-key" style="width: 40px" />页
+	        <button type="button" class="page-btn" onClick='jump_to(document.forms[0],document.getElementById("pageIndex").value)'>GO</button>
+		    </span>
+        </li>
     </ul>
-    <span class="page-go-form"><label>跳转至</label>
-	     <input type="text" name="pageIndex" id="pageIndex" class="page-key" />页
-	     <button type="button" class="page-btn" onClick='jump_to(document.forms[0],document.getElementById("pageIndex").value)'>GO</button>
-		</span>
+
 </div>
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/rollpage.js"></script>
