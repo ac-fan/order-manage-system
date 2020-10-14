@@ -28,6 +28,7 @@ var formControls = function () {
 
     addBtn = $("#addButton"); //指定添加按钮
     userRole = $("#userRole");
+    userCode = $("#userCode");
 
     var arrows;
     if (KTUtil.isRTL()) {
@@ -110,8 +111,7 @@ var formControls = function () {
                                     method: "ucexist",
                                     userCode: userCode.val()
                                 },
-                                delay:2000, //输入内容2秒后再进行查询
-                                message:"该用户编码已存在",
+                                message: "该用户编码已存在",
                             },
                         }
                     },
@@ -120,10 +120,10 @@ var formControls = function () {
                             notEmpty: {
                                 message: '用户名不能为空.'
                             },
-                            stringLength:{
-                                min:3,
-                                max:6,
-                                message:"用户名长度必须在3到6之间"
+                            stringLength: {
+                                min: 3,
+                                max: 6,
+                                message: "用户名长度必须在3到6之间"
                             },
                         }
                     },
@@ -132,10 +132,10 @@ var formControls = function () {
                             notEmpty: {
                                 message: '用户密码不能为空.'
                             },
-                            stringLength:{
-                                min:7,
-                                max:20,
-                                message:"密码长度必须处于 7 到 20 之间"
+                            stringLength: {
+                                min: 7,
+                                max: 20,
+                                message: "密码长度必须处于 7 到 20 之间"
                             },
                         }
                     },
@@ -144,10 +144,10 @@ var formControls = function () {
                             notEmpty: {
                                 message: '确认密码不能为空.'
                             },
-                            stringLength:{
-                                min:7,
-                                max:20,
-                                message:"密码长度必须处于 7 到 20 之间"
+                            stringLength: {
+                                min: 7,
+                                max: 20,
+                                message: "密码长度必须处于 7 到 20 之间"
                             },
                         }
                     },
