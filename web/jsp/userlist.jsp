@@ -151,6 +151,7 @@
                                                 </c:if>
                                             </select>
                                         </div>
+                                        <input type="hidden" name="pageIndex" value="1"/>
                                     </div>
                                         <div class="row mt-8">
                                             <div class="col-lg-12">
@@ -215,6 +216,7 @@
                                 </table>
                                 <!--end: Datatable-->
                             </div>
+
                             <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
                             <c:import url="rollpage.jsp">
                                 <c:param name="totalCount" value="${totalCount}"/>

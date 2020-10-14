@@ -134,7 +134,8 @@
                                     <div class="row mb-6">
                                         <div class="col-lg-3 mb-lg-0 mb-6">
                                             <label>商品名称</label>
-                                            <input type="text" class="form-control datatable-input" name="queryProductName"
+                                            <input type="text" class="form-control datatable-input"
+                                                   name="queryProductName"
                                                    value="${queryProductName }" data-col-index="0"/>
                                         </div>
                                         <div class="col-lg-3  mb-lg-0 mb-6">
@@ -165,7 +166,7 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    <input type="hidden" name="pageIndex" value="1"/>
                                     <div class="row mt-8">
                                         <div class="col-lg-12">
                                             <button class="btn btn-primary btn-primary--icon" id="kt_search">
@@ -223,8 +224,9 @@
                                                    title="编辑">
                                                     <i class="la la-edit"></i>
                                                 </a>
-                                                <a href="javascript:;" billid=${bill.id } billcc=${bill.billCode }
-                                                   id="delete" class="btn btn-sm btn-clean btn-icon deleteBill"
+                                                    <%--href="javascript:;" --%>
+                                                <a billid=${bill.id } billcc=${bill.billCode }
+                                                   class="btn btn-sm btn-clean btn-icon deleteBill"
                                                    title="删除">
                                                     <i class="la la-trash"></i>
                                                 </a>
@@ -234,6 +236,12 @@
                                     </tbody>
                                 </table>
                                 <!--end: Datatable-->
+                                <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
+                                <c:import url="rollpage.jsp">
+                                    <c:param name="totalCount" value="${totalCount}"/>
+                                    <c:param name="currentPageNo" value="${currentPageNo}"/>
+                                    <c:param name="totalPageCount" value="${totalPageCount}"/>
+                                </c:import>
                             </div>
                         </div>
                     </div>

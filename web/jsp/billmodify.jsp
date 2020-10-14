@@ -128,21 +128,24 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-3 text-lg-right text-left">订单编号</label>
                                         <div class="col-9">
-                                            <input class="form-control form-control-lg form-control-solid"
+                                            <input name="billCode" id="billCode" value="${bill.billCode }"
+                                                   class="form-control form-control-lg form-control-solid"
                                                    type="text" value="${bill.billCode }"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-3 text-lg-right text-left">商品名称</label>
                                         <div class="col-9">
-                                            <input class="form-control form-control-lg form-control-solid"
+                                            <input name="productName" id="productName"
+                                                   class="form-control form-control-lg form-control-solid"
                                                    type="text" value="${bill.productName }"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-3 text-lg-right text-left">商品单位</label>
                                         <div class="col-9">
-                                            <input class="form-control form-control-lg form-control-solid"
+                                            <input name="productUnit" id="productUnit"
+                                                   class="form-control form-control-lg form-control-solid"
                                                    type="text" value="${bill.productUnit }"/>
                                         </div>
                                     </div>
@@ -153,7 +156,7 @@
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
                                                         class="la la-cart-arrow-down"></i></span></div>
-                                                <input type="text"
+                                                <input type="text" name="productCount" id="productCount"
                                                        class="form-control form-control-lg form-control-solid"
                                                        value="${bill.productCount }"/>
                                             </div>
@@ -166,7 +169,7 @@
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
                                                         class="la la-wallet"></i></span></div>
-                                                <input type="text"
+                                                <input type="text" name="totalPrice" id="totalPrice"
                                                        class="form-control form-control-lg form-control-solid"
                                                        value="${bill.totalPrice }"/>
                                             </div>
@@ -176,9 +179,9 @@
                                         <label class="col-form-label col-3 text-lg-right text-left">供应商</label>
                                         <div class="col-9">
                                             <div class="input-group input-group-lg input-group-solid">
-                                                <input type="text"
-                                                       class="form-control form-control-lg form-control-solid"
-                                                       value="${bill.providerName }"/>
+                                                <input type="hidden" value="${bill.providerId }" id="pid"/>
+                                                <select name="providerId" id="providerId">
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -245,5 +248,6 @@
 <script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/billmodify.js"></script>
 </body>
 </html>
