@@ -6,6 +6,7 @@
 --%>
 
 <%@ page import="com.qst.pojo.User" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,7 @@
                     <!--begin::Item-->
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="用户中心">
-                        <a href="/jsp/home.jsp" class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg active">
+                        <a href="/jsp/home.jsp" class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg ">
                             <i class="flaticon2-protection icon-lg"></i>
                         </a>
                     </li>
@@ -52,8 +53,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="订单管理">
                         <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query"
-                           class="nav-link btn btn-icon btn-icon-white btn-lg" data-toggle="tab"
-                           data-target="#kt_aside_tab_2">
+                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg active">
                             <i class="flaticon2-list-3 icon-lg"></i>
                         </a>
                     </li>
@@ -63,7 +63,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="供应商管理">
                         <a href="${pageContext.request.contextPath }/jsp/provider.do?method=query"
-                           class="nav-link btn btn-icon btn-icon-white btn-lg">
+                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg">
                             <i class="flaticon2-calendar-6 icon-lg"></i>
                         </a>
                     </li>
@@ -73,7 +73,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="用户管理">
                         <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
-                           class="nnav-link btn btn-icon btn-icon-white btn-lg">
+                           class="nnav-link btn btn-icon btn-clean btn-icon-white btn-lg">
                             <i class="flaticon2-analytics-2 icon-lg"></i>
                         </a>
                     </li>
@@ -83,7 +83,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="修改密码">
                         <a href="${pageContext.request.contextPath }/jsp/pwdmodify.jsp"
-                           class="nav-link btn btn-icon btn-icon-white btn-lg">
+                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-lg">
                             <i class="flaticon2-hourglass-1 icon-lg"></i>
                         </a>
                     </li>
@@ -129,6 +129,7 @@
                                         <label class="col-form-label col-3 text-lg-right text-left">订单编号</label>
                                         <div class="col-9">
                                             <input class="form-control form-control-lg form-control-solid"
+                                                   readonly="readonly"
                                                    type="text" value="${bill.billCode }"/>
                                         </div>
                                     </div>
@@ -136,6 +137,7 @@
                                         <label class="col-form-label col-3 text-lg-right text-left">商品名称</label>
                                         <div class="col-9">
                                             <input class="form-control form-control-lg form-control-solid"
+                                                   readonly="readonly"
                                                    type="text" value="${bill.productName }"/>
                                         </div>
                                     </div>
@@ -143,52 +145,72 @@
                                         <label class="col-form-label col-3 text-lg-right text-left">商品单位</label>
                                         <div class="col-9">
                                             <input class="form-control form-control-lg form-control-solid"
+                                                   readonly="readonly"
                                                    type="text" value="${bill.productUnit }"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">Contact
-                                            Phone</label>
+                                        <label class="col-form-label col-3 text-lg-right text-left">商品数量</label>
                                         <div class="col-9">
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
-                                                        class="la la-phone"></i></span></div>
-                                                <input type="text"
+                                                        class="la la-cart-arrow-down"></i></span></div>
+                                                <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
-                                                       value="+45678967456" placeholder="Phone"/>
+                                                       value="${bill.productCount }"/>
                                             </div>
-                                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">Email
-                                            Address</label>
+                                        <label class="col-form-label col-3 text-lg-right text-left">总金额</label>
                                         <div class="col-9">
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text"><i
-                                                        class="la la-at"></i></span></div>
-                                                <input type="text"
+                                                        class="la la-wallet"></i></span></div>
+                                                <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
-                                                       value="anna.krox@loop.com" placeholder="Email"/>
+                                                       value="${bill.totalPrice }"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">Company
-                                            Site</label>
+                                        <label class="col-form-label col-3 text-lg-right text-left">供应商</label>
                                         <div class="col-9">
                                             <div class="input-group input-group-lg input-group-solid">
-                                                <input type="text"
+                                                <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
-                                                       placeholder="Username" value="loop"/>
-                                                <div class="input-group-append"><span
-                                                        class="input-group-text">.com</span></div>
+                                                       value="${bill.providerName }"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">付款状态</label>
+                                        <div class="col-9">
+                                            <div class="input-group input-group-lg input-group-solid">
+                                                <input type="text" readonly="readonly"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       value="<c:if test="${bill.isPayment == 1}">未付款</c:if>
+				                                <c:if test="${bill.isPayment == 2}">已付款</c:if>"/>
                                             </div>
                                         </div>
                                     </div>
 
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-xl-2"></div>
+                                    <div class="col-xl-7">
+                                        <div class="row">
+                                            <div class="col-3"></div>
+                                            <div class="col-9">
+                                                <a href="javascript:window.history.back(-1);"
+                                                   class="btn btn-light-primary font-weight-bold">返回</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -206,6 +228,7 @@
 <%@include file="/jsp/common/user_panel.jsp" %>
 <%@include file="/jsp/common/scrollToTop.jsp" %>
 
+<script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
 </body>
