@@ -14,7 +14,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>订单查询 | 订单管理系统</title>
+    <title>供应商查询 | 订单管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
     <link href="${pageContext.request.contextPath }/static/css/datatables.bundle.css" rel="stylesheet"
@@ -192,13 +192,13 @@
                                                 <fmt:formatDate value="${provider.creationDate}" pattern="yyyy-MM-dd"/>
                                             </td>
                                             <td>
-                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="view" class="viewProvider" title="查看详情">
+                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="view" class="btn btn-sm btn-clean btn-icon viewProvider" title="查看详情">
                                                     <i class="la la-cog"></i>
                                                 </a>
-                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="edit" class="modifyProvider" title="编辑">
+                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="edit" class="btn btn-sm btn-clean btn-icon modifyProvider" title="编辑">
                                                     <i class="la la-edit"></i>
                                                 </a>
-                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="delete"  class="deleteProvider" title="删除">
+                                                <a href="javascript:;" proid=${provider.id } proname=${provider.proName } id="delete"  class="btn btn-sm btn-clean btn-icon deleteProvider" title="删除">
                                                     <i class="la la-trash"></i>
                                                 </a>
                                             </td>
