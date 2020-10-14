@@ -145,6 +145,9 @@
                                             <input type="text" class="form-control datatable-input" name="queryProName"
                                                    value="${proName }" data-col-index="0"/>
                                         </div>
+                                        <div class="col-lg-3  mb-lg-0 mb-6">
+                                            <input type="hidden" name="pageIndex" value="1"/>
+                                        </div>
                                     </div>
 
                                     <div class="row mt-8">
@@ -205,6 +208,12 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                                <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
+                                <c:import url="rollpage.jsp">
+                                    <c:param name="totalCount" value="${totalCount}"/>
+                                    <c:param name="currentPageNo" value="${currentPageNo}"/>
+                                    <c:param name="totalPageCount" value="${totalPageCount}"/>
+                                </c:import>
                                 <!--end: Datatable-->
                             </div>
                         </div>
