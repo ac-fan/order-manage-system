@@ -248,6 +248,6 @@
 <script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/billmodify.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/billadd.js"></script>
 </body>
 </html>
