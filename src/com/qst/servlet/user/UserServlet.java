@@ -29,15 +29,16 @@ public class UserServlet extends HttpServlet {
         String method = req.getParameter("method");
         User u = (User) req.getSession().getAttribute(Constants.USER_SESSION);
         Integer userRole = u.getUserRole();
-        if (userRole == 3) {
-            this.getUserById1(req, resp, "userview.jsp");
-        } else if ("savepwd".equals(method)) {
+        if ("savepwd".equals(method)) {
             this.updatePwd(req, resp);
         } else if ("pwdmodify".equals(method)) {
             this.pwdModify(req, resp);
         } else if ("pwdmodifynew".equals(method)) {
             this.pwdModifynew(req, resp);
         } else if ("query".equals(method)) {
+            if (userRole == 3) {
+                this.getUserById1(req, resp, "userview.jsp");
+            }
             this.query(req, resp);
         } else if ("getrolelist".equals(method)) {
             this.getRoleList(req, resp);
@@ -72,6 +73,7 @@ public class UserServlet extends HttpServlet {
         String queryUserName = req.getParameter("queryUsername");
         String temp = req.getParameter("queryUserRole");
         String pageIndex = req.getParameter("pageIndex");
+
         int queryUserRole = 0;
 
         //获取用户列表
@@ -141,6 +143,7 @@ public class UserServlet extends HttpServlet {
     }
 
     public void updatePwd(HttpServletRequest req, HttpServletResponse resp) {
+
 
         // 通过session获得用户id
         Object o = req.getSession().getAttribute(Constants.USER_SESSION);
