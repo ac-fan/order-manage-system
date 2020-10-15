@@ -148,35 +148,54 @@ public class UserServlet extends HttpServlet {
         // 通过session获得用户id
         Object o = req.getSession().getAttribute(Constants.USER_SESSION);
         String newpassword = req.getParameter("newPassword");
-
+        String renewpassword = req.getParameter("reNewPassword");
         boolean flag = false;
-        if (o != null && newpassword != null) {
+        //万能Map：结果集
+        Map<String, String> resultMap = new HashMap<>();
+        if (o == null) {
+            //session失效，session过期了
+            resultMap.put("valid", "sessionerror");
+        } else if (StringUtils.isNullOrEmpty(newpassword)) {
+            //输入密码为空
+            resultMap.put("valid", "error");
+        } else if (renewpassword != newpassword) {//
+            resultMap.put("valid", "false");
+
+            } else {
             UserService userService = new UserServiceImpl();
             try {
                 flag = userService.updatePwd(((User) o).getId(), newpassword);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            if (flag) {
-                req.setAttribute("message", "密码修改成功，请退出，使用新密码登录");
                 // 密码修改成功,移除session(移除后不能再次修改密码,建议不移除)
                 req.getSession().removeAttribute(Constants.USER_SESSION);
-            } else {
-                // 密码修改失败
-                req.setAttribute("message", "密码修改失败");
+            } catch (Exception e1) {
+                e1.printStackTrace();
             }
-
-        } else {
-            // 密码修改有问题
-            req.setAttribute("message", "新密码有问题");
+            resultMap.put("valid", "true");
         }
+
         try {
             req.getRequestDispatcher("/jsp/pwdmodify.jsp").forward(req, resp);
-        } catch (ServletException | IOException e) {
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            resp.setContentType("application/json");
+            PrintWriter writer = resp.getWriter();
+            /*
+             * resultMap = ["valid","true"] 或 ["valid","false"]
+             * josn格式={key,value}
+             */
+            writer.write(JSONArray.toJSONString(resultMap));
+            //writer.write(JsonArray.class.toString());
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public void pwdModify(HttpServletRequest req, HttpServletResponse resp) {
 
