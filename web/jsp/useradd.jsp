@@ -238,9 +238,9 @@
                     </div>
                 </div>
                 <!--end::页面内容-->
-                <%@include file="/jsp/common/footer.jsp" %>
             </div>
             <!--end::右侧页面框架-->
+            <%@include file="/jsp/common/footer.jsp" %>
         </div>
     </div>
 </div>
