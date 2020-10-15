@@ -151,14 +151,12 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-3 text-lg-right text-left">用户性别 *</label>
                                             <div class="col-9 col-form-label">
-                                                <div class="radio-inline">
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="gender" value="1"
-                                                               checked="checked"/><span></span>男
-                                                    </label>
-                                                    <label class="radio radio-danger">
-                                                        <input type="radio" name="gender" value="2"/><span></span>女
-                                                    </label>
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <select class="form-control form-control-solid" name="gender"
+                                                            id="gender">
+                                                        <option value="1">男</option>
+                                                        <option value="2">女</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -169,7 +167,8 @@
                                                     <div class="input-group-prepend"><span
                                                             class="input-group-text"><i
                                                             class="la la-calendar"></i></span></div>
-                                                    <input type="text" class="form-control" name="birthday" id="birthday"
+                                                    <input type="text" class="form-control" name="birthday"
+                                                           id="birthday"
                                                            value="${user.birthday }"/>
                                                 </div>
                                             </div>

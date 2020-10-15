@@ -460,16 +460,16 @@ public class UserServlet extends HttpServlet {
         user.setCreatedBy(((User) request.getSession().getAttribute(Constants.USER_SESSION)).getId());
         HashMap<String, String> resultMap = new HashMap<>();
         if (StringUtils.isNullOrEmpty(userPassword)) {//密码输入为空
-            resultMap.put("result", "null");
+            resultMap.put("addUserResult", "null");
         } else if (!userPassword.equals(reUserPassword)) {
             //密码与确认密码不同
-            resultMap.put("result", "false");
+            resultMap.put("addUserResult", "false");
         } else {
             UserService userService = new UserServiceImpl();
             if (userService.add(user)) {
-                resultMap.put("result", "true");
+                resultMap.put("addUserResult", "true");
             } else {
-                resultMap.put("result", "error");
+                resultMap.put("addUserResult", "error");
             }
         }
         response.setContentType("application/json");

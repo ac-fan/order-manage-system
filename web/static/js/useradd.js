@@ -20,6 +20,42 @@ function priceReg(value) {
     return value;
 }
 
+function addUser() {
+    $.ajax({
+        type: "GET",
+        url: "/jsp/user.do",
+        data: {
+            method: "add",
+            userCode: $("#userCode").val(),
+            userName: $("#userName").val(),
+            userPassword: $("#userPassword").val(),
+            reUserPassword: $("#reUserPassword").val(),
+            gender: $("#gender").val(),
+            birthday: $("#birthday").val(),
+            phone: $("#phone").val(),
+            address: $("#address").val(),
+            userRole: $("#userRole").val(),
+        },
+        dataType: "json",
+        success: function (data) {
+            if (data.addUserResult === "true") {//删除成功：移除删除行
+                Swal.fire("已提交", "添加用户成功.", "success").then(function () {
+                    window.location.href = "/jsp/user.do?method=query";
+                });
+            } else if (data.addUserResult === "null") {//删除失败
+                Swal.fire("添加失败", "用户输入的密码为空", "error");
+            } else if (data.addUserResult === "false") {//删除失败
+                Swal.fire("添加失败", "用户的确认密码和新密码不一致!", "error");
+            } else {
+                Swal.fire("添加失败", "可能产生了未知错误!", "error");
+            }
+        },
+        error: function (data) {
+            Swal.fire("OH NO !", "添加用户失败!", "error");
+        }
+    });
+}
+
 function submitForm() {
     $("#addUserForm").submit();
 }
@@ -42,12 +78,6 @@ var formControls = function () {
             rightArrow: '<i class="la la-angle-right"></i>'
         }
     }
-
-    /**
-     * 日期选择器国际化
-     */
-
-
 
     /**
      * 获取用户角色列表函数
@@ -101,7 +131,7 @@ var formControls = function () {
             rtl: KTUtil.isRTL(),
             orientation: "bottom left",
             todayHighlight: true,
-            language:'zh-CN',   //指定 datapicker 的本地化样式
+            language: 'zh-CN',   //指定 datapicker 的本地化样式
             format: "yyyy-mm-dd",    //控制timepicker 日期格式
             templates: arrows
         });
@@ -236,7 +266,7 @@ var formControls = function () {
             }).then(function (result) {
                 if (result.value) {
                     //提交表单
-                    submitForm();
+                    addUser();
                     Swal.fire("已提交", "新增用户成功", "success").then(function () {
                         window.history.back(-1);
                     });
