@@ -53,7 +53,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="订单管理">
                         <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query"
-                           class="nav-link btn btn-icon btn-icon-white btn-clean btn-lg active">
+                           class="nav-link btn btn-icon btn-icon-white btn-clean btn-lg">
                             <i class="flaticon2-list-3 icon-lg"></i>
                         </a>
                     </li>
@@ -73,7 +73,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="用户管理">
                         <a href="${pageContext.request.contextPath }/jsp/user.do?method=query"
-                           class="nnav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg">
+                           class="nnav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg active">
                             <i class="flaticon2-analytics-2 icon-lg"></i>
                         </a>
                     </li>

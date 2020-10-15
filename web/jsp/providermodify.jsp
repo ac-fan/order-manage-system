@@ -53,7 +53,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="订单管理">
                         <a href="${pageContext.request.contextPath }/jsp/bill.do?method=query"
-                           class="nav-link btn btn-icon btn-icon-white btn-clean btn-lg active">
+                           class="nav-link btn btn-icon btn-icon-white btn-clean btn-lg">
                             <i class="flaticon2-list-3 icon-lg"></i>
                         </a>
                     </li>
@@ -63,7 +63,7 @@
                     <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body"
                         data-boundary="window" title="供应商管理">
                         <a href="${pageContext.request.contextPath }/jsp/provider.do?method=query"
-                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg">
+                           class="nav-link btn btn-icon btn-clean btn-icon-white btn-clean btn-lg active">
                             <i class="flaticon2-calendar-6 icon-lg"></i>
                         </a>
                     </li>
@@ -106,7 +106,8 @@
                 <div class="d-flex flex-column-fluid">
                     <div class=" container ">
                         <div class="card">
-                            <form id="ProviderEditForm" name="ProviderEditForm" method="post" action="${pageContext.request.contextPath }/jsp/provider.do"
+                            <form id="ProviderEditForm" name="ProviderEditForm" method="post"
+                                  action="${pageContext.request.contextPath }/jsp/provider.do"
                                   class="kt-form kt-form--fit mb-15">
                                 <input name="method" value="modifysave" class="input-text" type="hidden">
                                 <input type="hidden" name="id" value="${provider.id}">
@@ -116,112 +117,114 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                <div class="col-xl-7 my-2">
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">供应商编码</label>
-                                        <div class="col-9">
-                                            <input name="proCode" id="proCode"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="${provider.proCode }"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">供应商名称</label>
-                                        <div class="col-9">
-                                            <input name="proName" id="proName"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="${provider.proName }"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">联系人</label>
-                                        <div class="col-9">
-                                            <input name="proContact" id="proContact"
-                                                   class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="${provider.proContact }"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">联系电话</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <div class="input-group-prepend"><span
-                                                        class="input-group-text"><i
-                                                        class="la la-cart-arrow-down"></i></span></div>
-                                                <input type="text" name="proPhone" id="proPhone"
-                                                       class="form-control form-control-lg form-control-solid"
-                                                       value="${provider.proPhone }"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">联系地址</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <div class="input-group-prepend"><span
-                                                        class="input-group-text"><i
-                                                        class="la la-wallet"></i></span></div>
-                                                <input type="text" name="proAddress" id="proAddress"
-                                                       class="form-control form-control-lg form-control-solid"
-                                                       value="${provider.proAddress }"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">传真</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <div class="input-group-prepend"><span
-                                                        class="input-group-text"><i
-                                                        class="la la-wallet"></i></span></div>
-                                                <input type="text" name="proFax" id="proFax"
-                                                       class="form-control form-control-lg form-control-solid"
-                                                       value="${provider.proFax }"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">描述</label>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-lg input-group-solid">
-                                                <div class="input-group-prepend"><span
-                                                        class="input-group-text"><i
-                                                        class="la la-wallet"></i></span></div>
-                                                <input type="text" name="proDesc" id="proDesc"
-                                                       class="form-control form-control-lg form-control-solid"
-                                                       value="${provider.proDesc }"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-xl-2"></div>
-                                    <div class="col-xl-7">
-                                        <div class="row">
-                                            <div class="col-3"></div>
+                                    <div class="col-xl-7 my-2">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">供应商编码</label>
                                             <div class="col-9">
-                                                <button name="saveButton" id="saveButton"
-                                                        class="btn btn-light-primary font-weight-bold">保存更改</button>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="javascript:window.history.back(-1);"
-                                                   class="btn btn-clean font-weight-bold">取消并返回</a>
+                                                <input name="proCode" id="proCode"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${provider.proCode }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">供应商名称</label>
+                                            <div class="col-9">
+                                                <input name="proName" id="proName"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${provider.proName }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">联系人</label>
+                                            <div class="col-9">
+                                                <input name="proContact" id="proContact"
+                                                       class="form-control form-control-lg form-control-solid"
+                                                       type="text" value="${provider.proContact }"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">联系电话</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend"><span
+                                                            class="input-group-text"><i
+                                                            class="la la-cart-arrow-down"></i></span></div>
+                                                    <input type="text" name="proPhone" id="proPhone"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           value="${provider.proPhone }"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">联系地址</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend"><span
+                                                            class="input-group-text"><i
+                                                            class="la la-wallet"></i></span></div>
+                                                    <input type="text" name="proAddress" id="proAddress"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           value="${provider.proAddress }"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">传真</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend"><span
+                                                            class="input-group-text"><i
+                                                            class="la la-wallet"></i></span></div>
+                                                    <input type="text" name="proFax" id="proFax"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           value="${provider.proFax }"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">描述</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend"><span
+                                                            class="input-group-text"><i
+                                                            class="la la-wallet"></i></span></div>
+                                                    <input type="text" name="proDesc" id="proDesc"
+                                                           class="form-control form-control-lg form-control-solid"
+                                                           value="${provider.proDesc }"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-xl-2"></div>
+                                        <div class="col-xl-7">
+                                            <div class="row">
+                                                <div class="col-3"></div>
+                                                <div class="col-9">
+                                                    <button name="saveButton" id="saveButton"
+                                                            class="btn btn-light-primary font-weight-bold">保存更改
+                                                    </button>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="javascript:window.history.back(-1);"
+                                                       class="btn btn-clean font-weight-bold">取消并返回</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <!--end::页面内容-->
-                <%@include file="/jsp/common/footer.jsp" %>
             </div>
-            <!--end::右侧页面框架-->
+            <!--end::页面内容-->
+            <%@include file="/jsp/common/footer.jsp" %>
         </div>
+        <!--end::右侧页面框架-->
     </div>
+</div>
 </div>
 <%--end::页面主体内容--%>
 
