@@ -160,6 +160,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updatePwd(int id, String password) throws Exception {
+
         Connection connection = null;
         boolean flag = false;
         //修改密码

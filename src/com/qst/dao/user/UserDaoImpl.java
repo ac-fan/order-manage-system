@@ -218,12 +218,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     //修改当前用户密码
-    @Override//修改当前密码
+    @Override
     public int updatePwd(Connection connection, int id, String password) throws Exception {
         PreparedStatement pstm = null;
         int execute = 0;
         if (connection != null) {
             String sql = "update smbms_user set  userPassword = ? where id = ?";
+            System.out.println("sql>>>>>" + sql);
             Object[] params = {password, id};
             execute = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);

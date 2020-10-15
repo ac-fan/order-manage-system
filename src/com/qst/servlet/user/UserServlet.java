@@ -144,13 +144,14 @@ public class UserServlet extends HttpServlet {
     }
 
     public void updatePwd(HttpServletRequest req, HttpServletResponse resp) {
+
         // 通过session获得用户id
         Object o = req.getSession().getAttribute(Constants.USER_SESSION);
-        String newpassword = req.getParameter("newpassword");
+        String newpassword = req.getParameter("newPassword");
+
         boolean flag = false;
         if (o != null && newpassword != null) {
             UserService userService = new UserServiceImpl();
-
             try {
                 flag = userService.updatePwd(((User) o).getId(), newpassword);
             } catch (Exception e) {
@@ -178,9 +179,11 @@ public class UserServlet extends HttpServlet {
     }
 
     public void pwdModify(HttpServletRequest req, HttpServletResponse resp) {
+
         // 通过session获得用户id
         Object o = req.getSession().getAttribute(Constants.USER_SESSION);
         String oldpassword = req.getParameter("oldpassword");
+
         //万能Map：结果集
         Map<String, String> resultMap = new HashMap<>();
         if (o == null) {//session失效，session过期了
@@ -212,6 +215,7 @@ public class UserServlet extends HttpServlet {
     }
 
     public void pwdModifynew(HttpServletRequest req, HttpServletResponse resp) {
+
         // 通过session获得用户id
         Object o = req.getSession().getAttribute(Constants.USER_SESSION);
         String oldpassword = req.getParameter("oldPassword");
