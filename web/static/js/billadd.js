@@ -31,7 +31,7 @@ var formControls = function () {
                 if (data != null) {
                     $("select").html("");
                     //通过标签选择器，得到select标签，适用于页面里只有一个select
-                    var options = "<option value=\"0\">请选择</option>";
+                    var options = "<option value=\"\">请选择</option>";
                     for (var i = 0; i < data.length; i++) {
                         options += "<option value=\"" + data[i].id + "\">" + data[i].proName + "</option>";
                     }
@@ -104,8 +104,8 @@ var formControls = function () {
                     providerId: {
                         validators: {
                             notEmpty: {
-                                message: '请选择供应商'
-                            }
+                                message: '请选择一个有效的供应商'
+                            },
                         }
                     },
                     isPayment: {

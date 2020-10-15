@@ -28,7 +28,7 @@ var formControls = function () {
                     var pid = $("#pid").val();
                     $("select").html("");
                     //通过标签选择器，得到select标签，适用于页面里只有一个select
-                    var options = "<option value=\"0\">请选择</option>";
+                    var options = "<option value=\"\">请选择</option>";
                     for (var i = 0; i < data.length; i++) {
                         if (pid != null && data[i].id === pid) {
                             options += "<option selected=\"selected\" value=\"" + data[i].id + "\" >" + data[i].proName + "</option>";
