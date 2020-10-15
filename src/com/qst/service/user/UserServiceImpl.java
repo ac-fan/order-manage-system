@@ -34,10 +34,6 @@ public class UserServiceImpl implements UserService {
             } else {
                 System.out.println("add failed!");
             }
-            if (userDao.add(connection, user) > 0) {
-                flag = true;
-            }
-            connection.commit();
         } catch (Exception e) {
             e.printStackTrace();
             try {

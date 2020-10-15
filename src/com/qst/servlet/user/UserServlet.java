@@ -30,11 +30,14 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
+
         if ("savepwd".equals(method)) {
             this.updatePwd(req, resp);
         } else if ("pwdmodify".equals(method)) {
             this.pwdModify(req, resp);
         } else if ("query".equals(method)) {
+            this.query(req, resp);
+        } else if ("uquery".equals(method)) {
             this.query(req, resp);
         } else if ("getrolelist".equals(method)) {
             this.getRoleList(req, resp);
@@ -358,7 +361,7 @@ public class UserServlet extends HttpServlet {
     @SuppressWarnings("unused")
     private void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("add()================");
+
         String userCode = request.getParameter("userCode");
         String userName = request.getParameter("userName");
         String userPassword = request.getParameter("userPassword");

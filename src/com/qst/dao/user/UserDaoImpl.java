@@ -21,6 +21,8 @@ public class UserDaoImpl implements UserDao {
             String sql = "insert into smbms_user (userCode,userName,userPassword," +
                     "userRole,gender,birthday,phone,address,creationDate,createdBy) " +
                     "values(?,?,?,?,?,?,?,?,?,?)";
+            System.out.println("sql ----> " + sql);
+
             Object[] params = {user.getUserCode(), user.getUserName(), user.getUserPassword(),
                     user.getUserRole(), user.getGender(), user.getBirthday(),
                     user.getPhone(), user.getAddress(), user.getCreationDate(), user.getCreatedBy()};
