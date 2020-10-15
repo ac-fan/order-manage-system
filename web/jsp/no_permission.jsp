@@ -12,19 +12,29 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath }/static/images/favicon.ico"/>
 </head>
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
+<!--begin::Main-->
 <div class="d-flex flex-column flex-root">
-    <div class="error error-4 d-flex flex-row-fluid bgi-size-cover bgi-position-center"
-         style="background-image: url(${pageContext.request.contextPath }/static/images/error-bg.jpg);">
-        <div class="d-flex flex-column flex-row-fluid align-items-center align-items-md-start justify-content-md-center text-center text-md-left px-10 px-md-30 py-10 py-md-0 line-height-xs">
-            <h2 class="error-title text-success font-weight-boldest line-height-sm">
-                权限不够
-            </h2>
-            <p class="error-subtitle text-success font-weight-boldest mb-10">
-                未授权的访问
+    <!--begin::Error-->
+    <div class="error error-3 d-flex flex-row-fluid bgi-size-cover bgi-position-center"
+         style="background-image: url(/static/images/bg-3.jpg);">
+        <!--begin::Content-->
+        <div class="px-10 px-md-30 py-10 py-md-0 d-flex flex-column justify-content-md-center">
+            <h1 class="error-title text-stroke text-transparent">Pemission Denied</h1>
+            <p class="display-4 font-weight-boldest text-white mb-12">
+                权限不足
             </p>
-            <a class="btn btn-hover-bg-warning font-weight-bold" href="javascript:window.history.back(-1);">返回上一页</a>
+            <p class="font-size-h1 font-weight-boldest text-dark-75">
+                您暂时没有权限访问此页面.
+            </p>
+            <p class="font-size-h4 line-height-md">
+                <a class="btn btn-warning font-weight-bold" href="javascript:window.history.back(-1);">返回上一页</a>
+            </p>
         </div>
+
+        <!--end::Content-->
     </div>
+    <!--end::Error-->
 </div>
+<!--end::Main-->
 </body>
 </html>
