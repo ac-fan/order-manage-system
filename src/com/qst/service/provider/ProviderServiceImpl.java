@@ -14,13 +14,14 @@ import java.util.List;
 
 public class ProviderServiceImpl implements ProviderService {
 
-    private ProviderDao providerDao;
-    private BillDao billDao;
+    private final ProviderDao providerDao;
+    private final BillDao billDao;
     public ProviderServiceImpl(){
         providerDao = new ProviderDaoImpl();
         billDao = new BillDaoImpl();
     }
 
+    @Override
     public int getProviderCount(String proCode, String proName) {
         Connection connection= null;
         int count=0;
@@ -42,6 +43,7 @@ public class ProviderServiceImpl implements ProviderService {
         System.out.println(providerCount);
     }*/
 
+    @Override
     public boolean add(Provider provider) {
         // TODO Auto-generated method stub
         boolean flag = false;
@@ -49,8 +51,9 @@ public class ProviderServiceImpl implements ProviderService {
         try {
             connection = BaseDao.getConnection();
             connection.setAutoCommit(false);//开启JDBC事务管理
-            if(providerDao.add(connection,provider) > 0)
+            if(providerDao.add(connection,provider) > 0) {
                 flag = true;
+            }
             connection.commit();
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -70,7 +73,8 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
 
-    public List<Provider> getProviderList(String proName,String proCode,int currentPageNo, int pageSize) {
+    @Override
+    public List<Provider> getProviderList(String proName, String proCode, int currentPageNo, int pageSize) {
         // TODO Auto-generated method stub
         Connection connection = null;
         List<Provider> providerList = null;
@@ -101,6 +105,7 @@ public class ProviderServiceImpl implements ProviderService {
      * 若billCount >= 0 成功
      */
 
+    @Override
     public int deleteProviderById(String delId) {
         // TODO Auto-generated method stub
         Connection connection = null;
@@ -130,6 +135,7 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
 
+    @Override
     public Provider getProviderById(String id) {
         // TODO Auto-generated method stub
         Provider provider = null;
@@ -147,14 +153,16 @@ public class ProviderServiceImpl implements ProviderService {
         return provider;
     }
 
+    @Override
     public boolean modify(Provider provider) {
         // TODO Auto-generated method stub
         Connection connection = null;
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if(providerDao.modify(connection,provider) > 0)
+            if(providerDao.modify(connection,provider) > 0) {
                 flag = true;
+            }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

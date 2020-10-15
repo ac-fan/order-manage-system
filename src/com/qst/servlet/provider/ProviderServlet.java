@@ -22,11 +22,13 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class ProviderServlet extends HttpServlet {
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String method = request.getParameter("method");
@@ -34,17 +36,17 @@ public class ProviderServlet extends HttpServlet {
         Integer userRole=u.getUserRole();
         if(userRole==2) {
             request.getRequestDispatcher("no_permission.jsp").forward(request, response);
-        }else if(method != null && method.equals("query")){
+        }else if("query".equals(method)){
             this.query(request,response);
-        }else if(method != null && method.equals("add")){
+        }else if("add".equals(method)){
             this.add(request,response);
-        }else if(method != null && method.equals("view")){
+        }else if("view".equals(method)){
             this.getProviderById(request,response,"providerview.jsp");
-        }else if(method != null && method.equals("modify")){
+        }else if("modify".equals(method)){
             this.getProviderById(request,response,"providermodify.jsp");
-        }else if(method != null && method.equals("modifysave")){
+        }else if("modifysave".equals(method)){
             this.modify(request,response);
-        }else if(method != null && method.equals("delprovider")){
+        }else if("delprovider".equals(method)){
             this.delProvider(request,response);
         }
     }
@@ -133,7 +135,7 @@ public class ProviderServlet extends HttpServlet {
     private void delProvider(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("proid");
-        HashMap<String, String> resultMap = new HashMap<String, String>();
+        HashMap<String, String> resultMap = new HashMap<>();
         if(!StringUtils.isNullOrEmpty(id)){
             ProviderService providerService = new ProviderServiceImpl();
             int flag = providerService.deleteProviderById(id);

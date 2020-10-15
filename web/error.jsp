@@ -31,4 +31,7 @@
     </div>
 </div>
 </body>
+<script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
 </html>

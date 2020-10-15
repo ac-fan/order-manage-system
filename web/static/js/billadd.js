@@ -70,7 +70,7 @@ var formControls = function () {
                             stringLength: {
                                 min: 1,
                                 max: 100,
-                                message: '请输入长度为 1 到 100 的字符'
+                                message: '商品名称的长度应为 1 到 100 个字符'
                             }
                         }
                     },
@@ -85,13 +85,19 @@ var formControls = function () {
                         validators: {
                             notEmpty: {
                                 message: '请输入商品数量'
+                            },
+                            numeric: {
+                                message: '商品数量必须为数值类型'
                             }
                         }
                     },
                     totalPrice: {
                         validators: {
                             notEmpty: {
-                                message: '请输入商品数量'
+                                message: '请输入订单金额'
+                            },
+                            numeric: {
+                                message: '订单金额必须为数值类型'
                             }
                         }
                     },

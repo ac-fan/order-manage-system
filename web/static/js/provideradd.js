@@ -1,4 +1,3 @@
-
 function priceReg(value) {
     value = value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
     value = value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
@@ -10,7 +9,7 @@ function priceReg(value) {
     return value;
 }
 
-function submitForm(){
+function submitForm() {
     $("#providerForm").submit();
 }
 
@@ -43,7 +42,7 @@ var formControls = function () {
                             stringLength: {
                                 min: 1,
                                 max: 100,
-                                message: '请输入长度为 1 到 100 的字符'
+                                message: '供应商名称长度应为 1 到 100 个字符'
                             }
                         }
                     },
@@ -58,6 +57,10 @@ var formControls = function () {
                         validators: {
                             notEmpty: {
                                 message: '请输入联系电话'
+                            },
+                            phone: {
+                                country: 'CN',
+                                message: '这不是一个有效的电话号码'
                             }
                         }
                     },
@@ -68,20 +71,24 @@ var formControls = function () {
                             }
                         }
                     },
-                     proFax: {
-                         validators: {
-                             notEmpty: {
-                                 message: '请输入传真'
-                             }
-                         }
-                     },
+                    proFax: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入传真'
+                            },
+                            phone: {
+                                country: 'CN',
+                                message: '这不是一个有效的传真号码'
+                            }
+                        }
+                    },
                     proDesc: {
-                         validators: {
-                             notEmpty: {
-                                 message: '请写描述'
-                             }
-                         }
-                     }
+                        validators: {
+                            notEmpty: {
+                                message: '请填写描述'
+                            }
+                        }
+                    }
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),

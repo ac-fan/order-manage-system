@@ -42,7 +42,7 @@ var formControls = function () {
                             stringLength: {
                                 min: 1,
                                 max: 100,
-                                message: '请输入长度为 1 到 100 的字符'
+                                message: '供应商名称长度应为 1 到 100 个字符'
                             }
                         }
                     },
@@ -57,6 +57,10 @@ var formControls = function () {
                         validators: {
                             notEmpty: {
                                 message: '请输入联系电话'
+                            },
+                            phone: {
+                                country: 'CN',
+                                message: '这不是一个有效的电话号码'
                             }
                         }
                     },
@@ -71,13 +75,17 @@ var formControls = function () {
                         validators: {
                             notEmpty: {
                                 message: '请输入传真'
+                            },
+                            phone: {
+                                country: 'CN',
+                                message: '这不是一个有效的传真号码'
                             }
                         }
                     },
                     proDesc: {
                         validators: {
                             notEmpty: {
-                                message: '请写描述'
+                                message: '请填写描述'
                             }
                         }
                     }

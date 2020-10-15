@@ -53,6 +53,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("User:[ " + userCode + " ] Login Failed");
             //页面跳转（login.jsp）带出提示信息--转发
             req.setCharacterEncoding("UTF-8");
+            resp.setCharacterEncoding("UTF-8");
             req.setAttribute("error", "用户名或密码不正确");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }

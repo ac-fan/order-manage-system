@@ -81,19 +81,19 @@ public class BillServlet extends HttpServlet {
         Integer userRole=u.getUserRole();
         if(userRole==2) {
             request.getRequestDispatcher("no_permission.jsp").forward(request, response);
-        }else if (method != null && method.equals("query")) {
+        }else if (method != null && "query".equals(method)) {
             this.query(request, response);
-        } else if (method != null && method.equals("add")) {
+        } else if (method != null && "add".equals(method)) {
             this.add(request, response);
-        } else if (method != null && method.equals("view")) {
+        } else if (method != null && "view".equals(method)) {
             this.getBillById(request, response, "billview.jsp");
-        } else if (method != null && method.equals("modify")) {
+        } else if (method != null && "modify".equals(method)) {
             this.getBillById(request, response, "billmodify.jsp");
-        } else if (method != null && method.equals("modifysave")) {
+        } else if (method != null && "modifysave".equals(method)) {
             this.modify(request, response);
-        } else if (method != null && method.equals("delbill")) {
+        } else if (method != null && "delbill".equals(method)) {
             this.delBill(request, response);
-        } else if (method != null && method.equals("getproviderlist")) {
+        } else if (method != null && "getproviderlist".equals(method)) {
             this.getProviderlist(request, response);
         }
 
@@ -106,7 +106,7 @@ public class BillServlet extends HttpServlet {
         int pageSize = Constants.pageSize;
 
         int currentPageNo = 1;
-        List<Provider> providerList = new ArrayList<Provider>();
+        List<Provider> providerList = new ArrayList<>();
         ProviderService providerService = new ProviderServiceImpl();
         providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
         //把providerList转换成json对象输出
@@ -166,7 +166,7 @@ public class BillServlet extends HttpServlet {
     private void delBill(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("billid");
-        HashMap<String, String> resultMap = new HashMap<String, String>();
+        HashMap<String, String> resultMap = new HashMap<>();
         if (!StringUtils.isNullOrEmpty(id)) {
             BillService billService = new BillServiceImpl();
             boolean flag = billService.deleteBillById(id);

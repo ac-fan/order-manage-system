@@ -2,7 +2,6 @@ package com.qst.service.bill;
 
 import com.qst.pojo.Bill;
 
-import java.sql.Connection;
 import java.util.List;
 
 

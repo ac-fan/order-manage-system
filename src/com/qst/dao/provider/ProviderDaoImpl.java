@@ -9,12 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ProviderDaoImpl implements ProviderDao{
 
     //通过供应商编码或供应商名称查询供应商总数
+    @Override
     public int getProviderCount(Connection connection, String proCode, String proName) throws Exception {
         PreparedStatement pstm = null;
         ResultSet rs=null;
@@ -22,7 +22,7 @@ public class ProviderDaoImpl implements ProviderDao{
         if(connection!=null) {
             StringBuffer sql =new StringBuffer();
             sql.append("select count(1) as count from smbms_provider where 1=1");
-            List<Object> list =new ArrayList<Object>();//存放参数
+            List<Object> list = new ArrayList<>();//存放参数
             if (!StringUtils.isNullOrEmpty(proCode)){
                 sql.append(" and proCode like ?");
                 list.add("%"+proCode+"%");//index:0
@@ -45,16 +45,17 @@ public class ProviderDaoImpl implements ProviderDao{
     }
 
     // 通过供应商名称、编码获取供应商列表-模糊查询-providerList
-    public List<Provider> getProviderList(Connection connection, String proName,String proCode,int currentPageNo, int pageSize)
+    @Override
+    public List<Provider> getProviderList(Connection connection, String proName, String proCode, int currentPageNo, int pageSize)
             throws Exception {
         // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<Provider> providerList = new ArrayList<Provider>();
+        List<Provider> providerList = new ArrayList<>();
         if(connection != null){
             StringBuffer sql = new StringBuffer();
             sql.append("select * from smbms_provider where 1=1 ");
-            List<Object> list = new ArrayList<Object>();
+            List<Object> list = new ArrayList<>();
             if(!StringUtils.isNullOrEmpty(proName)){
                 sql.append(" and proName like ?");
                 list.add("%"+proName+"%");
@@ -92,6 +93,7 @@ public class ProviderDaoImpl implements ProviderDao{
     }
 
 
+    @Override
     public int add(Connection connection, Provider provider)
             throws Exception {
         // TODO Auto-generated method stub
@@ -113,6 +115,7 @@ public class ProviderDaoImpl implements ProviderDao{
 
 
 
+    @Override
     public int deleteProviderById(Connection connection, String delId)
             throws Exception {
         // TODO Auto-generated method stub
@@ -128,6 +131,7 @@ public class ProviderDaoImpl implements ProviderDao{
     }
 
 
+    @Override
     public Provider getProviderById(Connection connection, String id)
             throws Exception {
         // TODO Auto-generated method stub
@@ -159,6 +163,7 @@ public class ProviderDaoImpl implements ProviderDao{
     }
 
 
+    @Override
     public int modify(Connection connection, Provider provider)
             throws Exception {
         // TODO Auto-generated method stub

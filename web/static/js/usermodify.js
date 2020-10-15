@@ -133,14 +133,14 @@ var formControls = function () {
                     address: {
                         validators: {
                             notEmpty: {
-                                message: '请输入商品数量'
+                                message: '请输入用户的地址'
                             }
                         }
                     },
                     userRole: {
                         validators: {
                             notEmpty: {
-                                message: '请输入商品数量'
+                                message: '请选择用户角色'
                             }
                         }
                     },
