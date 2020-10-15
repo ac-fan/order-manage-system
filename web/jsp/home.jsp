@@ -163,7 +163,7 @@
                                             <div class="row m-0">
                                                 <div class="col bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
                                                     <a href="${pageContext.request.contextPath}/jsp/bill.do?method=query"
-                                                       class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
+                                                       class="nav nav-link svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
                                                         <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
                                                     <a href="${pageContext.request.contextPath}/jsp/useradd.jsp"
-                                                       class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
+                                                       class="nav nav-link svg-icon svg-icon-3x svg-icon-primary d-block my-2">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg-->
                                                         <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +213,7 @@
                                             <div class="row m-0">
                                                 <div class="col bg-light-danger px-6 py-8 rounded-xl mr-7">
                                                     <a href="${pageContext.request.contextPath}/jsp/user.do?method=query"
-                                                       class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
+                                                       class="nav nav-link svg-icon svg-icon-3x svg-icon-danger d-block my-2">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                                                         <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +234,7 @@
                                                 </div>
                                                 <div class="col bg-light-success px-6 py-8 rounded-xl">
                                                     <a href="${pageContext.request.contextPath}/jsp/provider.do?method=query"
-                                                       class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
+                                                       class="nav nav-link svg-icon svg-icon-3x svg-icon-success d-block my-2">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Urgent-mail.svg-->
                                                         <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
