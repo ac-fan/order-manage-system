@@ -38,6 +38,8 @@ public class UserServlet extends HttpServlet {
             this.updatePwd(req, resp);
         } else if ("pwdmodify".equals(method)) {
             this.pwdModify(req, resp);
+        } else if ("pwdmodifynew".equals(method)) {
+            this.pwdModifynew(req, resp);
         } else if ("query".equals(method)) {
             this.query(req, resp);
         } else if ("getrolelist".equals(method)) {
@@ -193,8 +195,6 @@ public class UserServlet extends HttpServlet {
                 resultMap.put("result", "false");
             }
         }
-
-
         try {
             resp.setContentType("application/json");
             PrintWriter writer = resp.getWriter();
@@ -209,8 +209,45 @@ public class UserServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-
+    public void pwdModifynew(HttpServletRequest req, HttpServletResponse resp) {
+        // 通过session获得用户id
+        Object o = req.getSession().getAttribute(Constants.USER_SESSION);
+        String oldpassword = req.getParameter("oldPassword");
+        //万能Map：结果集
+        Map<String, String> resultMap = new HashMap<>();
+        if (o == null) {
+            //session失效，session过期了
+            resultMap.put("valid", "false");
+        } else if (StringUtils.isNullOrEmpty(oldpassword)) {
+            //输入密码为空
+            resultMap.put("valid", "false");
+        } else {//
+            String userPassword = ((User) o).getUserPassword();
+            //seesion中的用户密码
+            if (oldpassword.equals(userPassword)) {
+                //密码相同返回正确
+                resultMap.put("valid", "true");
+            } else {
+                //否则返回 false
+                resultMap.put("valid", "false");
+            }
+        }
+        try {
+            resp.setContentType("application/json");
+            PrintWriter writer = resp.getWriter();
+            /*
+             * resultMap = ["valid","true"] 或 ["valid","false"]
+             * josn格式={key,value}
+             */
+            writer.write(JSONArray.toJSONString(resultMap));
+            //writer.write(JsonArray.class.toString());
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unused")
