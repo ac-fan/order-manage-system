@@ -162,7 +162,7 @@
                                                     <i class="la la-search"></i><span>查询</span>
                                                 </span>
                                             </button>&nbsp;&nbsp;
-                                            <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+                                            <button type="reset" class="btn btn-secondary btn-secondary--icon" id="kt_reset">
                                                 <span>
                                                     <i class="la la-close"></i><span>重置</span>
                                                 </span>
