@@ -36,8 +36,7 @@ public class BillServlet extends HttpServlet {
      */
     @Override
     public void destroy() {
-        super.destroy(); // Just puts "destroy" string in log
-        // Put your code here
+        super.destroy();
     }
 
     /**
@@ -70,7 +69,6 @@ public class BillServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 		/*String totalPrice = request.getParameter("totalPrice");
 		//23.234   45
 		BigDecimal totalPriceBigDecimal =
@@ -78,7 +76,6 @@ public class BillServlet extends HttpServlet {
 				//ROUND_HALF_UP 四舍五入(5入) ROUND_UP 进位
 				//ROUND_HALF_DOWN 四舍五入（5不入）
 				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
-
         String method = request.getParameter("method");
         User u = (User) request.getSession().getAttribute(Constants.USER_SESSION);
         Integer userRole=u.getUserRole();
@@ -224,7 +221,6 @@ public class BillServlet extends HttpServlet {
     }
 
     private void query(HttpServletRequest request, HttpServletResponse response) {
-
 
         String queryProductName = request.getParameter("queryProductName");
         String tempp = request.getParameter("queryProviderId");

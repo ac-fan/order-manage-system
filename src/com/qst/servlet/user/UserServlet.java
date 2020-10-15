@@ -19,10 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @SuppressWarnings("serial")
@@ -31,10 +28,10 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
         User u = (User) req.getSession().getAttribute(Constants.USER_SESSION);
-        Integer userRole=u.getUserRole();
-        if(userRole==3){
+        Integer userRole = u.getUserRole();
+        if (userRole == 3) {
             this.getUserById1(req, resp, "userview.jsp");
-        }else if ("savepwd".equals(method)) {
+        } else if ("savepwd".equals(method)) {
             this.updatePwd(req, resp);
         } else if ("pwdmodify".equals(method)) {
             this.pwdModify(req, resp);
@@ -154,14 +151,13 @@ public class UserServlet extends HttpServlet {
         Map<String, String> resultMap = new HashMap<>();
         if (o == null) {
             //session失效，session过期了
-            resultMap.put("valid", "sessionerror");
+            resultMap.put("savePwdResult", "sessionerror");
         } else if (StringUtils.isNullOrEmpty(newpassword)) {
             //输入密码为空
-            resultMap.put("valid", "error");
-        } else if (renewpassword != newpassword) {//
-            resultMap.put("valid", "false");
-
-            } else {
+            resultMap.put("savePwdResult", "error");
+        } else if (!Objects.equals(renewpassword, newpassword)) {//
+            resultMap.put("savePwdResult", "false");
+        } else {
             UserService userService = new UserServiceImpl();
             try {
                 flag = userService.updatePwd(((User) o).getId(), newpassword);
@@ -170,16 +166,13 @@ public class UserServlet extends HttpServlet {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            resultMap.put("valid", "true");
+            resultMap.put("savePwdResult", "true");
         }
-
-        try {
+        /*try {
             req.getRequestDispatcher("/jsp/pwdmodify.jsp").forward(req, resp);
-        } catch (ServletException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        }*/
         try {
             resp.setContentType("application/json");
             PrintWriter writer = resp.getWriter();
@@ -346,10 +339,11 @@ public class UserServlet extends HttpServlet {
         }
 
     }
+
     private void getUserById1(HttpServletRequest request, HttpServletResponse response, String url)
             throws ServletException, IOException {
         User u = (User) request.getSession().getAttribute(Constants.USER_SESSION);
-       String id = String.valueOf(u.getId());
+        String id = String.valueOf(u.getId());
         if (!StringUtils.isNullOrEmpty(id)) {
             //调用后台方法得到user对象
             UserService userService = new UserServiceImpl();

@@ -1,6 +1,33 @@
-
 function submitForm() {
     $("#editPwdForm").submit();
+}
+
+function updatePwd() {
+    $.ajax({
+        type: "GET",
+        url: "/jsp/user.do",
+        data: {
+            method: "savepwd",
+            oldPassword: $("#oldPassword").val(),
+            newPassword: $("#newPassword").val(),
+            reNewPassword: $("#reNewPassword").val(),
+        },
+        dataType: "json",
+        success: function (data) {
+            if (data.savePwdResult == "true") {//删除成功：移除删除行
+                Swal.fire("已提交", "密码修改成功.", "success").then(function () {
+                    window.location.href="login.jsp";
+                });
+            } else if (data.savePwdResult == "false") {//删除失败
+                Swal.fire("修改失败", "确认密码和新密码不一致!", "error");
+            } else if (data.savePwdResult == "sessionerror") {
+                Swal.fire("修改失败", "session 已过期,请尝试重新登录", "error");
+            }
+        },
+        error: function (data) {
+            Swal.fire("OH NO !", "订单删除失败!", "error");
+        }
+    });
 }
 
 var formControls = function () {
@@ -97,10 +124,7 @@ var formControls = function () {
             }).then(function (result) {
                 if (result.value) {
                     //提交表单
-                    submitForm();
-                    Swal.fire("已提交", "密码修改成功", "success").then(function () {
-
-                    });
+                    updatePwd();
                 } else if (result.dismiss === "cancel") {
                     //选择取消按钮执行的操作
                     Swal.fire("已取消该操作", "操作已取消:)", "error")
