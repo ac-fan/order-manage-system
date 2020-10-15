@@ -83,7 +83,7 @@ public class BillServlet extends HttpServlet {
         User u = (User) request.getSession().getAttribute(Constants.USER_SESSION);
         Integer userRole=u.getUserRole();
         if(userRole==2) {
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher("no_permission.jsp").forward(request, response);
         }else if (method != null && method.equals("query")) {
             this.query(request, response);
         } else if (method != null && method.equals("add")) {
