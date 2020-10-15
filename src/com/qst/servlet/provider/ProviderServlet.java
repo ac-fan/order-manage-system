@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +30,11 @@ public class ProviderServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String method = request.getParameter("method");
-        if(method != null && method.equals("query")){
+        User u = (User) request.getSession().getAttribute(Constants.USER_SESSION);
+        Integer userRole=u.getUserRole();
+        if(userRole==2) {
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }else if(method != null && method.equals("query")){
             this.query(request,response);
         }else if(method != null && method.equals("add")){
             this.add(request,response);
@@ -45,18 +48,16 @@ public class ProviderServlet extends HttpServlet {
             this.delProvider(request,response);
         }
     }
-
+    //查询供应商列表
     private void query(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //查询供应商列表
-        //从前端获取数据
 
+        //从前端获取数据
         String queryProName = request.getParameter("queryProName");
         String queryProCode = request.getParameter("queryProCode");
         String pageIndex =request.getParameter("pageIndex");
 
         ProviderServiceImpl providerService=new ProviderServiceImpl();
-        List<Provider> providerList=null;
 
         //第一次运行页面，一定是第一页，页面大小是固定的
         int pageSize=5;
@@ -85,11 +86,10 @@ public class ProviderServlet extends HttpServlet {
             currentPageNo=1;
         }else if(currentPageNo>totalPageCount){//当前页数大于尾页数
             currentPageNo=totalPageCount;
-
         }
-        //获取供应商列表展示
 
-        providerList = providerService.getProviderList(queryProName,queryProCode,currentPageNo,pageSize);
+        //获取供应商列表展示
+        List<Provider> providerList = providerService.getProviderList(queryProName,queryProCode,currentPageNo,pageSize);
         request.setAttribute("providerList", providerList);
         request.setAttribute("totalCount", totalCount);
         request.setAttribute("currentPageNo", currentPageNo);
@@ -98,7 +98,7 @@ public class ProviderServlet extends HttpServlet {
         request.setAttribute("queryProCode", queryProCode);
         request.getRequestDispatcher("providerlist.jsp").forward(request, response);
     }
-
+    //增加供应商
     private void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String proCode = request.getParameter("proCode");
@@ -129,8 +129,7 @@ public class ProviderServlet extends HttpServlet {
         }
     }
 
-
-
+    //通过proId删除Provider
     private void delProvider(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("proid");
@@ -144,7 +143,6 @@ public class ProviderServlet extends HttpServlet {
                 resultMap.put("delResult", "false");
             }else if(flag > 0){//该供应商下有订单，不能删除，返回订单数
                 resultMap.put("delResult", String.valueOf(flag));
-
             }
         }else{
             resultMap.put("delResult", "notexit");
@@ -157,6 +155,7 @@ public class ProviderServlet extends HttpServlet {
         outPrintWriter.close();
     }
 
+    //修改供应商
     private void modify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -187,7 +186,7 @@ public class ProviderServlet extends HttpServlet {
             request.getRequestDispatcher("providermodify.jsp").forward(request, response);
         }
     }
-
+    //通过proId获取Provider
     private void getProviderById(HttpServletRequest request, HttpServletResponse response,String url)
             throws ServletException, IOException {
         String id = request.getParameter("proid");

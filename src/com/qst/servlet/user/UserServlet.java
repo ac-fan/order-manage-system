@@ -30,7 +30,11 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
-        if ("savepwd".equals(method)) {
+        User u = (User) req.getSession().getAttribute(Constants.USER_SESSION);
+        Integer userRole=u.getUserRole();
+        if(userRole==3){
+            this.getUserById1(req, resp, "userview.jsp");
+        }else if ("savepwd".equals(method)) {
             this.updatePwd(req, resp);
         } else if ("pwdmodify".equals(method)) {
             this.pwdModify(req, resp);
@@ -273,6 +277,19 @@ public class UserServlet extends HttpServlet {
     private void getUserById(HttpServletRequest request, HttpServletResponse response, String url)
             throws ServletException, IOException {
         String id = request.getParameter("uid");
+        if (!StringUtils.isNullOrEmpty(id)) {
+            //调用后台方法得到user对象
+            UserService userService = new UserServiceImpl();
+            User user = userService.getUserById(id);
+            request.setAttribute("user", user);
+            request.getRequestDispatcher(url).forward(request, response);
+        }
+
+    }
+    private void getUserById1(HttpServletRequest request, HttpServletResponse response, String url)
+            throws ServletException, IOException {
+        User u = (User) request.getSession().getAttribute(Constants.USER_SESSION);
+       String id = String.valueOf(u.getId());
         if (!StringUtils.isNullOrEmpty(id)) {
             //调用后台方法得到user对象
             UserService userService = new UserServiceImpl();
