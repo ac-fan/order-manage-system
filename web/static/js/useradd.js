@@ -62,7 +62,7 @@ var formControls = function () {
                 if (data != null) {
                     var rid = $("#rid").val();
                     userRole.html("");
-                    var options = "<option value=\"0\">请选择</option>";
+                    var options = "<option value=\"\">请选择</option>";
                     for (var i = 0; i < data.length; i++) {
 
                         if (rid !== null && rid !== undefined && data[i].id === rid) {
