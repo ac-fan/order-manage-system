@@ -123,7 +123,7 @@
                                     <div class="row mb-6">
                                         <div class="col-lg-3 mb-lg-0 mb-6">
                                             <label>用户名：</label>
-                                            <input type="text" class="form-control datatable-input"
+                                            <input type="text" class="form-control datatable-input" name="queryUsername"
                                                    value="${queryUserName }" data-col-index="0"/>
                                         </div>
                                         <div class="col-lg-3  mb-lg-0 mb-6">

@@ -7,6 +7,7 @@
 
 <%@ page import="com.qst.pojo.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,45 +99,7 @@
         <!--end::左侧导航栏-->
         <!--begin::右侧页面框架-->
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-            <!--begin::页面头部-->
-            <div id="kt_header" class="header bg-white  header-fixed ">
-                <!--begin::Container-->
-                <div class=" container-fluid  d-flex align-items-stretch justify-content-between">
-                    <!--begin::Left-->
-                    <div class="d-flex align-items-stretch mr-2">
-                        <!--begin::Page Title-->
-                        <h3 class="d-none text-dark d-lg-flex align-items-center mr-10 mb-0">订单管理系统</h3>
-                        <!--end::Page Title-->
-
-                        <!--begin::Header Menu Wrapper-->
-                        <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper"></div>
-                        <!--end::Header Menu Wrapper-->
-                    </div>
-                    <!--end::Left-->
-
-                    <!--begin::Topbar-->
-                    <div class="topbar">
-                        <!--begin::User-->
-                        <div class="topbar-item">
-                            <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2"
-                                 id="kt_quick_user_toggle">
-                                <div class="d-flex flex-column text-right pr-3">
-
-                                    <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">${userSession.userName }</span>
-
-                                </div>
-                                <span class="symbol symbol-35 symbol-light-primary">
-                                    <span class="symbol-label font-size-h5 font-weight-bold">头像</span>
-					            </span>
-                            </div>
-                        </div>
-                        <!--end::User-->
-                    </div>
-                    <!--end::Topbar-->
-                </div>
-                <!--end::Container-->
-            </div>
-            <!--end::页面头部-->
+            <%@include file="/jsp/common/subheader.jsp" %>
 
             <!--begin::页面内容-->
             <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
@@ -308,7 +271,7 @@
 
                                                 <a href="#"
                                                    class="text-muted text-hover-primary font-weight-bold font-size-lg mt-1">
-                                                    </a>
+                                                </a>
                                             </div>
                                         </div>
                                         <!--end::Tiles Widget 12-->

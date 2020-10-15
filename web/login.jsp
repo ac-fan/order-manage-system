@@ -49,7 +49,6 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                     </label>
                                 </div>
-                                <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">忘记密码了吗?</a>
                             </div>
 
                             <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-2">
