@@ -88,9 +88,9 @@
         <!--end::侧边主体内容-->
     </div>
 </div>
+<script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
-<%--<script src="${pageContext.request.contextPath }/static/js/login_new.js"></script>--%>
 </body>
 </html>
 

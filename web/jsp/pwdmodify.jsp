@@ -29,7 +29,8 @@
         <div class="aside aside-left d-flex flex-column " id="kt_aside">
             <!--begin::头部 logo-->
             <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-4 py-lg-8">
-                <a href="index.html"><img alt="Logo" src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
+                <a href="index.html"><img alt="Logo"
+                                          src="${pageContext.request.contextPath }/static/images/logo-letter-1.png"
                                           class="max-h-30px"/></a>
             </div>
             <!--end::头部 logo-->
@@ -116,7 +117,8 @@
                 <div class="d-flex flex-column-fluid">
                     <div class=" container ">
                         <div class="card">
-                            <form id="userForm" name="userForm" method="post" action="${pageContext.request.contextPath }/jsp/user.do">
+                            <form id="editPwdForm" name="editPwdForm" method="post"
+                                  action="${pageContext.request.contextPath }/jsp/user.do">
                                 <input type="hidden" name="method" value="savepwd">
                                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
                                     <div class="card-title">
@@ -150,21 +152,24 @@
                                             <div class="form-group row">
                                                 <label class="col-form-label col-3 text-lg-right text-left">当前密码</label>
                                                 <div class="col-9">
-                                                    <input class="form-control form-control-lg form-control-solid mb-1"
+                                                    <input name="oldPassword" id="oldPassword"
+                                                           class="form-control form-control-lg form-control-solid mb-1"
                                                            type="password" placeholder="当前密码"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-form-label col-3 text-lg-right text-left">新密码</label>
                                                 <div class="col-9">
-                                                    <input class="form-control form-control-lg form-control-solid"
+                                                    <input name="newPassword" id="newPassword"
+                                                           class="form-control form-control-lg form-control-solid"
                                                            type="password" placeholder="新密码"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-form-label col-3 text-lg-right text-left">确认密码</label>
                                                 <div class="col-9">
-                                                    <input class="form-control form-control-lg form-control-solid"
+                                                    <input name="reNewPassword" id="reNewPassword"
+                                                           class="form-control form-control-lg form-control-solid"
                                                            type="password" placeholder="确认密码"/>
                                                 </div>
                                             </div>
@@ -178,8 +183,9 @@
                                             <div class="row">
                                                 <div class="col-3"></div>
                                                 <div class="col-9">
-                                                    <button name="saveButton" id="saveButton"
-                                                            class="btn btn-light-primary font-weight-bold">保存更改</button>
+                                                    <button name="savePwd" id="savePwd"
+                                                            class="btn btn-light-primary font-weight-bold">保存更改
+                                                    </button>
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     <a href="javascript:window.history.back(-1);"
                                                        class="btn btn-clean font-weight-bold">取消并返回</a>
@@ -207,6 +213,7 @@
 <script src="${pageContext.request.contextPath }/static/js/theme.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/plugins.bundle.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/scripts.bundle.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/pwdmodify.js"></script>
 </body>
 </html>
 
