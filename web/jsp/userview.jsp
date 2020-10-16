@@ -135,8 +135,7 @@
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
-                                                       value="<c:if test="${user.gender == 1}">男</c:if>
-				                                <c:if test="${user.gender == 2}">女</c:if>"/>
+                                                       value="<c:if test="${user.gender == 1}">男</c:if><c:if test="${user.gender == 2}">女</c:if>"/>
                                             </div>
                                         </div>
                                     </div>

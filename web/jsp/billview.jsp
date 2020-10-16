@@ -178,8 +178,7 @@
                                             <div class="input-group input-group-lg input-group-solid">
                                                 <input type="text" readonly="readonly"
                                                        class="form-control form-control-lg form-control-solid"
-                                                       value="<c:if test="${bill.isPayment == 1}">未付款</c:if>
-				                                <c:if test="${bill.isPayment == 2}">已付款</c:if>"/>
+                                                       value="<c:if test="${bill.isPayment == 1}">未付款</c:if><c:if test="${bill.isPayment == 2}">已付款</c:if>"/>
                                             </div>
                                         </div>
                                     </div>
