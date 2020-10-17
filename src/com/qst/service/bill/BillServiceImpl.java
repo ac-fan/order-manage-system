@@ -9,7 +9,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-
+/**
+ * Class BillServiceImpl
+ *
+ * @author sve1r
+ * @description 订单服务接口的实现类
+ * @date 2020/10/10
+ */
 public class BillServiceImpl implements BillService {
 
     private final BillDao billDao;
@@ -30,7 +36,8 @@ public class BillServiceImpl implements BillService {
         Connection connection = null;
         try {
             connection = BaseDao.getConnection();
-            connection.setAutoCommit(false);//开启JDBC事务管理
+            //开启JDBC事务管理
+            connection.setAutoCommit(false);
             if (billDao.add(connection, bill) > 0) {
                 flag = true;
             }
@@ -142,7 +149,14 @@ public class BillServiceImpl implements BillService {
         return flag;
     }
 
-    //查询记录数
+    /**
+     * 查询记录数
+     *
+     * @param productname
+     * @param providerid
+     * @param ispayment
+     * @return
+     */
     @Override
     public int getBillCount(String productname, int providerid, int ispayment) {
         Connection connection = null;

@@ -28,7 +28,11 @@ public interface BillDao {
      * 获取订单列表
      *
      * @param connection
-     * @param productname,providerid,ispayment
+     * @param productname
+     * @param providerid
+     * @param ispayment
+     * @param currentPageNo
+     * @param pageSize
      * @return
      * @throws Exception
      */
@@ -74,7 +78,16 @@ public interface BillDao {
      */
     int getBillCountByProviderId(Connection connection, String providerId) throws Exception;
 
-    //根据产品名或者供应商或者是否支付查询订单总数
+    /**
+     * 根据产品名或者供应商或者是否支付查询订单总数
+     *
+     * @param connection
+     * @param productname
+     * @param providerid
+     * @param ispayment
+     * @return
+     * @throws Exception
+     */
     int getBillCount(Connection connection, String productname, int providerid, int ispayment) throws Exception;
 
 }

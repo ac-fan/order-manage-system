@@ -39,7 +39,8 @@ public class LogoutServlet extends HttpServlet {
         System.out.println("已退出，请重新登陆");
         //清除session
         request.getSession().removeAttribute(Constants.USER_SESSION);
-        response.sendRedirect(request.getContextPath() + "/login.jsp");//返回登录页面
+        //返回登录页面
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
 
     @Override

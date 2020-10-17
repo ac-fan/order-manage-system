@@ -11,40 +11,59 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProviderDaoImpl implements ProviderDao{
+public class ProviderDaoImpl implements ProviderDao {
 
-    //通过供应商编码或供应商名称查询供应商总数
+    /**
+     * 通过供应商编码或供应商名称查询供应商总数
+     *
+     * @param connection
+     * @param proCode
+     * @param proName
+     * @return
+     * @throws Exception
+     */
     @Override
     public int getProviderCount(Connection connection, String proCode, String proName) throws Exception {
         PreparedStatement pstm = null;
-        ResultSet rs=null;
-        int count =0;
-        if(connection!=null) {
-            StringBuffer sql =new StringBuffer();
+        ResultSet rs = null;
+        int count = 0;
+        if (connection != null) {
+            StringBuffer sql = new StringBuffer();
             sql.append("select count(1) as count from smbms_provider where 1=1");
             List<Object> list = new ArrayList<>();//存放参数
-            if (!StringUtils.isNullOrEmpty(proCode)){
+            if (!StringUtils.isNullOrEmpty(proCode)) {
                 sql.append(" and proCode like ?");
-                list.add("%"+proCode+"%");//index:0
-            } if (!StringUtils.isNullOrEmpty(proName)){
+                list.add("%" + proCode + "%");//index:0
+            }
+            if (!StringUtils.isNullOrEmpty(proName)) {
                 sql.append(" and proName like ?");
-                list.add("%"+proName+"%");//index:1
+                list.add("%" + proName + "%");//index:1
             }
 
             //把list转换为数组
-            Object[] params=list.toArray();
-            System.out.println("ProviderDaoImpl->getProviderCount:"+sql.toString());//输出最后完整的sql语句
-            rs=BaseDao.execute(connection,pstm,rs,sql.toString(),params);
-            if (rs.next()){
+            Object[] params = list.toArray();
+            System.out.println("ProviderDaoImpl->getProviderCount:" + sql.toString());//输出最后完整的sql语句
+            rs = BaseDao.execute(connection, pstm, rs, sql.toString(), params);
+            if (rs.next()) {
                 count = rs.getInt("count");//从结果集中获取最终的数量
             }
-            BaseDao.closeResource(null,pstm,rs);
+            BaseDao.closeResource(null, pstm, rs);
         }
 
         return count;
     }
 
-    // 通过供应商名称、编码获取供应商列表-模糊查询-providerList
+    /**
+     * 通过供应商名称、编码获取供应商列表-模糊查询-providerList
+     *
+     * @param connection
+     * @param proName
+     * @param proCode
+     * @param currentPageNo
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<Provider> getProviderList(Connection connection, String proName, String proCode, int currentPageNo, int pageSize)
             throws Exception {
@@ -52,29 +71,29 @@ public class ProviderDaoImpl implements ProviderDao{
         PreparedStatement pstm = null;
         ResultSet rs = null;
         List<Provider> providerList = new ArrayList<>();
-        if(connection != null){
+        if (connection != null) {
             StringBuffer sql = new StringBuffer();
             sql.append("select * from smbms_provider where 1=1 ");
             List<Object> list = new ArrayList<>();
-            if(!StringUtils.isNullOrEmpty(proName)){
+            if (!StringUtils.isNullOrEmpty(proName)) {
                 sql.append(" and proName like ?");
-                list.add("%"+proName+"%");
+                list.add("%" + proName + "%");
             }
-            if(!StringUtils.isNullOrEmpty(proCode)){
+            if (!StringUtils.isNullOrEmpty(proCode)) {
                 sql.append(" and proCode like ?");
-                list.add("%"+proCode+"%");
+                list.add("%" + proCode + "%");
             }
             //在数据中，分页使用 limit startIndex，pageSize 总数
 
             sql.append("order by creationDate DESC limit ?,?");
-            currentPageNo=(currentPageNo-1)*pageSize;
+            currentPageNo = (currentPageNo - 1) * pageSize;
             list.add(currentPageNo);
             list.add(pageSize);
 
             Object[] params = list.toArray();
             System.out.println("sql ----> " + sql.toString());
             rs = BaseDao.execute(connection, pstm, rs, sql.toString(), params);
-            while(rs.next()){
+            while (rs.next()) {
                 Provider _provider = new Provider();
                 _provider.setId(rs.getInt("id"));
                 _provider.setProCode(rs.getString("proCode"));
@@ -99,20 +118,18 @@ public class ProviderDaoImpl implements ProviderDao{
         // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         int flag = 0;
-        if(connection!=null){
+        if (connection != null) {
             String sql = "insert into smbms_provider (proCode,proName,proDesc," +
                     "proContact,proPhone,proAddress,proFax,createdBy,creationDate) " +
                     "values(?,?,?,?,?,?,?,?,?)";
-            Object[] params = {provider.getProCode(),provider.getProName(),provider.getProDesc(),
-                    provider.getProContact(),provider.getProPhone(),provider.getProAddress(),
-                    provider.getProFax(),provider.getCreatedBy(),provider.getCreationDate()};
-            flag = BaseDao.execute(connection,pstm,sql,params);
+            Object[] params = {provider.getProCode(), provider.getProName(), provider.getProDesc(),
+                    provider.getProContact(), provider.getProPhone(), provider.getProAddress(),
+                    provider.getProFax(), provider.getCreatedBy(), provider.getCreationDate()};
+            flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
         return flag;
     }
-
-
 
 
     @Override
@@ -121,10 +138,10 @@ public class ProviderDaoImpl implements ProviderDao{
         // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         int flag = 0;
-        if(null != connection){
+        if (null != connection) {
             String sql = "delete from smbms_provider where id=?";
             Object[] params = {delId};
-            flag = BaseDao.execute(connection,pstm,sql,params);
+            flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
         return flag;
@@ -138,11 +155,11 @@ public class ProviderDaoImpl implements ProviderDao{
         Provider provider = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        if(null != connection){
+        if (null != connection) {
             String sql = "select * from smbms_provider where id=?";
             Object[] params = {id};
             rs = BaseDao.execute(connection, pstm, rs, sql, params);
-            if(rs.next()){
+            if (rs.next()) {
                 provider = new Provider();
                 provider.setId(rs.getInt("id"));
                 provider.setProCode(rs.getString("proCode"));
@@ -169,12 +186,12 @@ public class ProviderDaoImpl implements ProviderDao{
         // TODO Auto-generated method stub
         int flag = 0;
         PreparedStatement pstm = null;
-        if(null != connection){
+        if (null != connection) {
             String sql = "update smbms_provider set proName=?,proDesc=?,proContact=?," +
                     "proPhone=?,proAddress=?,proFax=?,modifyBy=?,modifyDate=? where id = ? ";
-            Object[] params = {provider.getProName(),provider.getProDesc(),provider.getProContact(),provider.getProPhone(),provider.getProAddress(),
-                    provider.getProFax(),provider.getModifyBy(),provider.getModifyDate(),provider.getId()};
-            flag = BaseDao.execute(connection,pstm,sql,params);
+            Object[] params = {provider.getProName(), provider.getProDesc(), provider.getProContact(), provider.getProPhone(), provider.getProAddress(),
+                    provider.getProFax(), provider.getModifyBy(), provider.getModifyDate(), provider.getId()};
+            flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
         return flag;

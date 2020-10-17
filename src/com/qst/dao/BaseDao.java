@@ -22,7 +22,9 @@ public class BaseDao {
         init1();
     }
 
-    //使用 ResourceBundle 类读取配置文件信息
+    /**
+     * 使用 ResourceBundle 类读取配置文件信息
+     */
     private static void init1() {
         ResourceBundle resource;
         String bundle = "com/qst/dao/db";
@@ -37,7 +39,9 @@ public class BaseDao {
         }
     }
 
-    //初始化连接参数,从配置文件里获得
+    /**
+     * 初始化连接参数,从配置文件里获得
+     */
     public static void init() {
         Properties properties = new Properties();
         String configFile = "db.properties";
@@ -54,7 +58,11 @@ public class BaseDao {
         }
     }
 
-    //获取连接
+    /**
+     * 获取连接
+     *
+     * @return
+     */
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -66,18 +74,38 @@ public class BaseDao {
         return connection;
     }
 
-    //获取查询结果集
+    /**
+     * 获取查询结果集
+     *
+     * @param connection
+     * @param preparedStatement
+     * @param resultSet
+     * @param sql
+     * @param params
+     * @return
+     * @throws Exception
+     */
     public static ResultSet execute(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet, String sql, Object[] params) throws Exception {
         //预编译的sql不需要传参，直接执行即可
         preparedStatement = connection.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
             preparedStatement.setObject(i + 1, params[i]);
         }
-        resultSet = preparedStatement.executeQuery();//新添加sql
+        //新添加sql
+        resultSet = preparedStatement.executeQuery();
         return resultSet;
     }
 
-    //执行其他更新结果
+    /**
+     * 执行其他更新结果
+     *
+     * @param connection
+     * @param preparedStatement
+     * @param sql
+     * @param params
+     * @return
+     * @throws Exception
+     */
     public static int execute(Connection connection, PreparedStatement preparedStatement, String sql, Object[] params) throws Exception {
         int updateRows = 0;
         preparedStatement = connection.prepareStatement(sql);
@@ -88,7 +116,14 @@ public class BaseDao {
         return updateRows;
     }
 
-    //关闭并释放资源
+    /**
+     * 关闭并释放资源
+     *
+     * @param connection
+     * @param preparedStatement
+     * @param resultSet
+     * @return
+     */
     public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
         boolean flag = true;
         if (resultSet != null) {

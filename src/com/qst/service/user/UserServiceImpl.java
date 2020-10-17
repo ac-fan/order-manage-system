@@ -178,7 +178,13 @@ public class UserServiceImpl implements UserService {
         return flag;
     }
 
-    //查询记录数
+    /**
+     * 查询记录数
+     *
+     * @param queryUserName
+     * @param queryUserRole
+     * @return
+     */
     @Override
     public int getUserCount(String queryUserName, int queryUserRole) {
         Connection connection = null;

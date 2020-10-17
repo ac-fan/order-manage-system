@@ -65,7 +65,12 @@ public class UserServlet extends HttpServlet {
         doGet(req, resp);
     }
 
-    //重点、难点
+    /**
+     * 查询
+     *
+     * @param req
+     * @param resp
+     */
     private void query(HttpServletRequest req, HttpServletResponse resp) {
         //查询用户列表
         //从前端获取数据

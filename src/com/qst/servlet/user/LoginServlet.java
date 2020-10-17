@@ -14,7 +14,14 @@ import java.io.IOException;
 
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
-    //接受用户参数、调用业务层、转发视图
+    /**
+     * 接受用户参数、调用业务层、转发视图
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -43,11 +50,8 @@ public class LoginServlet extends HttpServlet {
             } else if (u.getUserRole() == 3) {
                 System.out.println("User:" + u.getUserName() + "员工Login Succeed");
             }
-
-
-            //页面跳转（frame.jsp）
-//            resp.sendRedirect("jsp/frame.jsp");// 旧跳转
-            resp.sendRedirect("jsp/home.jsp");//跳转到新首页
+            //跳转到新首页
+            resp.sendRedirect("jsp/home.jsp");
 
         } else {
             System.out.println("User:[ " + userCode + " ] Login Failed");

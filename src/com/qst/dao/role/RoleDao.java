@@ -8,7 +8,13 @@ import java.util.List;
 
 public interface RoleDao {
 
-    //获取角色列表
+    /**
+     * 获取角色列表
+     *
+     * @param connection
+     * @return
+     * @throws Exception
+     */
     List<Role> getRoleList(Connection connection) throws Exception;
 
 }

@@ -27,7 +27,13 @@ import com.qst.service.provider.ProviderServiceImpl;
 import com.qst.util.Constants;
 import com.qst.util.PageSupport;
 
-
+/**
+ * Class BillServlet
+ *
+ * @author sve1r
+ * @description 订单 Servlet
+ * @date 2020/10/12
+ */
 @SuppressWarnings("serial")
 public class BillServlet extends HttpServlet {
 
@@ -78,35 +84,35 @@ public class BillServlet extends HttpServlet {
 				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
         String method = request.getParameter("method");
         User u = (User) request.getSession().getAttribute(Constants.USER_SESSION);
-        Integer userRole=u.getUserRole();
-        if(userRole==2) {
+        Integer userRole = u.getUserRole();
+        if (userRole == 2) {
             request.getRequestDispatcher("no_permission.jsp").forward(request, response);
-        }else if (method != null && "query".equals(method)) {
+        } else if ("query".equals(method)) {
             this.query(request, response);
-        } else if (method != null && "add".equals(method)) {
+        } else if ("add".equals(method)) {
             this.add(request, response);
-        } else if (method != null && "view".equals(method)) {
+        } else if ("view".equals(method)) {
             this.getBillById(request, response, "billview.jsp");
-        } else if (method != null && "modify".equals(method)) {
+        } else if ("modify".equals(method)) {
             this.getBillById(request, response, "billmodify.jsp");
-        } else if (method != null && "modifysave".equals(method)) {
+        } else if ("modifysave".equals(method)) {
             this.modify(request, response);
-        } else if (method != null && "delbill".equals(method)) {
+        } else if ("delbill".equals(method)) {
             this.delBill(request, response);
-        } else if (method != null && "getproviderlist".equals(method)) {
+        } else if ("getproviderlist".equals(method)) {
             this.getProviderlist(request, response);
         }
 
     }
 
     private void getProviderlist(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
 
         System.out.println("getproviderlist ========================= ");
         int pageSize = Constants.pageSize;
 
         int currentPageNo = 1;
-        List<Provider> providerList = new ArrayList<>();
+        List<Provider> providerList;
         ProviderService providerService = new ProviderServiceImpl();
         providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
         //把providerList转换成json对象输出
@@ -170,9 +176,11 @@ public class BillServlet extends HttpServlet {
         if (!StringUtils.isNullOrEmpty(id)) {
             BillService billService = new BillServiceImpl();
             boolean flag = billService.deleteBillById(id);
-            if (flag) {//删除成功
+            if (flag) {
+                //删除成功
                 resultMap.put("delResult", "true");
-            } else {//删除失败
+            } else {
+                //删除失败
                 resultMap.put("delResult", "false");
             }
         } else {
@@ -266,8 +274,8 @@ public class BillServlet extends HttpServlet {
         pageSupport.setCurrentPageNo(currentPageNo);
         pageSupport.setPageSize(pageSize);
         pageSupport.setTotalCount(totalCount);
-
-        int totalPageCount = pageSupport.getTotalPageCount();//总共有几页
+        //总共有几页
+        int totalPageCount = pageSupport.getTotalPageCount();
         //(totalCount+pageSize-1/pageSize)取整
         // pageSupport.getTotalCount()
 
@@ -278,7 +286,8 @@ public class BillServlet extends HttpServlet {
         //如果页面小于 1 就显示第一页的东西
         if (currentPageNo < 1) {
             currentPageNo = 1;
-        } else if (currentPageNo > totalPageCount) {//如果页面大于了最后一页就显示最后一页
+        } else if (currentPageNo > totalPageCount) {
+            //如果页面大于了最后一页就显示最后一页
             currentPageNo = totalPageCount;
         }
 

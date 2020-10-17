@@ -1,16 +1,24 @@
 package com.qst.util;
 
 public class PageSupport {
-    //当前页码-来自于用户输入
+    /**
+     * 当前页码-来自于用户输入
+     */
     private int currentPageNo = 1;
 
-    //总数量（表）
+    /**
+     * 总数量（表）
+     */
     private int totalCount = 0;
 
-    //页面容量
+    /**
+     * 页面容量
+     */
     private int pageSize = 0;
 
-    //总页数-totalCount/pageSize（+1）
+    /**
+     * 总页数-totalCount/pageSize（+1）
+     */
     private int totalPageCount = 1;
 
     public int getCurrentPageNo() {

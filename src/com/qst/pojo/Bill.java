@@ -3,22 +3,70 @@ package com.qst.pojo;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Class Bill
+ *
+ * @author sve1r
+ * @description 订单实体类
+ * @date 2020/10/17
+ */
 public class Bill {
-    private Integer id;   //id
-    private String billCode; //账单编码
-    private String productName; //商品名称
-    private String productDesc; //商品描述
-    private String productUnit; //商品单位
-    private BigDecimal productCount; //商品数量
-    private BigDecimal totalPrice; //总金额
-    private Integer isPayment; //是否支付
-    private Integer providerId; //供应商ID
-    private Integer createdBy; //创建者
-    private Date creationDate; //创建时间
-    private Integer modifyBy; //更新者
-    private Date modifyDate;//更新时间
-
-    private String providerName;//供应商名称
+    /**
+     * id
+     */
+    private Integer id;
+    /**
+     * 账单编码
+     */
+    private String billCode;
+    /**
+     * 商品名称
+     */
+    private String productName;
+    /**
+     * 商品描述
+     */
+    private String productDesc;
+    /**
+     * 商品单位
+     */
+    private String productUnit;
+    /**
+     * 商品数量
+     */
+    private BigDecimal productCount;
+    /**
+     * 总金额
+     */
+    private BigDecimal totalPrice;
+    /**
+     * 是否支付
+     */
+    private Integer isPayment;
+    /**
+     * 供应商ID
+     */
+    private Integer providerId;
+    /**
+     * 创建者
+     */
+    private Integer createdBy;
+    /**
+     * 创建时间
+     */
+    private Date creationDate;
+    /**
+     * 更新者
+     */
+    private Integer modifyBy;
+    /**
+     * 更新时间
+     */
+    private Date modifyDate;
+    /**
+     * 供应商名称
+     */
+    private String providerName;
 
 
     public String getProviderName() {

@@ -3,7 +3,13 @@ package com.qst.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
-
+/**
+ * Class CharacterEncodingFilter
+ *
+ * @author acfan
+ * @description 字符编码过滤器
+ * @date 2020/10/17
+ */
 public class CharacterEncodingFilter implements Filter {
 
     @Override
