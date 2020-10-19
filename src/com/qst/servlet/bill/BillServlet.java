@@ -302,10 +302,6 @@ public class BillServlet extends HttpServlet {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(new BigDecimal("23.235").setScale(2, BigDecimal.ROUND_HALF_DOWN));
-    }
-
     /**
      *
      * @throws ServletException
