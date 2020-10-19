@@ -111,7 +111,7 @@ var formControls = function () {
                     //提交表单
                     submitForm();
                     Swal.fire("已提交","订单提交成功","success").then(function () {
-                        window.history.back(-1);
+                        window.location.href = "/jsp/provider.do?method=query";
                     });
                 } else if (result.dismiss === "cancel") {
                     //选择取消按钮执行的操作

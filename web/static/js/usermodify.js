@@ -84,8 +84,8 @@ var formControls = function () {
             rtl: KTUtil.isRTL(),
             orientation: "bottom left",
             todayHighlight: true,
-            language:"zh-CN",   //指定 本地化格式
-            format:"yyyy-mm-dd",    //控制timepicker 日期格式
+            language: "zh-CN",   //指定 本地化格式
+            format: "yyyy-mm-dd",    //控制timepicker 日期格式
             templates: arrows
         });
     }
@@ -166,7 +166,7 @@ var formControls = function () {
                     //提交表单
                     submitForm();
                     Swal.fire("已提交", "用户修改提交成功", "success").then(function () {
-                        window.history.back(-1);
+                        window.location.href = "/jsp/user.do?method=query";
                     });
                 } else if (result.dismiss === "cancel") {
                     //选择取消按钮执行的操作
