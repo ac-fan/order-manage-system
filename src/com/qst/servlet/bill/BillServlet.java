@@ -1,20 +1,5 @@
 package com.qst.servlet.bill;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.math.BigDecimal;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.alibaba.fastjson.JSONArray;
 import com.mysql.cj.util.StringUtils;
 import com.qst.pojo.Bill;
@@ -26,6 +11,17 @@ import com.qst.service.provider.ProviderService;
 import com.qst.service.provider.ProviderServiceImpl;
 import com.qst.util.Constants;
 import com.qst.util.PageSupport;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Class BillServlet
@@ -46,36 +42,25 @@ public class BillServlet extends HttpServlet {
     }
 
     /**
-     *
      * @param request
      * @param response
      * @throws ServletException
      * @throws IOException
      */
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request, response);
     }
 
     /**
-     *
      * @param request
      * @param response
      * @throws ServletException
      * @throws IOException
      */
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-		/*String totalPrice = request.getParameter("totalPrice");
-		//23.234   45
-		BigDecimal totalPriceBigDecimal =
-				//设置规则，小数点保留两位，多出部分，ROUND_DOWN 舍弃
-				//ROUND_HALF_UP 四舍五入(5入) ROUND_UP 进位
-				//ROUND_HALF_DOWN 四舍五入（5不入）
-				new BigDecimal(totalPrice).setScale(2,BigDecimal.ROUND_DOWN);*/
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String method = request.getParameter("method");
         User u = (User) request.getSession().getAttribute(Constants.USER_SESSION);
         Integer userRole = u.getUserRole();
@@ -96,18 +81,19 @@ public class BillServlet extends HttpServlet {
         } else if ("getproviderlist".equals(method)) {
             this.getProviderlist(request, response);
         }
-
     }
 
-    private void getProviderlist(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-
+    private void getProviderlist(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("getproviderlist ========================= ");
+        //固定页面数量
         int pageSize = Constants.pageSize;
-
+        //当前页面
         int currentPageNo = 1;
+        //新建订单列表对象
         List<Provider> providerList;
+        //创建 service 层对象
         ProviderService providerService = new ProviderServiceImpl();
+        //调用方法
         providerList = providerService.getProviderList("", "", currentPageNo, pageSize);
         //把providerList转换成json对象输出
         response.setContentType("application/json");
@@ -117,8 +103,7 @@ public class BillServlet extends HttpServlet {
         outPrintWriter.close();
     }
 
-    private void getBillById(HttpServletRequest request, HttpServletResponse response, String url)
-            throws ServletException, IOException {
+    private void getBillById(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
         String id = request.getParameter("billid");
         if (!StringUtils.isNullOrEmpty(id)) {
             BillService billService = new BillServiceImpl();
@@ -129,8 +114,7 @@ public class BillServlet extends HttpServlet {
         }
     }
 
-    private void modify(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void modify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("modify===============");
         String id = request.getParameter("id");
         String productName = request.getParameter("productName");
@@ -163,8 +147,7 @@ public class BillServlet extends HttpServlet {
         }
     }
 
-    private void delBill(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void delBill(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("billid");
         HashMap<String, String> resultMap = new HashMap<>();
         if (!StringUtils.isNullOrEmpty(id)) {
@@ -188,8 +171,7 @@ public class BillServlet extends HttpServlet {
         outPrintWriter.close();
     }
 
-    private void add(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String billCode = request.getParameter("billCode");
         String productName = request.getParameter("productName");
         String productDesc = request.getParameter("productDesc");
@@ -303,11 +285,9 @@ public class BillServlet extends HttpServlet {
     }
 
     /**
-     *
-     * @throws ServletException
      */
     @Override
-    public void init() throws ServletException {
+    public void init() {
         // Put your code here
     }
 
