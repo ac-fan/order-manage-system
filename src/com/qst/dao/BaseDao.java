@@ -97,7 +97,7 @@ public class BaseDao {
     }
 
     /**
-     * 执行其他更新结果
+     * 执行除了查询外的语句
      *
      * @param connection
      * @param preparedStatement

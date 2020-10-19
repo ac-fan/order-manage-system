@@ -61,8 +61,12 @@ public class BillServiceImpl implements BillService {
     /**
      * 获取订单集合
      *
-     * @param productname,providerid,ispayment
-     * @return java.util.List<com.qst.pojo.Bill>
+     * @param productname
+     * @param providerid
+     * @param ispayment
+     * @param currentPageNo
+     * @param pageSize
+     * @return
      */
     @Override
     public List<Bill> getBillList(String productname, int providerid, int ispayment, int currentPageNo, int pageSize) {

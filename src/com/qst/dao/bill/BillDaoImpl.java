@@ -37,6 +37,18 @@ public class BillDaoImpl implements BillDao {
         return flag;
     }
 
+    /**
+     * 获取订单列表
+     *
+     * @param connection
+     * @param productname
+     * @param providerid
+     * @param ispayment
+     * @param currentPageNo
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<Bill> getBillList(Connection connection, String productname, int providerid, int ispayment, int currentPageNo, int pageSize) throws Exception {
         PreparedStatement pstm = null;
